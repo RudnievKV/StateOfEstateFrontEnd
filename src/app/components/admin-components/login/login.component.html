@@ -1,11 +1,11 @@
-<div class="LoginForm">
+<div class="LoginForm alternate-theme">
   <div class="example-container">
-    <mat-form-field class="example-form-field" appearance="outline">
+    <mat-form-field class="example-form-field" appearance="outline" floatLabel="always">
       <mat-label>Username</mat-label>
-      <input matInput="" type="text" #username>
+      <input matInput type="text" #username>
     </mat-form-field>
     <br>
-    <mat-form-field appearance="outline">
+    <mat-form-field appearance="outline" floatLabel="always">
       <mat-label>Enter your password</mat-label>
       <input matInput [type]="hide ? 'password' : 'text'" #password>
       <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"

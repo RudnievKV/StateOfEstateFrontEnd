@@ -39,7 +39,7 @@ const routes: Routes = [
       },
       {
         path: 'users',
-        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'add-user',
@@ -57,7 +57,7 @@ const routes: Routes = [
       },
       {
         path: 'properties',
-        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'add-property',
@@ -75,7 +75,7 @@ const routes: Routes = [
       },
       {
         path: 'cities',
-        canActivateChild: [AuthGuard],
+        canActivate: [AuthGuard],
         children: [
           {
             path: 'add-city',
