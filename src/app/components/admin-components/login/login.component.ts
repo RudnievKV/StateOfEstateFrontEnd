@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class LoginComponent {
 
+  login(username: string, password: string) {
+    this.IsLoggingIn = true;
+    throw new Error('Method not implemented.');
+  }
+  hide = true;
+  IsLoggingIn = false;
 }

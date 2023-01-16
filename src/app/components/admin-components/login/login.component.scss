@@ -1,0 +1,26 @@
+.LoginFormButtons {
+  display: flex;
+  justify-content: space-between;
+
+}
+
+.example-container {
+
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  margin: auto;
+  justify-content: center;
+  margin-top: 5%;
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.login {
+  display: flex;
+}
+
+mat-label {
+  color: black;
+}

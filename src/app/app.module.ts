@@ -43,6 +43,12 @@ import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
 
 import { JwtModule } from "@auth0/angular-jwt";
 import { ACCESS_TOKEN_KEY } from './services/auth.service';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { UsersViewComponent } from './components/admin-components/users/users-view/users-view.component';
+import { UserAddComponent } from './components/admin-components/users/user-add/user-add.component';
+import { UserChangeComponent } from './components/admin-components/users/user-change/user-change.component';
+import { MatIconModule } from '@angular/material/icon'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -96,6 +102,10 @@ export function tokenGetter() {
     NeighborhoodAddComponent,
     NeighborhoodChangeComponent,
     NeighborhoodsViewComponent,
+    NotFoundComponent,
+    UsersViewComponent,
+    UserAddComponent,
+    UserChangeComponent,
   ],
   imports: [
     BrowserModule,
@@ -108,6 +118,8 @@ export function tokenGetter() {
     MatButtonModule,
     MatTableModule,
     MatFormFieldModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
 
     JwtModule.forRoot({
       config: {
