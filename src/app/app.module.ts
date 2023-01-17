@@ -48,7 +48,8 @@ import { UsersViewComponent } from './components/admin-components/users/users-vi
 import { UserAddComponent } from './components/admin-components/users/user-add/user-add.component';
 import { UserChangeComponent } from './components/admin-components/users/user-change/user-change.component';
 import { MatIconModule } from '@angular/material/icon'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { AdminHeaderComponent } from './components/admin-components/admin-header/admin-header.component'
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -106,6 +107,7 @@ export function tokenGetter() {
     UsersViewComponent,
     UserAddComponent,
     UserChangeComponent,
+    AdminHeaderComponent,
   ],
   imports: [
     BrowserModule,
