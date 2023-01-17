@@ -1,0 +1,58 @@
+.admin-main {
+    margin-top: 0;
+    padding-top: 0;
+    background-color: #222c31;
+    height: 50.3vw;
+    padding-top:1px;
+
+    &__container {
+        margin-top: 40px;
+        
+    }
+
+    &__title {
+        text-align: center;
+        color: white;
+        font-size: 20px;
+        color: yellowgreen;
+    }
+
+    &__menu {
+    }
+}
+.container {
+}
+.menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__title {
+        font-size: 18px;
+        font-weight: 600;
+        color: yellowgreen;
+
+    }
+
+    &__body {
+        width: 50%;
+    }
+
+    &__list {
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 1px solid rgb(183, 224, 99);
+        margin-top: 15px;
+        &:not(:last-child){
+            margin-bottom: 15px;
+        }
+    }
+
+    &__link {
+        color: rgb(183, 224, 99);
+        font-size: 18px;
+    }
+}
