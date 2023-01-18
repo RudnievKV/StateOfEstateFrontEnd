@@ -5,6 +5,7 @@ import { Component } from '@angular/core';
   templateUrl: './property-add.component.html',
   styleUrls: ['./property-add.component.scss']
 })
-export class PropertyAddComponent {
 
+export class PropertyAddComponent {
+  value = 'Clear';
 }
