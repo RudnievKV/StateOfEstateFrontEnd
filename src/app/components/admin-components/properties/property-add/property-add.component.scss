@@ -1,0 +1,43 @@
+.add-property {
+    padding-top: 50px;
+    background-color: #222c31;
+
+    &__container {
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        color: yellowgreen;
+    }
+
+    &__translate {
+        background-color: yellowgreen !important;
+    }
+
+    &__header-footer {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__buttons-save {
+        background-color: rgba(15, 106, 59, 0) !important;
+            border: 1px solid white;
+    }
+
+    &__options {
+    }
+}
+.container {
+    padding: 0 60px;
+}
+.options {
+
+    &__body {
+        height: 1000px;
+    }
+}
