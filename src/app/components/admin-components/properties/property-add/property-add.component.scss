@@ -38,6 +38,31 @@
 .options {
 
     &__body {
+        margin-top: 50px;
         height: 1000px;
     }
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__value {
+        font-size: 18px;
+        width: 150px;
+        color: yellowgreen; 
+        padding-bottom: 14px;
+    }
+    &__title {
+        display: flex;
+        
+        mat-form-field{
+            width: 300px !important;
+        }
+    }
+    
 }
+.example-form-field {
+}
+
+
+
