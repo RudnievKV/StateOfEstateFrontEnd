@@ -1,5 +1,5 @@
 .add-property {
-    padding-top: 50px;
+    padding-top: 20px;
     background-color: #222c31;
 
     &__container {
@@ -39,7 +39,6 @@
 
     &__body {
         margin-top: 50px;
-        height: 1000px;
     }
     &__item {
         display: flex;
@@ -48,7 +47,7 @@
 
     &__value {
         font-size: 18px;
-        width: 150px;
+        width: 250px;
         color: yellowgreen; 
         padding-bottom: 14px;
     }
@@ -59,8 +58,39 @@
             width: 300px !important;
         }
     }
+    &__checkbox{
+        padding-bottom: 14px;
+        h4{
+            font-size: 20px;
+            color: yellowgreen;
+        }
+    }
     
 }
+.end {
+    margin-top: 50px;
+    &__title {
+        color: yellowgreen;
+        font-size: 24px;
+    }
+
+    &__body {
+        display: flex;
+        justify-content: space-between;
+        background-color: #263238;
+        border-top-left-radius: 5px;
+        border-top-right-radius: 5px;
+    }
+
+    &__item {
+        margin-left: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+
+
 .example-form-field {
 }
 

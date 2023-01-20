@@ -4,8 +4,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCheckboxModule} from '@angular/material/checkbox';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { GoogleMapsModule } from '@angular/google-maps';
+
 
 import { HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
@@ -115,6 +118,10 @@ export function tokenGetter() {
     FormsModule,
     MatSelectModule,
     ReactiveFormsModule,
+    MatCheckboxModule,
+    GoogleMapsModule,
+
+    
 
     BrowserModule,
     AppRoutingModule,
