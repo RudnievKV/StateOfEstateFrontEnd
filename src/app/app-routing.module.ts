@@ -64,7 +64,7 @@ const routes: Routes = [
             component: PropertyAddComponent,
           },
           {
-            path: '',
+            path: 'view-properties',
             component: PropertiesViewComponent,
           },
           {
@@ -82,7 +82,7 @@ const routes: Routes = [
             component: CityAddComponent,
           },
           {
-            path: '',
+            path: 'view-cities',
             component: CitiesViewComponent,
           },
           {

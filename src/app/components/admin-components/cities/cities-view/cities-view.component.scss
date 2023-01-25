@@ -1,0 +1,72 @@
+.city-view {
+
+    &__container {
+        background-color: #222c31;
+        padding-top: 1px;
+        padding: 1px 40px;
+        padding-bottom: 100px;
+    }
+
+    &__title {
+        color: yellowgreen;
+    }
+
+    &__search {
+    }
+
+    &__view {
+    }
+}
+.container {
+}
+.search {
+
+    &__body {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    &__field {
+        padding-left: 20px;
+    }
+
+    &__button {
+    }
+}
+.view {
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    &__value {
+        font-size: 18px;
+        font-weight: 600;
+        color: yellowgreen;
+    }
+
+    &__choose-action {
+    }
+
+    &__nav {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 0px 20px;
+        padding-bottom: 10px;
+    }
+    &__item{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 0px 20px;
+        background-color: #263238;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+}

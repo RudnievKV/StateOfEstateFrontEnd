@@ -1,0 +1,81 @@
+.proeprty-view {
+    
+
+    &__container {
+        background-color: #222c31;
+        padding-top: 1px;
+        padding: 1px 40px;
+        padding-bottom: 100px;
+    }
+
+    &__title {
+        color: yellowgreen;
+    }
+
+    &__search {
+    }
+
+    &__view {
+    }
+}
+.container {
+}
+.search {
+
+    &__body {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+    }
+
+    &__field {
+        padding-left: 20px;
+    }
+
+    &__button {
+    }
+}
+.view {
+
+    &__header {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        padding: 0 20px;
+    }
+
+    &__value {
+        font-size: 18px;
+        font-weight: 600;
+        color: yellowgreen;
+    }
+
+    &__choose-action {
+    }
+
+    &__button {
+    }
+
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0px 20px;
+    }
+
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        background-color: #263238;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    &__img-holder {
+        width: 200px;
+        height: 200px;
+        background-color: white;
+    }
+}
