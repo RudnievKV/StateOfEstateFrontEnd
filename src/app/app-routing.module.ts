@@ -14,7 +14,18 @@ import { UsersViewComponent } from './components/admin-components/users/users-vi
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { HomeComponent } from './components/user-components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
-
+import { NeighborhoodAddComponent } from './components/admin-components/neighborhoods/neighborhood-add/neighborhood-add.component';
+import { NeighborhoodChangeComponent } from './components/admin-components/neighborhoods/neighborhood-change/neighborhood-change.component';
+import { NeighborhoodsViewComponent } from './components/admin-components/neighborhoods/neighborhoods-view/neighborhoods-view.component';
+import { ConterpartyAddComponent } from './components/admin-components/Counterparties/Counterparty-add/conterparty-add.component';
+import { ConterpartiesViewComponent } from './components/admin-components/Counterparties/Counterparties-view/conterparties-view.component';
+import { ConterpartyChangeComponent } from './components/admin-components/Counterparties/Counterparty-change/conterparty-change.component';
+import { ReminderAddComponent } from './components/admin-components/reminders/reminder-add/reminder-add.component';
+import { RemindersViewComponent } from './components/admin-components/reminders/reminders-view/reminders-view.component';
+import { ReminderChangeComponent } from './components/admin-components/reminders/reminder-change/reminder-change.component';
+import { PartnerAddComponent } from './components/admin-components/partners/partner-add/partner-add.component';
+import { PartnersViewComponent } from './components/admin-components/partners/partners-view/partners-view.component';
+import { PartnerChangeComponent } from './components/admin-components/partners/partner-change/partner-change.component';
 const routes: Routes = [
   {
     path: '',
@@ -88,6 +99,78 @@ const routes: Routes = [
           {
             path: ':id/change',
             component: CityChangeComponent,
+          },
+        ]
+      },
+      {
+        path: 'neighborhoods',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'add-neighborhood',
+            component: NeighborhoodAddComponent,
+          },
+          {
+            path: 'view-neighborhoods',
+            component: NeighborhoodsViewComponent,
+          },
+          {
+            path: ':id/change',
+            component: NeighborhoodChangeComponent,
+          },
+        ]
+      },
+      {
+        path: 'counterparties',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'add-counterparty',
+            component: ConterpartyAddComponent,
+          },
+          {
+            path: 'view-counterpaties',
+            component: ConterpartiesViewComponent,
+          },
+          {
+            path: ':id/change',
+            component: ConterpartyChangeComponent,
+          },
+        ]
+      },
+      {
+        path: 'reminders',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'add-reminder',
+            component: ReminderAddComponent,
+          },
+          {
+            path: 'view-reminders',
+            component: RemindersViewComponent,
+          },
+          {
+            path: ':id/change',
+            component: ReminderChangeComponent,
+          },
+        ]
+      }, 
+      {
+        path: 'partners',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'add-partner',
+            component: PartnerAddComponent,
+          },
+          {
+            path: 'view-partners',
+            component: PartnersViewComponent,
+          },
+          {
+            path: ':id/change',
+            component: PartnerChangeComponent,
           },
         ]
       },

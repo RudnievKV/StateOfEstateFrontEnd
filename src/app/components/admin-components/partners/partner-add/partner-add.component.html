@@ -2,7 +2,7 @@
 <section class="add-city">
     <div class="add-city__container container">
         <div class="add-city__header">
-            <h1 class="add-city__title">Add Object</h1>
+            <h1 class="add-city__title">Add Reminder</h1>
         </div>
         <div class="add-city__header-footer">
             <button mat-raised-button class="add-city__buttons-save">Save and add another object</button>
@@ -11,7 +11,7 @@
         </div>
         <div class="add-city__name name">
             <div class="name__item">
-                <p class="name__value">District Name(EN)</p>
+                <p class="name__value">Full Name</p>
                 <mat-form-field class="example-form-field">
                     <mat-label>Clearable input</mat-label>
                     <input matInput type="text" [(ngModel)]="value">
@@ -21,45 +21,67 @@
                   </mat-form-field>                     
             </div>
             <div class="name__item">
-                <p class="name__value">District Name(RU)</p>
-                <mat-form-field class="example-form-field">
-                    <mat-label>Clearable input</mat-label>
-                    <input matInput type="text" [(ngModel)]="value">
-                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>                     
+                <p class="name__value"><mat-checkbox formControlName="pepperoni">Rent(Active)</mat-checkbox>  </p>
             </div>
             <div class="name__item">
-                <p class="name__value">District Name(ME)</p>
-                <mat-form-field class="example-form-field">
-                    <mat-label>Clearable input</mat-label>
-                    <input matInput type="text" [(ngModel)]="value">
-                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>                     
+                <p class="name__value"><mat-checkbox formControlName="pepperoni">Sell(Active)</mat-checkbox>  </p>
             </div>
             <div class="name__item">
-                <p class="name__value">District Name(TR)</p>
-                <mat-form-field class="example-form-field">
-                    <mat-label>Clearable input</mat-label>
-                    <input matInput type="text" [(ngModel)]="value">
-                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>                     
-            </div>
-              <div class="name__item">
-                <p class="name__value">Which City</p>
+                <p class="name__value">Cities</p>
                 <mat-form-field appearance="fill">
-                    <mat-label>Select an option</mat-label>
+                    <mat-label>Cities</mat-label>
                     <mat-select disableRipple>
                       <mat-option value="1">Option 1</mat-option>
                       <mat-option value="2">Option 2</mat-option>
                       <mat-option value="3">Option 3</mat-option>
                     </mat-select>
                   </mat-form-field>              
+            </div>
+            <div class="name__item">
+                <p class="name__value">Milo</p>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Clearable input</mat-label>
+                    <input matInput type="text" [(ngModel)]="value">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>                     
+            </div>
+            <div class="name__item">
+                <p class="name__value">WebSite</p>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Clearable input</mat-label>
+                    <input matInput type="text" [(ngModel)]="value">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>                     
+            </div>
+            <div class="name__item">
+                <p class="name__value">Note</p>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Clearable input</mat-label>
+                    <input matInput type="text" [(ngModel)]="value">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>                     
+            </div>
+            <div class="name__item">
+                <p class="name__value"><mat-checkbox formControlName="pepperoni">Signed 'Arenda'</mat-checkbox>  </p>
+            </div>
+            <div class="name__item">
+                <p class="name__value"><mat-checkbox formControlName="pepperoni">Signed 'prodazha'</mat-checkbox>  </p>
+            </div>
+            <div class="name__item">
+                <p class="name__value">Phone Number </p>
+                <mat-form-field class="example-form-field">
+                    <mat-label>Clearable input</mat-label>
+                    <input matInput type="text" [(ngModel)]="value">
+                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </mat-form-field>                     
             </div>
         </div>
     </div>

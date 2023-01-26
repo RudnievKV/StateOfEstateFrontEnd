@@ -1,4 +1,5 @@
-.city-view {
+.proeprty-view {
+    
 
     &__container {
         background-color: #222c31;
@@ -52,28 +53,29 @@
     &__choose-action {
     }
 
+    &__button {
+    }
+
     &__nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
         padding: 0px 20px;
-        padding-bottom: 10px;
-        text-align: left;
-    }
-    &__item{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 0px 20px;
-        background-color: #263238;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-    &__body{
-        display: flex;
-        align-items: center;
     }
 
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        background-color: #263238;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    &__img-holder {
+        width: 200px;
+        height: 200px;
+        background-color: white;
+    }
 }

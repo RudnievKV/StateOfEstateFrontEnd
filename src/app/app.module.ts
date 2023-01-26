@@ -29,6 +29,15 @@ import { PropertiesViewComponent } from './components/admin-components/propertie
 import { NeighborhoodAddComponent } from './components/admin-components/neighborhoods/neighborhood-add/neighborhood-add.component';
 import { NeighborhoodChangeComponent } from './components/admin-components/neighborhoods/neighborhood-change/neighborhood-change.component';
 import { NeighborhoodsViewComponent } from './components/admin-components/neighborhoods/neighborhoods-view/neighborhoods-view.component';
+import { ConterpartiesViewComponent } from './components/admin-components/Counterparties/Counterparties-view/conterparties-view.component';
+import { ConterpartyAddComponent } from './components/admin-components/Counterparties/Counterparty-add/conterparty-add.component';
+import { ConterpartyChangeComponent } from './components/admin-components/Counterparties/Counterparty-change/conterparty-change.component';
+import { ReminderAddComponent } from './components/admin-components/reminders/reminder-add/reminder-add.component';
+import { RemindersViewComponent } from './components/admin-components/reminders/reminders-view/reminders-view.component';
+import { ReminderChangeComponent } from './components/admin-components/reminders/reminder-change/reminder-change.component';
+import { PartnerAddComponent } from './components/admin-components/partners/partner-add/partner-add.component';
+import { PartnersViewComponent } from './components/admin-components/partners/partners-view/partners-view.component';
+import { PartnerChangeComponent } from './components/admin-components/partners/partner-change/partner-change.component';
 import { CommercialMainComponent } from './components/user-components/commercial/commercial-main/commercial-main.component';
 import { CommercialSearchRentComponent } from './components/user-components/commercial/commercial-search-rent/commercial-search-rent.component';
 import { CommercialSearchSaleComponent } from './components/user-components/commercial/commercial-search-sale/commercial-search-sale.component';
@@ -88,6 +97,10 @@ export function tokenGetter() {
     EstateManagementComponent,
     ResidencePermitComponent,
 
+    PartnersViewComponent,
+    PartnerChangeComponent,
+    PartnerAddComponent,
+
 
 
 
@@ -112,6 +125,14 @@ export function tokenGetter() {
     UserAddComponent,
     UserChangeComponent,
     AdminHeaderComponent,
+
+    ConterpartiesViewComponent,
+    ConterpartyAddComponent,
+    ConterpartyChangeComponent,
+
+    ReminderAddComponent,
+    RemindersViewComponent,
+    ReminderChangeComponent,
   ],
   imports: [
     FormsModule,
