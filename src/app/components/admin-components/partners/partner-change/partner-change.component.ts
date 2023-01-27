@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./partner-change.component.scss']
 })
 export class PartnerChangeComponent {
+  value = '';
 
 }
