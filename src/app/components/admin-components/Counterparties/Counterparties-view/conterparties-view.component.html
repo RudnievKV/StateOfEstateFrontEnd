@@ -1,38 +1,40 @@
 <app-admin-header></app-admin-header>
-<div class="proeprty-view__container container">
-    <h1 class="proeprty-view__title">Select an object to change</h1>
-    <div class="proeprty-view__search search">
-        <div class="search__body">
-            <div class="search__field">
-                <input type="text" name=""  placeholder="Search">
+<section class="proeprty-view">
+    <div class="proeprty-view__container container">
+        <h1 class="proeprty-view__title">Select an Counterparty to change</h1>
+        <div class="proeprty-view__search search">
+            <div class="search__body">
+                <div class="search__field">
+                    <input type="text" name=""  placeholder="Search">
+                </div>
+                <button class="search__button">search</button>
             </div>
-            <button class="search__button">search</button>
+        </div>
+        <div class="proeprty-view__view view">
+            <div class="view__header">
+                <p class="view__value">Action:</p>
+                <div class="view__choose-action"></div>
+                <div>
+                
+                </div>
+                <p class="view__value">Selected 0 out of 100</p>
+            </div>
+            <div class="view__nav">
+                <div class="view__value"><mat-checkbox formControlName="mushroom"></mat-checkbox></div>
+                <div class="view__value">Img</div>
+                <div class="view__value">Full Name</div>
+                <div class="view__value">Type</div>
+                <div class="view__value">Objects</div>
+                <div class="view__value">Contacts</div>
+            </div>
+            <div class="view__item">
+                <div class="view__value"><mat-checkbox formControlName="mushroom"></mat-checkbox></div>
+                <div class="view__img-holder">Img</div>
+                <div class="view__value">Den Reg</div>
+                <div class="view__value">Owner</div>
+                <div class="view__value">s1337</div>
+                <div class="view__value">+380501091319</div>
+            </div> 
         </div>
     </div>
-    <div class="proeprty-view__view view">
-        <div class="view__header">
-            <p class="view__value">Action:</p>
-            <div class="view__choose-action"></div>
-            <div>
-            
-            </div>
-            <p class="view__value">Selected 0 out of 100</p>
-        </div>
-        <div class="view__nav">
-            <div class="view__value"><mat-checkbox formControlName="mushroom"></mat-checkbox></div>
-            <div class="view__value">Img</div>
-            <div class="view__value">Full Name</div>
-            <div class="view__value">Type</div>
-            <div class="view__value">Objects</div>
-            <div class="view__value">Contacts</div>
-        </div>
-        <div class="view__item">
-            <div class="view__value"><mat-checkbox formControlName="mushroom"></mat-checkbox></div>
-            <div class="view__img-holder">Img</div>
-            <div class="view__value">Den Reg</div>
-            <div class="view__value">Owner</div>
-            <div class="view__value">s1337</div>
-            <div class="view__value">+380501091319</div>
-        </div> 
-    </div>
-</div>
+</section>
