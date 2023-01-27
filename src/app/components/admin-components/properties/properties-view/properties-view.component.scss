@@ -1,10 +1,12 @@
 .proeprty-view {
     background-color: #222c31;
+    display: flex;
 
 
     &__container {
         padding-top: 1px;
         padding: 1px 40px;
+        width: 70%;
     }
 
     &__title {
@@ -15,6 +17,8 @@
     }
 
     &__view {
+    }
+    &__side-bar {
     }
 }
 .container {
@@ -77,4 +81,35 @@
         height: 200px;
         background-color: white;
     }
+}
+
+.side-bar {
+    padding-top: 40px;
+    padding-right: 40px;
+    position: fixed;
+    right: 0;
+    &__body {
+        background-color: #263238;
+        padding: 10px 20px;
+        border-radius: 5px;
+    }
+
+    &__name {
+    }
+
+    &__list {
+    }
+
+    &__value {
+    }
+
+    &__item {
+    }
+
+    &__link {
+        display: flex;
+        color: yellowgreen;
+    }
+}
+.container {
 }
