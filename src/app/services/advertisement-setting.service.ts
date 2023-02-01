@@ -28,7 +28,7 @@ export class AdvertisementSettingService {
       params: customParams
     });
   }
-  GetdvertisementSetting(id: number): Observable<AdvertisementSettingDto> {
+  GetAdvertisementSetting(id: number): Observable<AdvertisementSettingDto> {
     return this.http.get<AdvertisementSettingDto>(`${this.apiUrl}api/advertisementsettings/${id}`)
   }
   UpdateAdvertisementSetting(advertisementSetting: AdvertisementSettingUpdateDto, id: number): Observable<AdvertisementSettingDto> {

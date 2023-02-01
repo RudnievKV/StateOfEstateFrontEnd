@@ -1,72 +1,74 @@
 .city-view {
-    background-color: #222c31;
+  background-color: #222c31;
 
-    &__container {
-        padding-top: 1px;
-        padding: 1px 40px;
-    }
+  &__container {
+    padding-top: 1px;
+    padding: 1px 40px;
+  }
 
-    &__title {
-        color: yellowgreen;
-    }
+  &__title {
+    color: yellowgreen;
+  }
 
-    &__search {
-    }
+  &__search {}
 
-    &__view {
-    }
+  &__view {}
 }
-.container {
-    
-}
+
+.container {}
+
 .search {
 
-    &__body {
-        display: flex;
-        gap: 20px;
-        align-items: center;
-    }
+  &__body {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+  }
 
-    &__field {
-        padding-left: 20px;
-    }
+  &__field {
+    padding-left: 20px;
+  }
 
-    &__button {
-    }
+  &__button {}
 }
+
 .view {
 
-    &__header {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        padding: 0 20px;
-    }
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0 20px;
+  }
 
-    &__value {
-        font-size: 18px;
-        font-weight: 600;
-        color: yellowgreen;
-    }
+  &__value {
+    font-size: 18px;
+    font-weight: 600;
+    color: yellowgreen;
+  }
 
-    &__choose-action {
-    }
+  &__choose-action {}
 
-    &__nav {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        padding: 0px 20px;
-        padding-bottom: 10px;
-    }
-    &__item{
-        display: flex;
-        align-items: center;
-        gap: 20px;
-        padding: 0px 20px;
-        background-color: #263238;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 20px;
+    padding-bottom: 10px;
+  }
 
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 0px 20px;
+    background-color: #263238;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+
+}
+
+.mat-spinner-color::ng-deep circle {
+  stroke: #FFFFFF !important;
 }
