@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./conterparties-view.component.scss']
 })
 export class ConterpartiesViewComponent {
-
+  value = "";
 }

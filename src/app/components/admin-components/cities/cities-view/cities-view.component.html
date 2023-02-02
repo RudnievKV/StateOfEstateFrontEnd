@@ -5,20 +5,38 @@
     <div class="city-view__search search">
       <div class="search__body">
         <div class="search__field">
-          <input type="text" name="" placeholder="Search">
+            <div class="add-city__name name">
+                <div class="name__item">
+                    <p class="name__value">Full Name</p>
+                    <mat-form-field class="example-form-field">
+                        <mat-label>Clearable input</mat-label>
+                        <input matInput type="text" [(ngModel)]="value">
+                        <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </mat-form-field>                     
+                </div>
+            </div>
         </div>
-        <button class="search__button">search</button>
+        <button mat-raised-button class="search__buttons-save">Search</button>
       </div>
     </div>
     <div class="city-view__view view" *ngIf="citiesPagedResponse; else loading">
       <div class="view__header">
-        <p class="view__value">Action:</p>
-        <div class="view__choose-action"></div>
-        <div>
-
+        <div class="view__choose-action">
+              <p class="view__value">Action:</p>
+              <mat-form-field appearance="fill">
+                  <mat-label>Select an option</mat-label>
+                  <mat-select disableRipple>
+                      <mat-option value="1">Option 1</mat-option>
+                      <mat-option value="2">Option 2</mat-option>
+                      <mat-option value="3">Option 3</mat-option>
+                  </mat-select>
+              </mat-form-field>  
+              <p><button mat-raised-button class="search__buttons-save">Delete</button></p>     
+              <p class="view__value">Selected {{selectedCities.length}} out of {{citiesPagedResponse.TotalRecords}}</p>      
+          </div>
         </div>
-        <p class="view__value">Selected {{selectedCities.length}} out of {{citiesPagedResponse.TotalRecords}}</p>
-      </div>
       <div class="view__nav">
         <div class="view__value"><mat-checkbox (change)="selectAll()" [checked]="allSelected"></mat-checkbox></div>
         <div class="view__value">Name</div>

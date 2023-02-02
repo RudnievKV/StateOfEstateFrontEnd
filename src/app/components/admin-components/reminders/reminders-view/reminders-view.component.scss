@@ -33,6 +33,9 @@
 
     &__button {
     }
+    &__buttons-save{
+        
+    }
 }
 .view {
 
@@ -50,6 +53,14 @@
     }
 
     &__choose-action {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        p{
+            padding-bottom: 14px;
+            width: 100px;
+            line-height: 20px;
+        }
     }
 
     &__button {
@@ -79,3 +90,35 @@
         background-color: white;
     }
 }
+
+.search {
+    padding-top: 10px;
+    &__field {
+    }
+}
+.add-city {
+
+    &__name {
+    }
+}
+.name {
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__value {
+        font-size: 18px;
+        color: yellowgreen; 
+        font-weight: 600;
+        width: 100px;
+            line-height: 20px;
+    }
+}
+.example-form-field {
+    height: 80px;
+    padding-top: 14px;
+}
+

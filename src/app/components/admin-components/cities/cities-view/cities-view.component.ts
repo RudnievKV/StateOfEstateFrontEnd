@@ -76,7 +76,7 @@ export class CitiesViewComponent {
     let city = cityDtoAndCheck.cityDto;
     return city.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
   }
-
+  value= "";
 }
 class CityDtoAndCheck {
   cityDto!: CityDto;

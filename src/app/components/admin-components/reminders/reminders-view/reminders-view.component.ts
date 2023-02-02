@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./reminders-view.component.scss']
 })
 export class RemindersViewComponent {
-
+  value =""
 }

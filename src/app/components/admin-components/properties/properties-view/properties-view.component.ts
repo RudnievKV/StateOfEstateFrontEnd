@@ -10,6 +10,6 @@ import { Component} from '@angular/core';
   styleUrls: ['./properties-view.component.scss']
 })
 export class PropertiesViewComponent{
-
+  value = ""
   
 }

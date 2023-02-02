@@ -174,6 +174,24 @@ const routes: Routes = [
           },
         ]
       },
+      {
+        path: 'users',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'add-user',
+            component: UserAddComponent,
+          },
+          {
+            path: 'view-users',
+            component: UsersViewComponent,
+          },
+          {
+            path: ':id/change',
+            component: UserChangeComponent,
+          },
+        ]
+      },
     ]
   },
   {

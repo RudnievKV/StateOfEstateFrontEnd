@@ -23,6 +23,7 @@
         display: flex;
         gap: 20px;
         align-items: center;
+
     }
 
     &__field {
@@ -33,7 +34,6 @@
     }
 }
 .view {
-
     &__header {
         display: flex;
         align-items: center;
@@ -47,31 +47,79 @@
         color: yellowgreen;
     }
 
+    &__body{
+        display: flex;
+        align-items: center;
+    }
+
     &__choose-action {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        p{
+            padding-bottom: 14px;
+            width: 100px;
+            line-height: 20px;
+        }
+    }
+
+    &__button {
     }
 
     &__nav {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        gap: 20px;
         padding: 0px 20px;
-        padding-bottom: 10px;
-        text-align: left;
-    }
-    &__item{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 0px 20px;
-        background-color: #263238;
-        border-radius: 5px;
-        margin-bottom: 10px;
-    }
-    &__body{
-        display: flex;
-        align-items: center;
     }
 
+    &__item {
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        align-items: center;
+        background-color: #263238;
+        border-radius: 5px;
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    &__img-holder {
+        width: 200px;
+        height: 200px;
+        background-color: white;
+    }
 }
+
+.search {
+    padding-top: 10px;
+    &__field {
+    }
+}
+.add-city {
+
+    &__name {
+    }
+}
+.name {
+
+    &__item {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+    }
+
+    &__value {
+        font-size: 18px;
+        color: yellowgreen; 
+        font-weight: 600;
+        width: 100px;
+            line-height: 20px;
+    }
+}
+.example-form-field {
+    height: 80px;
+    padding-top: 14px;
+}
+
+
