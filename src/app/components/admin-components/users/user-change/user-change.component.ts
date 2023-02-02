@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./user-change.component.scss']
 })
 export class UserChangeComponent {
-
+  value= ""
 }
