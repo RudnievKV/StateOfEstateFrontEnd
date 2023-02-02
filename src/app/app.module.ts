@@ -62,7 +62,10 @@ import { UserAddComponent } from './components/admin-components/users/user-add/u
 import { UserChangeComponent } from './components/admin-components/users/user-change/user-change.component';
 import { MatIconModule } from '@angular/material/icon'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AdminHeaderComponent } from './components/admin-components/admin-header/admin-header.component'
+import { AdminHeaderComponent } from './components/admin-components/admin-header/admin-header.component';
+import { BenefitsViewComponent } from './components/admin-components/benefits/benefits-view/benefits-view.component';
+import { BenefitAddComponent } from './components/admin-components/benefits/benefit-add/benefit-add.component';
+import { BenefitChangeComponent } from './components/admin-components/benefits/benefit-change/benefit-change.component'
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -133,6 +136,9 @@ export function tokenGetter() {
     ReminderAddComponent,
     RemindersViewComponent,
     ReminderChangeComponent,
+    BenefitsViewComponent,
+    BenefitAddComponent,
+    BenefitChangeComponent,
   ],
   imports: [
     FormsModule,
