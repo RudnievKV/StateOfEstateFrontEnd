@@ -1,0 +1,49 @@
+.add-city {
+    padding-top: 20px;
+    background-color: #222c31;
+    height: 90vh;
+    &__container {
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        color: yellowgreen;
+    }
+
+    &__header-footer {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__buttons-save {
+        background-color: rgba(15, 106, 59, 0) !important;
+            border: 1px solid white;
+    }
+
+    &__name {
+    }
+}
+.container {
+    padding: 0 60px;
+}
+.name {
+    padding-top: 60px;
+
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__value {
+        font-size: 18px;
+        width: 250px;
+        color: yellowgreen; 
+        padding-bottom: 14px;
+    }
+}
+

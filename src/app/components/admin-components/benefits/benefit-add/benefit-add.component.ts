@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./benefit-add.component.scss']
 })
 export class BenefitAddComponent {
-
+  value = ""
 }
