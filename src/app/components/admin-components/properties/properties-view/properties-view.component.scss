@@ -1,12 +1,13 @@
 .proeprty-view {
     background-color: #222c31;
     display: flex;
+    
 
 
     &__container {
         padding-top: 1px;
         padding: 1px 40px;
-        width: 100%;
+        width: 70%;
     }
 
     &__title {
@@ -24,7 +25,6 @@
 .container {
 }
 .search {
-
     &__body {
         display: flex;
         gap: 20px;
@@ -51,6 +51,10 @@
         font-size: 18px;
         font-weight: 600;
         color: yellowgreen;
+        width: 13%;
+    }
+    &__value-check{
+        width: 5%;
     }
 
     &__choose-action {
@@ -61,25 +65,24 @@
 
     &__nav {
         display: flex;
-        justify-content: space-between;
         align-items: center;
+        gap: 20px;
         padding: 0px 20px;
     }
 
     &__item {
         display: flex;
-        justify-content: space-between;
-        text-align: left;
+        align-items: center;
+        gap: 20px;
         background-color: #263238;
         border-radius: 5px;
-        padding: 20px;
+        padding: 0px 20px;
         margin-top: 20px;
     }
 
     &__img-holder {
-        width: 200px;
-        height: 200px;
         background-color: white;
+        width: 30%;
     }
 }
 
@@ -88,6 +91,7 @@
     padding-right: 40px;
     position: fixed;
     right: 0;
+    width: 10%;
     &__body {
         background-color: #263238;
         padding: 10px 20px;
