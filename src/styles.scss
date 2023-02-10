@@ -1,21 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-html, body { height: 100%;  }
-body { margin: 0; font-family: League Spartan; }
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto;
+}
+
 .container {
     max-width: 1420px;
     margin: 0 auto;
     padding: 0 15px;
 }
-a{
+
+a {
     text-decoration: none;
 }
-ul{
+
+ul {
     margin-left: 0;
     padding-left: 0;
     margin: 0;
 }
-li{
+
+li {
     list-style-type: none;
 }
