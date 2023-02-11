@@ -1,7 +1,7 @@
 .proeprty-view {
     background-color: #222c31;
     display: flex;
-    
+
 
 
     &__container {
@@ -14,16 +14,22 @@
         color: yellowgreen;
     }
 
-    &__search {
+    &__search {}
+
+    &__view {}
+
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        color: yellowgreen;
+        align-items: center;
     }
 
-    &__view {
-    }
-    &__side-bar {
-    }
+    &__side-bar {}
 }
-.container {
-}
+
+.container {}
+
 .search {
     &__body {
         display: flex;
@@ -35,9 +41,9 @@
         padding-left: 20px;
     }
 
-    &__button {
-    }
+    &__button {}
 }
+
 .view {
 
     &__header {
@@ -53,15 +59,24 @@
         color: yellowgreen;
         width: 13%;
     }
-    &__value-check{
+
+    &__value-check {
         width: 5%;
     }
 
     &__choose-action {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+
+        p {
+            padding-bottom: 14px;
+            width: 100px;
+            line-height: 20px;
+        }
     }
 
-    &__button {
-    }
+    &__button {}
 
     &__nav {
         display: flex;
@@ -86,42 +101,41 @@
     }
 }
 
+
 .side-bar {
     padding-top: 40px;
     padding-right: 40px;
     position: fixed;
     right: 0;
     width: 10%;
+
     &__body {
         background-color: #263238;
         padding: 10px 20px;
         border-radius: 5px;
     }
 
-    &__name {
-    }
+    &__name {}
 
-    &__list {
-    }
+    &__list {}
 
-    &__value {
-    }
+    &__value {}
 
-    &__item {
-    }
+    &__item {}
 
     &__link {
         display: flex;
         color: yellowgreen;
     }
 }
-.container {
-}
+
+.container {}
+
 .add-city {
 
-    &__name {
-    }
+    &__name {}
 }
+
 .name {
 
     &__item {
@@ -132,12 +146,13 @@
 
     &__value {
         font-size: 18px;
-        color: yellowgreen; 
+        color: yellowgreen;
         font-weight: 600;
         width: 100px;
-            line-height: 20px;
+        line-height: 20px;
     }
 }
+
 .example-form-field {
     height: 80px;
     padding-top: 14px;
