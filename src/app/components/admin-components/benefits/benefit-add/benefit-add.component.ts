@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class BenefitAddComponent {
   value = ""
+  CurrentLanguage = 'Ru';
+  SetLanguage(Language: string) {
+    this.CurrentLanguage = Language;
+  };
 }

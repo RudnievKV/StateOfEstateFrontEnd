@@ -10,7 +10,21 @@
       <button mat-raised-button class="add-city__buttons-save">Сохранить</button>
     </div>
     <div class="add-city__name name">
-      <div class="name__item">
+      <div class="add-city__choose-lang">
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Ru')">
+          Rus
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('En')">
+          Eng
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Tr')">
+          Turk
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Me')">
+          Mont
+        </button>
+      </div>
+      <div [hidden]="!(CurrentLanguage == 'En')" class="name__item">
         <p class="name__value">Название(EN)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
@@ -20,7 +34,7 @@
           </button>
         </mat-form-field>
       </div>
-      <div class="name__item">
+      <div [hidden]="!(CurrentLanguage == 'Ru')" class="name__item">
         <p class="name__value">Название(RU)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
@@ -30,7 +44,7 @@
           </button>
         </mat-form-field>
       </div>
-      <div class="name__item">
+      <div [hidden]="!(CurrentLanguage == 'Me')" class="name__item">
         <p class="name__value">Название(ME)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
@@ -40,7 +54,7 @@
           </button>
         </mat-form-field>
       </div>
-      <div class="name__item">
+      <div [hidden]="!(CurrentLanguage == 'Tr')" class="name__item">
         <p class="name__value">Название(TR)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
