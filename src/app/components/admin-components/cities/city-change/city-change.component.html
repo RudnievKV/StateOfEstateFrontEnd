@@ -1,58 +1,58 @@
 <app-admin-header></app-admin-header>
 <section class="add-city">
-    <div class="add-city__container container">
-        <div class="add-city__header">
-            <h1 class="add-city__title">Change City</h1>
-        </div>
-        <div class="add-city__header-footer-body">
-            <div class="add-city__header-footer">
-                <button mat-raised-button class="add-city__buttons-save">Save and add another counterparty</button>
-                <button mat-raised-button class="add-city__buttons-save">Save and continue editing</button>
-                <button mat-raised-button class="add-city__buttons-save">Save</button>
-            </div>
-            <button mat-raised-button class="add-city__buttons-save">Delete</button>
-        </div>
-        <div class="add-city__name name">
-            <div class="name__item">
-                <p class="name__value">City Name(EN)</p>
-                <mat-form-field class="example-form-field">
-                    <mat-label>Clearable input</mat-label>
-                    <input matInput type="text" [(ngModel)]="value">
-                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>                     
-            </div>
-            <div class="name__item">
-                <p class="name__value">City Name(RU)</p>
-                <mat-form-field class="example-form-field">
-                    <mat-label>Clearable input</mat-label>
-                    <input matInput type="text" [(ngModel)]="value">
-                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>                     
-            </div>
-            <div class="name__item">
-                <p class="name__value">City Name(ME)</p>
-                <mat-form-field class="example-form-field">
-                    <mat-label>Clearable input</mat-label>
-                    <input matInput type="text" [(ngModel)]="value">
-                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>                     
-            </div>
-            <div class="name__item">
-                <p class="name__value">City Name(TR)</p>
-                <mat-form-field class="example-form-field">
-                    <mat-label>Clearable input</mat-label>
-                    <input matInput type="text" [(ngModel)]="value">
-                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-                      <mat-icon>close</mat-icon>
-                    </button>
-                  </mat-form-field>                     
-            </div>
-        </div>
+  <div class="add-city__container container">
+    <div class="add-city__header">
+      <h1 class="add-city__title">Change City</h1>
     </div>
+    <div class="add-city__header-footer-body">
+      <div class="add-city__header-footer">
+        <button mat-raised-button class="add-city__buttons-save">Save and add another counterparty</button>
+        <button mat-raised-button class="add-city__buttons-save">Save and continue editing</button>
+        <button mat-raised-button class="add-city__buttons-save" (click)="Save()">Save</button>
+      </div>
+      <button mat-raised-button class="add-city__buttons-save">Delete</button>
+    </div>
+    <div class="add-city__name name">
+      <div class="name__item">
+        <p class="name__value">City Name(EN)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label>Clearable input</mat-label>
+          <input matInput type="text" [(ngModel)]="cityNameEn">
+          <button *ngIf="cityNameEn" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameEn=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="name__item">
+        <p class="name__value">City Name(RU)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label>Clearable input</mat-label>
+          <input matInput type="text" [(ngModel)]="cityNameRu">
+          <button *ngIf="cityNameRu" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameRu=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="name__item">
+        <p class="name__value">City Name(ME)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label>Clearable input</mat-label>
+          <input matInput type="text" [(ngModel)]="cityNameMe">
+          <button *ngIf="cityNameMe" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameMe=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div class="name__item">
+        <p class="name__value">City Name(TR)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label>Clearable input</mat-label>
+          <input matInput type="text" [(ngModel)]="cityNameTr">
+          <button *ngIf="cityNameTr" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameTr=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
 </section>
