@@ -63,4 +63,8 @@ export class CityAddComponent {
     let result = await firstValueFrom(this.cityService.CreateCity(cityCreateDto));
 
   }
+  CurrentLanguage = 'Ru';
+  SetLanguage(Language: string) {
+    this.CurrentLanguage = Language;
+  };
 }

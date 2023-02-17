@@ -104,4 +104,8 @@ export class CityChangeComponent {
   }
 
 
+  CurrentLanguage = 'Ru';
+  SetLanguage(Language: string) {
+    this.CurrentLanguage = Language;
+  };
 }

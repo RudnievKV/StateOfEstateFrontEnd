@@ -2,51 +2,65 @@
 <section class="add-city">
   <div class="add-city__container container">
     <div class="add-city__header">
-      <h1 class="add-city__title">Change City</h1>
+      <h1 class="add-city__title">Изменить Город</h1>
     </div>
     <div class="add-city__header-footer-body">
       <div class="add-city__header-footer">
-        <button mat-raised-button class="add-city__buttons-save">Save and add another counterparty</button>
-        <button mat-raised-button class="add-city__buttons-save">Save and continue editing</button>
-        <button mat-raised-button class="add-city__buttons-save" (click)="Save()">Save</button>
+        <button mat-raised-button class="add-city__buttons-save">Сохранить и добавить другой обьект</button>
+        <button mat-raised-button class="add-city__buttons-save">Сохранить и продолжить изменения</button>
+        <button mat-raised-button class="add-city__buttons-save" (click)="Save()">Сохранить</button>
       </div>
-      <button mat-raised-button class="add-city__buttons-save">Delete</button>
+      <button mat-raised-button class="add-city__buttons-save">Удалить</button>
     </div>
     <div class="add-city__name name">
-      <div class="name__item">
-        <p class="name__value">City Name(EN)</p>
+      <div class="add-city__choose-lang">
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Ru')">
+          Rus
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('En')">
+          Eng
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Tr')">
+          Turk
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Me')">
+          Mont
+        </button>
+      </div>
+      <div [hidden]="!(CurrentLanguage == 'En')" class="name__item">
+        <p class="name__value">Название(EN)</p>
         <mat-form-field class="example-form-field">
-          <mat-label>Clearable input</mat-label>
+          <mat-label></mat-label>
           <input matInput type="text" [(ngModel)]="cityNameEn">
           <button *ngIf="cityNameEn" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameEn=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
       </div>
-      <div class="name__item">
-        <p class="name__value">City Name(RU)</p>
+      <div [hidden]="!(CurrentLanguage == 'Ru')" class="name__item">
+        <p class="name__value">Название(RU)</p>
         <mat-form-field class="example-form-field">
-          <mat-label>Clearable input</mat-label>
+          <mat-label></mat-label>
           <input matInput type="text" [(ngModel)]="cityNameRu">
           <button *ngIf="cityNameRu" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameRu=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
       </div>
-      <div class="name__item">
-        <p class="name__value">City Name(ME)</p>
+      <div [hidden]="!(CurrentLanguage == 'Me')" class="name__item">
+        <p class="name__value">Название(ME)</p>
         <mat-form-field class="example-form-field">
-          <mat-label>Clearable input</mat-label>
+          <mat-label></mat-label>
           <input matInput type="text" [(ngModel)]="cityNameMe">
           <button *ngIf="cityNameMe" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameMe=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
       </div>
-      <div class="name__item">
-        <p class="name__value">City Name(TR)</p>
+      <div [hidden]="!(CurrentLanguage == 'Tr')" class="name__item">
+        <p class="name__value">Название(TR)</p>
         <mat-form-field class="example-form-field">
-          <mat-label>Clearable input</mat-label>
+          <mat-label></mat-label>
           <input matInput type="text" [(ngModel)]="cityNameTr">
           <button *ngIf="cityNameTr" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameTr=''">
             <mat-icon>close</mat-icon>

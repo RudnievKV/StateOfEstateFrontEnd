@@ -1,21 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
 
+/*-------------------------------FOR ALL--------------------------------------------------*/
+[hidden] {
+    display: none !important;
+}
 
-html, body { height: 100%;  }
-body { margin: 0; font-family: League Spartan; }
+.add-city {
+    padding-top: 20px;
+    background-color: #222c31;
+    height: 90vh;
+
+    &__header-footer-body {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 20px;
+    }
+
+    &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    &__title {
+        color: yellowgreen;
+    }
+
+    &__header-footer {
+        display: flex;
+        gap: 20px;
+    }
+
+    &__buttons-save {
+        background-color: rgba(15, 106, 59, 0) !important;
+        border: 1px solid white;
+    }
+
+    &__name {}
+
+    &__choose-lang {
+        padding: 20px 0px;
+        display: flex;
+        gap: 20px;
+    }
+}
+
+.container {
+    padding: 0 60px;
+}
+
+.name {
+    &__item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__value {
+        font-size: 18px;
+        width: 250px;
+        color: yellowgreen;
+        padding-bottom: 14px;
+    }
+}
+
+/*------------------------------------------------------------------------------------------*/
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto;
+}
+
 .container {
     max-width: 1420px;
     margin: 0 auto;
     padding: 0 15px;
 }
-a{
+
+a {
     text-decoration: none;
+    color: yellowgreen;
+
+    &:hover {
+        color: yellow;
+    }
 }
-ul{
+
+ul {
     margin-left: 0;
     padding-left: 0;
     margin: 0;
 }
-li{
+
+li {
     list-style-type: none;
 }

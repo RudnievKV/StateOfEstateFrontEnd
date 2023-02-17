@@ -1,1 +1,69 @@
-<p>benefit-add works!</p>
+<app-admin-header></app-admin-header>
+<section class="add-city">
+  <div class="add-city__container container">
+    <div class="add-city__header">
+      <h1 class="add-city__title">Добавить Удобство</h1>
+    </div>
+    <div class="add-city__header-footer">
+      <button mat-raised-button class="add-city__buttons-save">Сохранить и добавить другого пользователя</button>
+      <button mat-raised-button class="add-city__buttons-save">Сохранить и продолжить изменения</button>
+      <button mat-raised-button class="add-city__buttons-save">Сохранить</button>
+    </div>
+    <div class="add-city__name name">
+      <div class="add-city__choose-lang">
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Ru')">
+          Rus
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('En')">
+          Eng
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Tr')">
+          Turk
+        </button>
+        <button mat-raised-button class class="add-city__buttons-save" (click)="SetLanguage('Me')">
+          Mont
+        </button>
+      </div>
+      <div [hidden]="!(CurrentLanguage == 'En')" class="name__item">
+        <p class="name__value">Название(EN)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label></mat-label>
+          <input matInput type="text" [(ngModel)]="value">
+          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div [hidden]="!(CurrentLanguage == 'Ru')" class="name__item">
+        <p class="name__value">Название(RU)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label></mat-label>
+          <input matInput type="text" [(ngModel)]="value">
+          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div [hidden]="!(CurrentLanguage == 'Me')" class="name__item">
+        <p class="name__value">Название(ME)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label></mat-label>
+          <input matInput type="text" [(ngModel)]="value">
+          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div [hidden]="!(CurrentLanguage == 'Tr')" class="name__item">
+        <p class="name__value">Название(TR)</p>
+        <mat-form-field class="example-form-field">
+          <mat-label></mat-label>
+          <input matInput type="text" [(ngModel)]="value">
+          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,1 +1,56 @@
-<p>benefits-view works!</p>
+<app-admin-header></app-admin-header>
+<section class="city-view">
+    <div class="city-view__container container">
+        <div class="city-view__head">
+            <h1 class="city-view__title">Выберите Удобство для изменения</h1>
+            <button mat-raised-button class="search__buttons-save">Добавить Район</button>
+        </div>
+        <div class="city-view__view view">
+            <div class="view__header">
+                <div class="view__choose-action">
+                    <p class="view__value">Действие:</p>
+                    <mat-form-field appearance="fill">
+                        <mat-label></mat-label>
+                        <mat-select disableRipple>
+                            <mat-option value="1">Удалить выбранные обьекты</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
+                    <p class="view__value">Выбрано 0 из 100</p>
+                </div>
+            </div>
+            <div class="city-view__search search">
+                <div class="search__body">
+                    <div class="search__field">
+                        <div class="add-city__name name">
+                            <div class="name__item">
+                                <mat-form-field class="example-form-field">
+                                    <mat-label></mat-label>
+                                    <input matInput type="text" [(ngModel)]="value">
+                                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                                        (click)="value=''">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <button mat-raised-button class="search__buttons-save">Поиск</button>
+                </div>
+            </div>
+            <div class="view__nav">
+                <div class="view__body">
+                    <div class="view__value"><mat-checkbox></mat-checkbox></div>
+                    <div class="view__value">Чечичичи</div>
+                </div>
+            </div>
+            <div class="view__item">
+                <div class="view__body">
+                    <div class="view__value"><mat-checkbox></mat-checkbox></div>
+                    <div class="view__value"><a href="/admin/benefits/:id/change">Чечичичи</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

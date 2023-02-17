@@ -1,15 +1,32 @@
 <app-admin-header></app-admin-header>
 <section class="city-view">
   <div class="city-view__container container">
-    <h1 class="city-view__title">Select a city to change</h1>
-    <div class="city-view__search search">
+    <div class="city-view__head">
+      <h1 class="city-view__title">Выберите Город для изменения</h1>
+      <button mat-raised-button class="search__buttons-save">Добавить Город</button>
+    </div>
+    <div class="city-view__view view" *ngIf="citiesPagedResponse; else loading">
+      <div class="view__header">
+        <div class="view__choose-action">
+          <p class="view__value">Действие:</p>
+          <mat-form-field appearance="fill">
+            <mat-label></mat-label>
+            <mat-select disableRipple>
+              <mat-option value="Delete">Удалить</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+          <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
+          <p class="view__value">Выбрано {{selectedCities.length}} из {{citiesPagedResponse.TotalRecords}}</p>
+        </div>
+      </div>
+
       <div class="search__body">
         <div class="search__field">
           <div class="add-city__name name">
             <div class="name__item">
-              <p class="name__value">Full Name</p>
               <mat-form-field class="example-form-field">
-                <mat-label>Clearable input</mat-label>
+                <mat-label></mat-label>
                 <input matInput type="text" [(ngModel)]="searchQuery">
                 <button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="searchQuery=''">
                   <mat-icon>close</mat-icon>
@@ -18,30 +35,12 @@
             </div>
           </div>
         </div>
-        <button mat-raised-button class="search__buttons-save" (click)="Search()">Search</button>
-      </div>
-    </div>
-    <div class="city-view__view view">
-      <div class="view__header">
-        <div class="view__choose-action">
-          <p class="view__value">Action:</p>
-          <mat-form-field appearance="fill">
-            <mat-label>Select an option</mat-label>
-            <mat-select disableRipple #selectAction>
-              <mat-option value="Delete">Удалить выбранные</mat-option>
-            </mat-select>
-          </mat-form-field>
-          <p><button mat-raised-button class="search__buttons-save"
-              (click)="DeleteSelectedCities(selectAction.value)">Delete</button></p>
-          <p class="view__value" *ngIf="citiesPagedResponse; else loading">Selected {{selectedCities.length}} out of
-            {{citiesPagedResponse.TotalRecords}}</p>
-        </div>
+        <button mat-raised-button class="search__buttons-save" (click)="Search()">Поиск</button>
       </div>
       <div class="view__nav">
         <div class="view__value"><mat-checkbox (change)="selectAll()" [checked]="allSelected"></mat-checkbox></div>
-        <div class="view__value">Name</div>
+        <div class="view__value">Город</div>
       </div>
-
       <div class="view__item" *ngFor="let city of citiesAndCheck; index as i;">
         <div class="view__value">
           <mat-checkbox (change)="selectCity(city.Data.City_ID)" [checked]="city.checked">

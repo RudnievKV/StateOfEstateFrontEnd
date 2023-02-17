@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./benefit-change.component.scss']
 })
 export class BenefitChangeComponent {
-
+  value = ""
+  CurrentLanguage = 'Ru';
+  SetLanguage(Language: string) {
+    this.CurrentLanguage = Language;
+  };
 }

@@ -1,102 +1,131 @@
 <app-admin-header></app-admin-header>
 <section class="proeprty-view">
     <div class="proeprty-view__container container">
-        <h1 class="proeprty-view__title">Select an object to change</h1>
-        <div class="proeprty-view__search search">
-            <div class="search__body">
-                <div class="search__field">
-                    <input type="text" name=""  placeholder="Search">
-                </div>
-                <button class="search__button">search</button>
-            </div>
+        <div class="proeprty-view__head">
+            <h1 class="poeprty-view__title">Выберите Обьект для изменения</h1>
+            <button mat-raised-button class="search__buttons-save">Добавить Контрагента</button>
         </div>
         <div class="proeprty-view__view view">
             <div class="view__header">
-                <p class="view__value">Action:</p>
-                <div class="view__choose-action"></div>
-                <div>
-                
+                <div class="view__choose-action">
+                    <p class="view__value">Действие</p>
+                    <mat-form-field appearance="fill">
+                        <mat-label></mat-label>
+                        <mat-select disableRipple>
+                            <mat-option value="1">Удалить выбранные обьекты</mat-option>
+
+                        </mat-select>
+                    </mat-form-field>
+                    <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
+                    <p class="view__value">Выбрано 0 из 100</p>
                 </div>
-                <p class="view__value">Selected 0 out of 100</p>
+            </div>
+            <div class="proeprty-view__search search">
+                <div class="search__body">
+                    <div class="search__field">
+                        <div class="add-city__name name">
+                            <div class="name__item">
+                                <mat-form-field class="example-form-field">
+                                    <mat-label></mat-label>
+                                    <input matInput type="text" [(ngModel)]="value">
+                                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                                        (click)="value=''">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <button mat-raised-button class="search__buttons-save">Поиск</button>
+                </div>
             </div>
             <div class="view__nav">
-                <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                <div class="view__value">Img</div>
-                <div class="view__value">Info</div>
-                <div class="view__value">Rent Status</div>
-                <div class="view__value">Sell Status</div>
-                <div class="view__value">Rent Price</div>
-                <div class="view__value">Sell Price</div>
+                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
+                <div class="view__img-holder">Карт.</div>
+                <div class="view__value">Инфо</div>
+                <div class="view__value">Статус аренды</div>
+                <div class="view__value">Статус продажи</div>
+                <div class="view__value">Цена аренды</div>
+                <div class="view__value">Цена продажи</div>
             </div>
             <div class="view__item">
-                <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder"><a href="/admin/properties/:id/change">img</a></div>
-                <div class="view__value">Info</div>
-                <div class="view__value">Rent Status</div>
-                <div class="view__value">Sell Status</div>
-                <div class="view__value">Rent Price</div>
-                <div class="view__value">Sell Price</div>
-            </div> 
+                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
+                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
+                <div class="view__value">Мяу</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">100000</div>
+                <div class="view__value">10000000</div>
+            </div>
             <div class="view__item">
-                <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder"><a href="/admin/properties/:id/change">img</a></div>
-                <div class="view__value">Info</div>
-                <div class="view__value">Rent Status</div>
-                <div class="view__value">Sell Status</div>
-                <div class="view__value">Rent Price</div>
-                <div class="view__value">Sell Price</div>
-            </div> 
+                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
+                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
+                <div class="view__value">Мяу</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">100000</div>
+                <div class="view__value">10000000</div>
+            </div>
             <div class="view__item">
-                <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder"><a href="/admin/properties/:id/change">img</a></div>
-                <div class="view__value">Info</div>
-                <div class="view__value">Rent Status</div>
-                <div class="view__value">Sell Status</div>
-                <div class="view__value">Rent Price</div>
-                <div class="view__value">Sell Price</div>
-            </div> 
+                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
+                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
+                <div class="view__value">Мяу</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">100000</div>
+                <div class="view__value">10000000</div>
+            </div>
+            <div class="view__item">
+                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
+                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
+                <div class="view__value">Мяу</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">Активный</div>
+                <div class="view__value">100000</div>
+                <div class="view__value">10000000</div>
+            </div>
         </div>
     </div>
     <div class="proeprty-view__side-bar side-bar container">
         <nav class="side-bar__body">
-            <h1 class="side-bar__name">Filter</h1>
+            <h1 class="side-bar__name">Фильтр</h1>
             <ul class="side-bar__list">
-                <p class="side-bar__value">Rent Status</p>
+                <p class="side-bar__value">Статус аренды</p>
                 <li class="side-bar__item">
-                    <a href="" class="side-bar__link">All</a>
-                    <a href="" class="side-bar__link">Publicated</a>
-                    <a href="" class="side-bar__link">Not Active</a>
-                    <a href="" class="side-bar__link">Draft</a>
-                    <a href="" class="side-bar__link">Archived</a>
+                    <a href="" class="side-bar__link">Все</a>
+                    <a href="" class="side-bar__link">опубликованные</a>
+                    <a href="" class="side-bar__link">Не активные</a>
+                    <a href="" class="side-bar__link">Черновик</a>
+                    <a href="" class="side-bar__link">Архив</a>
                 </li>
             </ul>
             <ul class="side-bar__list">
                 <p class="side-bar__value">Sell Status</p>
                 <li class="side-bar__item">
-                    <a href="" class="side-bar__link">All</a>
-                    <a href="" class="side-bar__link">Publicated</a>
-                    <a href="" class="side-bar__link">Not Active</a>
-                    <a href="" class="side-bar__link">Draft</a>
-                    <a href="" class="side-bar__link">Archived</a>
+                    <a href="" class="side-bar__link">Все</a>
+                    <a href="" class="side-bar__link">опубликованные</a>
+                    <a href="" class="side-bar__link">Не активные</a>
+                    <a href="" class="side-bar__link">Черновик</a>
+                    <a href="" class="side-bar__link">Архив</a>
                 </li>
             </ul>
             <ul class="side-bar__list">
-                <p class="side-bar__value">#bedrooms</p>
+                <p class="side-bar__value">#спален</p>
                 <li class="side-bar__item">
-                    <a href="" class="side-bar__link">All</a>
-                    <a href="" class="side-bar__link">Studio</a>
-                    <a href="" class="side-bar__link">1 bedroom</a>
-                    <a href="" class="side-bar__link">2 bedroom</a>
-                    <a href="" class="side-bar__link">3 bedroom</a>
-                    <a href="" class="side-bar__link">4 bedroom</a>
-                    <a href="" class="side-bar__link">5+ bedrooms</a>
+                    <a href="" class="side-bar__link">Все</a>
+                    <a href="" class="side-bar__link">Студия</a>
+                    <a href="" class="side-bar__link">1 спальня</a>
+                    <a href="" class="side-bar__link">2 спальни</a>
+                    <a href="" class="side-bar__link">3 спальни</a>
+                    <a href="" class="side-bar__link">4 спальни</a>
+                    <a href="" class="side-bar__link">5+ спален</a>
                 </li>
             </ul>
             <ul class="side-bar__list">
-                <p class="side-bar__value">Correctness</p>
+                <p class="side-bar__value">Корректность</p>
                 <li class="side-bar__item">
-                    <a href="" class="side-bar__link">All</a>
-                    <a href="" class="side-bar__link">Without <br> Counterparties
+                    <a href="" class="side-bar__link">Все</a>
+                    <a href="" class="side-bar__link">Без Контрагента
                     </a>
                 </li>
             </ul>
