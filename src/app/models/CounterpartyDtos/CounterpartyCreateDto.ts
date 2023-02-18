@@ -1,7 +1,7 @@
 export default class CounterpartyCreateDto {
   Type!: string;
   FullName!: string;
-  PhoneNumber1!: string;
+  PhoneNumber!: string;
   PhoneNumber2!: string;
   PhoneNumber3!: string;
   Viber!: string;

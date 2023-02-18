@@ -1,60 +1,83 @@
 <app-admin-header></app-admin-header>
 <section class="proeprty-view">
-    <div class="proeprty-view__container container">
-        <div class="proeprty-view__head">
-            <h1 class="poeprty-view__title">Выберите Контрагента для изменения</h1>
-            <button mat-raised-button class="search__buttons-save">Добавить Контрагента</button>
-        </div>
-        <div class="proeprty-view__view view">
-            <div class="view__header">
-                <div class="view__choose-action">
-                    <p class="view__value">Действие</p>
-                    <mat-form-field appearance="fill">
-                        <mat-label></mat-label>
-                        <mat-select disableRipple>
-                            <mat-option value="1">Удалить выбранные обьекты</mat-option>
-
-                        </mat-select>
-                    </mat-form-field>
-                    <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
-                    <p class="view__value">Выбрано 0 из 100</p>
-                </div>
-            </div>
-            <div class="proeprty-view__search search">
-                <div class="search__body">
-                    <div class="search__field">
-                        <div class="add-city__name name">
-                            <div class="name__item">
-                                <mat-form-field class="example-form-field">
-                                    <mat-label></mat-label>
-                                    <input matInput type="text" [(ngModel)]="value">
-                                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                                        (click)="value=''">
-                                        <mat-icon>close</mat-icon>
-                                    </button>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
-                    <button mat-raised-button class="search__buttons-save">Поиск</button>
-                </div>
-            </div>
-            <div class="view__nav">
-                <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                <div class="view__value">Картинка</div>
-                <div class="view__value">Полное имя</div>
-                <div class="view__value">Тип</div>
-                <div class="view__value">Обьекты</div>
-                <div class="view__value">Контакты</div>
-            </div>
-            <div class="view__item">
-                <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder">Картинка</div>
-                <div class="view__value"><a href="/admin/counterparties/:id/change" class="">Полное имя</a></div>
-                <div class="view__value">Владелец</div>
-                <div class="view__value">s1337</div>
-                <div class="view__value">+380501091319</div>
-            </div>
-        </div>
+  <div class="proeprty-view__container container">
+    <div class="proeprty-view__head">
+      <h1 class="poeprty-view__title">Выберите Контрагента для изменения</h1>
+      <button mat-raised-button class="search__buttons-save">Добавить Контрагента</button>
     </div>
+    <div class="proeprty-view__view view">
+      <div class="view__header">
+        <div class="view__choose-action">
+          <p class="view__value">Действие</p>
+          <mat-form-field appearance="fill">
+            <mat-label></mat-label>
+            <mat-select disableRipple>
+              <mat-option value="1">Удалить выбранные обьекты</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+          <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
+          <p class="view__value">Выбрано {{selectedCounterparties.length}} из
+            {{counterpartiesPagedResponse.TotalRecords}}</p>
+        </div>
+      </div>
+      <div class="proeprty-view__search search">
+        <div class="search__body">
+          <div class="search__field">
+            <div class="add-city__name name">
+              <div class="name__item">
+                <mat-form-field class="example-form-field">
+                  <mat-label></mat-label>
+                  <input matInput type="text" [(ngModel)]="value">
+                  <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <button mat-raised-button class="search__buttons-save">Поиск</button>
+        </div>
+      </div>
+      <div class="view__nav">
+        <div class="view__value"><mat-checkbox (change)="selectAll()" [checked]="allSelected"></mat-checkbox></div>
+        <div class="view__value">Картинка</div>
+        <div class="view__value">Полное имя</div>
+        <div class="view__value">Тип</div>
+        <div class="view__value">Обьекты</div>
+        <div class="view__value">Контакты</div>
+      </div>
+      <div class="view__item" *ngFor="let counterpartyAndCheck of counterpartiesAndCheck; index as i;">
+        <div class="view__value">
+          <mat-checkbox (change)="selectCounterparty(counterpartyAndCheck.Data.Counterparty_ID)"
+            [checked]="counterpartyAndCheck.checked">
+
+          </mat-checkbox>
+
+        </div>
+        <div class="view__img-holder">Img</div>
+        <div class="view__value"><a href="/admin/counterparties/{{counterpartyAndCheck.Data.Counterparty_ID}}/change"
+            class="">{{counterpartyAndCheck.Data.FullName}}</a></div>
+        <div class="view__value">{{counterpartyAndCheck.Data.Type}}</div>
+        <div class="view__value">
+          <ul>
+            <li *ngFor="let property of counterpartyAndCheck.Data.Properties; last as isLast">
+              <span *ngIf="!isLast">{{property.Property_ID}}, </span>
+              <span *ngIf="isLast">{{property.Property_ID}}</span>
+            </li>
+          </ul>
+
+
+        </div>
+        <div class="view__value">
+          {{counterpartyAndCheck.Data.PhoneNumber}} <br>
+          {{counterpartyAndCheck.Data.PhoneNumber2}} <br>
+          {{counterpartyAndCheck.Data.PhoneNumber3}}
+        </div>
+      </div>
+    </div>
+    <ng-template #loading>
+      <mat-spinner [diameter]="100" class="mat-spinner-color"></mat-spinner>
+    </ng-template>
+  </div>
 </section>

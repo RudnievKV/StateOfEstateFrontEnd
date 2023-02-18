@@ -8,7 +8,7 @@
       <div class="add-city__header-footer">
         <button mat-raised-button class="add-city__buttons-save">Сохранить и добавить другой обьект</button>
         <button mat-raised-button class="add-city__buttons-save">Сохранить и продолжить изменения</button>
-        <button mat-raised-button class="add-city__buttons-save">Сохранить</button>
+        <button mat-raised-button class="add-city__buttons-save" (click)="Save()">Сохранить</button>
       </div>
       <button mat-raised-button class="add-city__buttons-save">Удалить</button>
     </div>
@@ -31,8 +31,8 @@
         <p class="name__value">Название(EN)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="cityNameEn">
+          <button *ngIf="cityNameEn" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameEn=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -41,8 +41,8 @@
         <p class="name__value">Название(RU)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="cityNameRu">
+          <button *ngIf="cityNameRu" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameRu=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -51,8 +51,8 @@
         <p class="name__value">Название(ME)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="cityNameMe">
+          <button *ngIf="cityNameMe" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameMe=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -61,8 +61,8 @@
         <p class="name__value">Название(TR)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="cityNameTr">
+          <button *ngIf="cityNameTr" matSuffix mat-icon-button aria-label="Clear" (click)="cityNameTr=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
