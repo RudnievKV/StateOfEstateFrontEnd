@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import {FormBuilder} from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-property-change',
@@ -23,10 +23,15 @@ export class PropertyChangeComponent {
     extracheese: false,
     mushroom: false,
   });
-  constructor(private _formBuilder: FormBuilder) {}
+  constructor(private _formBuilder: FormBuilder) { }
 
 
-  display:any;
-  center: google.maps.LatLngLiteral = {lat:24, lng:12};
+  display: any;
+  center: google.maps.LatLngLiteral = { lat: 24, lng: 12 };
   zoom = 4;
+
+  CurrentLanguage = 'Ru';
+  SetLanguage(Language: string) {
+    this.CurrentLanguage = Language;
+  }
 }

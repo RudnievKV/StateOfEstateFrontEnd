@@ -8,7 +8,6 @@
 .add-city {
     padding-top: 20px;
     background-color: #222c31;
-    height: 90vh;
 
     &__header-footer-body {
         display: flex;
@@ -50,10 +49,7 @@
 }
 
 .name {
-    &__item {
-        display: flex;
-        align-items: center;
-    }
+
 
     &__value {
         font-size: 18px;
@@ -72,6 +68,8 @@ body {
 body {
     margin: 0;
     font-family: Roboto;
+    background-color: #222c31;
+    height: 100vh;
 }
 
 .container {

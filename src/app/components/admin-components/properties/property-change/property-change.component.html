@@ -14,11 +14,11 @@
     </div>
     <div class="add-property__header-footer-body">
       <div class="add-property__header-footer">
-        <button mat-raised-button class="add-city__buttons-save">Сохранить и добавить другой обьект</button>
-        <button mat-raised-button class="add-city__buttons-save">Сохранить и продолжить изменения</button>
-        <button mat-raised-button class="add-city__buttons-save">Сохранить</button>
+        <button mat-raised-button class="add-property__buttons-save">Сохранить и добавить другой обьект</button>
+        <button mat-raised-button class="add-property__buttons-save">Сохранить и продолжить изменения</button>
+        <button mat-raised-button class="add-property__buttons-save">Сохранить</button>
       </div>
-      <button mat-raised-button class="add-city__buttons-save">Удалить</button>
+      <button mat-raised-button class="add-property__buttons-save">Удалить</button>
     </div>
     <div class="add-property__options options">
       <div class="options__body">
@@ -66,73 +66,165 @@
             </mat-select>
           </mat-form-field>
         </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок продажи(Ru)</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value2">
-            <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2=''">
-              <mat-icon>close</mat-icon>
+        <div class="add-city__name name">
+          <div class="add-city__choose-lang">
+            <button mat-raised-button class class="add-property__buttons-save" (click)="SetLanguage('Ru')">
+              Rus
             </button>
-          </mat-form-field>
-        </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок продажи(En)</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value2">
-            <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2=''">
-              <mat-icon>close</mat-icon>
+            <button mat-raised-button class class="add-property__buttons-save" (click)="SetLanguage('En')">
+              Eng
             </button>
-          </mat-form-field>
-        </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок продажи(Me)</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value2">
-            <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2=''">
-              <mat-icon>close</mat-icon>
+            <button mat-raised-button class class="add-property__buttons-save" (click)="SetLanguage('Tr')">
+              Turk
             </button>
-          </mat-form-field>
-        </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок продажи(Tr)</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value2">
-            <button *ngIf="value2" matSuffix mat-icon-button aria-label="Clear" (click)="value2=''">
-              <mat-icon>close</mat-icon>
+            <button mat-raised-button class class="add-property__buttons-save" (click)="SetLanguage('Me')">
+              Mont
             </button>
-          </mat-form-field>
-        </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок аренды(Ru)</p>
-          <mat-form-field class="example-full-width">
-            <mat-label></mat-label>
-            <textarea matInput placeholder=""></textarea>
-          </mat-form-field>
-        </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок аренды(En)</p>
-          <mat-form-field class="example-full-width">
-            <mat-label></mat-label>
-            <textarea matInput placeholder=""></textarea>
-          </mat-form-field>
-        </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок аренды(Me)</p>
-          <mat-form-field class="example-full-width">
-            <mat-label></mat-label>
-            <textarea matInput placeholder=""></textarea>
-          </mat-form-field>
-        </div>
-        <div class="options__title">
-          <p class="options__value">Заголовок аренды(Tr)</p>
-          <mat-form-field class="example-full-width">
-            <mat-label></mat-label>
-            <textarea matInput placeholder=""></textarea>
-          </mat-form-field>
+          </div>
+          <div [hidden]="!(CurrentLanguage == 'En')" class="name__item">
+            <div class="options__item">
+              <p class="name__value">Заголовок продажи(EN)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="name__value">Заголовок аренды(EN)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание продажи(EN)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание аренды(EN)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div [hidden]="!(CurrentLanguage == 'Ru')" class="name__item">
+            <div class="options__item">
+              <p class="name__value">Заголовок продажи(RU)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="name__value">Заголовок аренды(RU)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание продажи(RU)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание аренды(RU)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div [hidden]="!(CurrentLanguage == 'Me')" class="name__item">
+            <div class="options__item">
+              <p class="name__value">Заголовок продажи(ME)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="name__value">Заголовок аренды(ME)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание продажи(ME)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание аренды(ME)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+          </div>
+          <div [hidden]="!(CurrentLanguage == 'Tr')" class="name__item">
+            <div class="options__item">
+              <p class="name__value">Заголовок продажи(TR)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="name__value">Заголовок аренды(TR)</p>
+              <mat-form-field class="example-form-field">
+                <mat-label></mat-label>
+                <input matInput type="text" [(ngModel)]="value">
+                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                  <mat-icon>close</mat-icon>
+                </button>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание продажи(TR)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+            <div class="options__item">
+              <p class="options__value">Описание аренды(TR)</p>
+              <mat-form-field class="example-full-width">
+                <mat-label></mat-label>
+                <textarea matInput placeholder=""></textarea>
+              </mat-form-field>
+            </div>
+          </div>
         </div>
         <div class="options__title">
           <p class="options__value">Заметка</p>
@@ -414,9 +506,9 @@
       </div>
     </div>
     <div class="add-property__header-footer last">
-      <button mat-raised-button class="add-city__buttons-save">Сохранить и добавить другой обьект</button>
-      <button mat-raised-button class="add-city__buttons-save">Сохранить и продолжить изменения</button>
-      <button mat-raised-button class="add-city__buttons-save">Сохранить</button>
+      <button mat-raised-button class="add-property__buttons-save">Сохранить и добавить другой обьект</button>
+      <button mat-raised-button class="add-property__buttons-save">Сохранить и продолжить изменения</button>
+      <button mat-raised-button class="add-property__buttons-save">Сохранить</button>
     </div>
   </div>
 </section>
