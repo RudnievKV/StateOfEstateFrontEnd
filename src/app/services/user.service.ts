@@ -38,5 +38,10 @@ export class UserService {
   DeleteUser(id: number): Observable<Object> {
     return this.http.delete(`${this.apiUrl}api/users/${id}`);
   }
+  DeleteUsers(customParams: HttpParams): Observable<Object> {
+    return this.http.delete(`${this.apiUrl}api/users`, {
+      params: customParams
+    });
+  }
 
 }

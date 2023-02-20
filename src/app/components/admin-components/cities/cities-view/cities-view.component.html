@@ -3,21 +3,23 @@
   <div class="city-view__container container">
     <div class="city-view__head">
       <h1 class="city-view__title">Выберите Город для изменения</h1>
-      <button mat-raised-button class="search__buttons-save">Добавить Город</button>
+      <button mat-raised-button class="search__buttons-save" [routerLink]="['../','add-city']" routerLinkActive="active"
+        ariaCurrentWhenActive="page">Добавить Город</button>
     </div>
-    <div class="city-view__view view" *ngIf="citiesPagedResponse; else loading">
+    <div class="city-view__view view">
       <div class="view__header">
         <div class="view__choose-action">
           <p class="view__value">Действие:</p>
           <mat-form-field appearance="fill">
             <mat-label></mat-label>
-            <mat-select disableRipple>
+            <mat-select disableRipple #selectAction>
+              <mat-option value="Nothing">---------</mat-option>
               <mat-option value="Delete">Удалить</mat-option>
-
             </mat-select>
           </mat-form-field>
-          <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
-          <p class="view__value">Выбрано {{selectedCities.length}} из {{citiesPagedResponse.TotalRecords}}</p>
+          <p><button mat-raised-button class="search__buttons-save"
+              (click)="DeleteSelectedCities(selectAction.value)">Удалить</button></p>
+
         </div>
       </div>
 
@@ -36,6 +38,8 @@
           </div>
         </div>
         <button mat-raised-button class="search__buttons-save" (click)="Search()">Поиск</button>
+        <p class="view__value" *ngIf="citiesPagedResponse; else loading">Выбрано {{selectedCities.length}} из
+          {{citiesPagedResponse.TotalRecords}}</p>
       </div>
       <div class="view__nav">
         <div class="view__value"><mat-checkbox (change)="selectAll()" [checked]="allSelected"></mat-checkbox></div>

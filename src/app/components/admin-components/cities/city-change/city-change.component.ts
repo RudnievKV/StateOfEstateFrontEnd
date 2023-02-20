@@ -33,26 +33,30 @@ export class CityChangeComponent {
       console.log(params);
       this.id = params['id'];
     });
-    let cityPromise = firstValueFrom(this.cityService.GetCity(this.id))
+    let cityPromise = await firstValueFrom(this.cityService.GetCity(this.id))
       .catch(error => {
         console.log(error);
         this.router.navigateByUrl('admin/cities/view-cities');
+      })
+      .then(result => {
+        if (result) {
+          this.city = result;
+        }
       });
-    let cityPromiseResult = await cityPromise;
-    if (cityPromiseResult != null) {
-      this.city = cityPromiseResult;
-    }
     console.log(this.city);
     if (this.city == undefined) {
       //this.router.navigateByUrl('admin/cities/view-cities');
     }
     let enLocale = this.city.Local_Cities.find(s => s.Local.LocalizationCode == 'en');
     if (enLocale != undefined && enLocale.LocalCityName != null) {
+      console.log(enLocale.LocalCityName);
       this.cityNameEn = enLocale.LocalCityName;
     }
     let ruLocale = this.city.Local_Cities.find(s => s.Local.LocalizationCode == 'ru');
     if (ruLocale != undefined && ruLocale.LocalCityName != null) {
+
       this.cityNameRu = ruLocale.LocalCityName;
+      console.log(this.cityNameRu);
     }
     let meLocale = this.city.Local_Cities.find(s => s.Local.LocalizationCode == 'sr');
     if (meLocale != undefined && meLocale.LocalCityName != null) {
@@ -96,8 +100,19 @@ export class CityChangeComponent {
 
     let cityUpdateDto = new CityUpdateDto(local_Cities);
     console.log(cityUpdateDto);
-    let result = await firstValueFrom(this.cityService.UpdateCity(cityUpdateDto, this.id));
+    await firstValueFrom(this.cityService.UpdateCity(cityUpdateDto, this.id))
+      .catch(error => {
+        console.log(error);
+        //this.router.navigateByUrl('admin/cities/view-cities');
+      })
+      .then(result => {
+        if (!result) {
+          this.router.navigateByUrl('admin/cities/view-cities');
+        } else {
 
+        }
+
+      });
   }
   ngOnDestroy() {
     this.routeSub.unsubscribe();

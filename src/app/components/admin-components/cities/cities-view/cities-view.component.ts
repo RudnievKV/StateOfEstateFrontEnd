@@ -93,10 +93,11 @@ export class CitiesViewComponent {
       let cityAndCheck = new DataAndCheck<CityDto>(city);
       this.citiesAndCheck.push(cityAndCheck);
     });
-
+    console.log(this.citiesPagedResponse);
     this.loading = false;
   }
   async DeleteSelectedCities(selectAction: string) {
+    console.log(selectAction);
     if (selectAction == "Delete") {
       this.allSelected = false;
       let params = new HttpParams();

@@ -60,7 +60,13 @@ export class CityAddComponent {
     local_Cities.push(localMe);
 
     let cityCreateDto = new CityCreateDto(local_Cities);
-    let result = await firstValueFrom(this.cityService.CreateCity(cityCreateDto));
+    await firstValueFrom(this.cityService.CreateCity(cityCreateDto))
+      .catch(error => {
+        console.log(error);
+
+      }).then(result => {
+        this.router.navigateByUrl("admin/cities/view-cities");
+      });
 
   }
   CurrentLanguage = 'Ru';
