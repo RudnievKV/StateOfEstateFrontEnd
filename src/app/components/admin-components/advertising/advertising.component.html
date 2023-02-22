@@ -1,0 +1,70 @@
+<app-admin-header></app-admin-header>
+<section class="city-view">
+    <div class="city-view__container container">
+        <div class="city-view__head">
+            <h1 class="city-view__title">Выберите Район для изменения</h1>
+            <button mat-raised-button class="search__buttons-save">Добавить Район</button>
+        </div>
+        <div class="city-view__view view">
+            <div class="city-view__search search">
+                <div class="search__body">
+                    <div class="search__field">
+                        <div class="add-city__name name">
+                            <div class="name__item">
+                                <mat-form-field class="example-form-field">
+                                    <mat-label></mat-label>
+                                    <input matInput type="text" [(ngModel)]="value">
+                                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
+                                        (click)="value=''">
+                                        <mat-icon>close</mat-icon>
+                                    </button>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <button mat-raised-button class="search__buttons-save">Поиск</button>
+                </div>
+            </div>
+            <div class="view__nav">
+                <div class="view__value"><a href="">настройки рекламы</a></div>
+                <div class="view__value">Realtica аренда</div>
+                <div class="view__value"><a href="">Facebook аренда</a></div>
+                <div class="view__value"><a href="">Instagramm аренда</a></div>
+                <div class="view__value"><a href="">Realtica продажа</a></div>
+                <div class="view__value"><a href="">Facebook продажа</a></div>
+                <div class="view__value"><a href="">Instagramm продажа</a></div>
+                <div class="view__value"><a href="">Homesoverseas продажа</a></div>
+            </div>
+            <div class="view__item">
+                <div class="view__value"><a href="">Id 228</a></div>
+                <div class="view__value">-</div>
+                <div class="view__value"><a href="">+</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">-</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">+</a></div>
+            </div>
+            <div class="view__item">
+                <div class="view__value"><a href="">Id 228</a></div>
+                <div class="view__value">-</div>
+                <div class="view__value"><a href="">+</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">-</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">+</a></div>
+            </div>
+            <div class="view__item">
+                <div class="view__value"><a href="">Id 228</a></div>
+                <div class="view__value">-</div>
+                <div class="view__value"><a href="">+</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">-</a></div>
+                <div class="view__value"><a href="">X</a></div>
+                <div class="view__value"><a href="">+</a></div>
+            </div>
+        </div>
+    </div>
+</section>
