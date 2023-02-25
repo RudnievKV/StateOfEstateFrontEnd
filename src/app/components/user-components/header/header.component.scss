@@ -85,6 +85,7 @@ $maxWidthContainer: 768;
     &__logo {
         color: #4BA586;
         font-size: 24px;
+        z-index: 10;
     }
 
     &__menu {}
@@ -103,6 +104,15 @@ $maxWidthContainer: 768;
 
 .container {}
 
+.menu-opeb {
+
+    left: 0px !important;
+
+    &::before {
+        left: 0px !important;
+    }
+}
+
 .menu {
 
     &__icon {}
@@ -111,16 +121,30 @@ $maxWidthContainer: 768;
         @media (max-width: 768px) {
             position: fixed;
             top: 0;
-            left: 0;
+            left: -100%;
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: #F5F5F5;
+            transition: left 0.3s ease 0s;
             padding-top: 70px;
+            background-color: #F5F5F5;
 
             ul {
                 padding-left: 15px;
             }
+
+            &::before {
+                content: "";
+                position: fixed;
+                top: 0;
+                left: -100%;
+                height: 60px;
+                width: 100%;
+                transition: left 0.3s ease 0s;
+                background-color: #F5F5F5;
+                z-index: 100;
+            }
+
         }
 
     }
@@ -130,7 +154,7 @@ $maxWidthContainer: 768;
             display: flex;
             row-gap: 5px;
             flex-wrap: wrap;
-            @include adaptive-value("column-gap", 56, 0, 0, )
+            @include adaptive-value("column-gap", 56, 0, 0, );
         }
     }
 
@@ -311,6 +335,7 @@ $maxWidthContainer: 768;
         }
 
         &::before {
+            left: 0px;
             top: 0px;
         }
 
@@ -321,21 +346,22 @@ $maxWidthContainer: 768;
         span {
             top: calc(50% - 1px);
         }
+    }
 
-        .menu-opeb & {
-            span {
-                transform: scale(0);
-            }
+}
 
-            &::before {
-                transform: rotate(-45deg);
-                top: calc(50% - 1px);
-            }
+.open {
+    span {
+        transform: scale(0);
+    }
 
-            &::after {
-                transform: rotate(45deg);
-                bottom: calc(50% - 1px);
-            }
-        }
+    &::before {
+        transform: rotate(-45deg);
+        top: calc(50% - 1px);
+    }
+
+    &::after {
+        transform: rotate(45deg);
+        bottom: calc(50% - 1px);
     }
 }

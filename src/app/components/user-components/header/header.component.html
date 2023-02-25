@@ -1,8 +1,8 @@
 <header class="header">
     <div class="header__container container">
         <a href="" class="header__logo">Dimas</a>
-        <div class="header__menu menu">
-            <nav class="menu__body">
+        <div class="header__menu menu ">
+            <nav class="menu__body" [ngClass]="status ? 'menu-opeb' : 'menu__body'">
                 <ul class="menu__list">
                     <li class="menu__item">
                         <a class="menu__link">Аренда</a>
@@ -57,7 +57,8 @@
                     </li>
                 </ul>
             </nav>
-            <button type="button" class="icon-menu"><span></span></button>
+            <button [ngClass]="status ? 'open' : 'icon-menu'" (click)="clickEvent()" type="button"
+                class="icon-menu"><span class=""></span></button>
         </div>
     </div>
 </header>
