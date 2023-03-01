@@ -1,3 +1,42 @@
+$maxWidth: 1440;
+$maxWidthContainer: 768;
+
+@mixin adaptive-value($property, $startSize, $minSize, $type) {
+    $addSize: $startSize - $minSize;
+
+    @if $type==1 {
+        //Только если меньше контейнера
+        #{$property}: $startSize + px;
+
+        @media (max-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidthContainer - 320}));
+        }
+    }
+
+    @else if $type==2 {
+        //Только если больше контейнера
+        #{$property}: $startSize + px;
+
+        @media (min-width: #{$maxWidthContainer + px}) {
+            #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+        }
+    }
+
+    @else {
+        //Всегда
+        #{$property}: calc(#{$minSize + px} + #{$addSize} * ((100vw - 320px) / #{$maxWidth - 320}));
+    }
+}
+
+//==============================================
+
+
+
+
+
+
+
+
 .main {}
 
 .search {
@@ -11,13 +50,16 @@
         background-position: 100% 100%;
         width: 100%;
         height: 100%;
+
+        @media (max-width: 768px) {
+            padding-top: 0px;
+        }
     }
 
-    &__container {
-        margin-top: 50px;
-    }
+    &__container {}
 
     &__block {
+        padding-top: 100px !important;
         display: flex;
         flex-direction: column;
         gap: 40px;
@@ -139,6 +181,7 @@
 .recomendation {
 
     &__page {
+        padding-top: 100px;
         background-color: #FEFEFF;
         padding-bottom: 120px;
     }
@@ -151,7 +194,6 @@
 .container {}
 
 .title {
-    padding-top: 100px;
     padding-bottom: 50px;
 
     &__btn {}
@@ -247,6 +289,7 @@
     &__block {
         background-color: #F5F5F5;
         padding-top: 0px;
+        padding-top: 100px;
         padding-bottom: 100px;
     }
 
@@ -278,7 +321,7 @@
 
     &__body {
         margin: 0 auto;
-        width: 30%;
+        width: 40%;
         display: flex;
         flex-direction: column;
     }
@@ -292,9 +335,10 @@
 
     &__value {
         color: #054457;
-        font-size: 28px;
+        @include adaptive-value("font-size", 28, 22, 0, );
         font-weight: 600;
         padding-bottom: 15px;
+
     }
 
     &__text {
@@ -308,6 +352,7 @@
 .our-team {
 
     &__page {
+        padding-top: 120px;
         background-color: #FEFEFF;
     }
 
@@ -325,7 +370,6 @@
 
 .title {
     display: flex;
-    padding-top: 110px !important;
     flex: 1 1 45%;
 
     &__btn {}
@@ -336,9 +380,9 @@
 }
 
 .raiting {
+    margin-top: -40px;
     display: flex;
     flex-direction: column-reverse;
-    padding-top: 100px;
     flex: 1 1 45%;
 
     &__img {
@@ -350,7 +394,7 @@
 
     &__statistic {
         display: flex;
-        gap: 30px;
+        @include adaptive-value("gap", 30, 15, 0, );
         padding-top: -100px;
         background-color: #fff;
         padding: 10px 10px;
@@ -365,7 +409,7 @@
     }
 
     &__number {
-        font-size: 48px;
+        @include adaptive-value("font-size", 48, 38, 0, );
         color: #054457;
         font-weight: 700;
     }
@@ -381,6 +425,7 @@
 .comments {
 
     &__page {
+        padding-top: 100px;
         background-color: #FEFEFF;
         padding-bottom: 100px;
     }
