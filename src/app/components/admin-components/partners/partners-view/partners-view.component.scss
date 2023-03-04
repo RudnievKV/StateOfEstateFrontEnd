@@ -1,9 +1,11 @@
 .proeprty-view {
     background-color: #222c31;
+    display: flex;
 
     &__container {
         padding-top: 1px;
         padding: 1px 40px;
+        width: 70%;
     }
 
     &__title {
@@ -18,6 +20,38 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+    }
+
+    .side-bar {
+        padding-top: 40px;
+        padding-right: 40px;
+        position: fixed;
+        right: 0;
+        width: 10%;
+
+        &__body {
+            background-color: #263238;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+
+        &__list {}
+
+        &__value {
+            color: white;
+        }
+
+        &__item {}
+
+        &__link {
+            display: flex;
+            color: yellowgreen;
+            padding-bottom: 2px;
+
+            &:hover {
+                color: yellow;
+            }
+        }
     }
 }
 

@@ -29,6 +29,8 @@ import { PartnerChangeComponent } from './components/admin-components/partners/p
 import { BenefitAddComponent } from './components/admin-components/benefits/benefit-add/benefit-add.component';
 import { BenefitsViewComponent } from './components/admin-components/benefits/benefits-view/benefits-view.component';
 import { BenefitChangeComponent } from './components/admin-components/benefits/benefit-change/benefit-change.component';
+import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -158,7 +160,7 @@ const routes: Routes = [
             component: ReminderChangeComponent,
           },
         ]
-      }, 
+      },
       {
         path: 'partners',
         canActivate: [AuthGuard],
@@ -210,6 +212,16 @@ const routes: Routes = [
           {
             path: ':id/change',
             component: BenefitChangeComponent,
+          },
+        ]
+      },
+      {
+        path: 'advertising',
+        canActivate: [AuthGuard],
+        children: [
+          {
+            path: 'view-advertising',
+            component: AdvertisingComponent,
           },
         ]
       },
