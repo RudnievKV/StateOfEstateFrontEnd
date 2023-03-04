@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom, Subscription } from 'rxjs';
 import UserCreateDto from 'src/app/models/UserDtos/UserCreateDto';
 import UserDto from 'src/app/models/UserDtos/UserDto';
+import UserUpdateDto from 'src/app/models/UserDtos/UserUpdateDto';
 import { CityService } from 'src/app/services/city.service';
 import { UserTypeService } from 'src/app/services/user-type.service';
 import { UserService } from 'src/app/services/user.service';
@@ -35,7 +36,7 @@ export class UserChangeComponent {
     await firstValueFrom(this.userService.GetUser(this.id))
       .catch(error => {
         console.log(error);
-        this.router.navigateByUrl('admin/cities/view-cities');
+        this.router.navigateByUrl("admin/users/view-users");
       })
       .then(result => {
         if (result) {
@@ -56,7 +57,7 @@ export class UserChangeComponent {
     let selectedUserType_ID = userTypes.find(element => element.UserTypeName == this.role)!.UserType_ID;
 
 
-    let newUser = new UserCreateDto(
+    let newUser = new UserUpdateDto(
       this.email,
       this.username,
       this.password,
@@ -69,7 +70,7 @@ export class UserChangeComponent {
 
       })
       .then(result => {
-        this.router.navigateByUrl("admin/cities/view-cities");
+        this.router.navigateByUrl("admin/users/view-users");
       });
   }
   async Delete() {
@@ -79,7 +80,7 @@ export class UserChangeComponent {
 
       })
       .then(result => {
-        this.router.navigateByUrl("admin/cities/view-cities");
+        this.router.navigateByUrl("admin/users/view-users");
       });
   }
 }
