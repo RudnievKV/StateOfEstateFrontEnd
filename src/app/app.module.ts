@@ -54,6 +54,12 @@ import { HomeComponent } from './components/user-components/home/home.component'
 import { environment } from '../environments/environment';
 import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+// gallerey
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
+//
+
+
 import { JwtModule } from "@auth0/angular-jwt";
 import { ACCESS_TOKEN_KEY } from './services/auth.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
@@ -66,7 +72,8 @@ import { AdminHeaderComponent } from './components/admin-components/admin-header
 import { BenefitsViewComponent } from './components/admin-components/benefits/benefits-view/benefits-view.component';
 import { BenefitAddComponent } from './components/admin-components/benefits/benefit-add/benefit-add.component';
 import { BenefitChangeComponent } from './components/admin-components/benefits/benefit-change/benefit-change.component';
-import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component'
+import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
+import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component'
 import { MatNativeDateModule } from '@angular/material/core';
 
 export function tokenGetter() {
@@ -142,6 +149,7 @@ export function tokenGetter() {
     BenefitAddComponent,
     BenefitChangeComponent,
     AdvertisingComponent,
+    UserPropertiesComponent,
   ],
   imports: [
     FormsModule,
@@ -149,6 +157,11 @@ export function tokenGetter() {
     ReactiveFormsModule,
     MatCheckboxModule,
     GoogleMapsModule,
+
+    // gallerey
+    GalleryModule,
+    LightboxModule,
+    //
 
 
 

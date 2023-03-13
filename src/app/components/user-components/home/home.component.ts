@@ -73,5 +73,22 @@ export class HomeComponent {
   }
 
 
+  CurrentSearch = 'Buy';
+  statusBuy: boolean = true;
+  statusRent: boolean = false;
+  SetSearch(Search: string) {
+    this.CurrentSearch = Search;
+
+    if (Search == 'Buy' && this.statusBuy == false) {
+      this.statusBuy = true;
+      this.statusRent = false;
+    }
+    else if (Search == 'Rent' && this.statusRent == false) {
+      this.statusBuy = false;
+      this.statusRent = true;
+    }
+
+  };
+
 }
 
