@@ -41,5 +41,9 @@ export class BenefitService {
   DeleteBenefit(id: number): Observable<Object> {
     return this.http.delete(`${this.apiUrl}api/benefits/${id}`);
   }
-
+  DeleteBenefits(customParams: HttpParams): Observable<Object> {
+    return this.http.delete(`${this.apiUrl}api/benefits`, {
+      params: customParams
+    });
+  }
 }

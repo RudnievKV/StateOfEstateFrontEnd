@@ -41,5 +41,9 @@ export class PartnerService {
   DeletePartner(id: number): Observable<Object> {
     return this.http.delete(`${this.apiUrl}api/partners/${id}`);
   }
-
+  DeletePartners(customParams: HttpParams): Observable<Object> {
+    return this.http.delete(`${this.apiUrl}api/partners`, {
+      params: customParams
+    });
+  }
 }

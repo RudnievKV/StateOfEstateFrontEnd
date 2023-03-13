@@ -41,5 +41,9 @@ export class NeighborhoodService {
   DeleteNeighborhood(id: number): Observable<Object> {
     return this.http.delete(`${this.apiUrl}api/neighborhoods/${id}`);
   }
-
+  DeleteNeighborhoods(customParams: HttpParams): Observable<Object> {
+    return this.http.delete(`${this.apiUrl}api/neighborhoods`, {
+      params: customParams
+    });
+  }
 }

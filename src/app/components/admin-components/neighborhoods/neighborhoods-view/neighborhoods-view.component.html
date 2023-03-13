@@ -1,58 +1,69 @@
 <app-admin-header></app-admin-header>
 <section class="city-view">
-    <div class="city-view__container container">
-        <div class="city-view__head">
-            <h1 class="city-view__title">Выберите Район для изменения</h1>
-            <button mat-raised-button class="search__buttons-save">Добавить Район</button>
-        </div>
-        <div class="city-view__view view">
-            <div class="view__header">
-                <div class="view__choose-action">
-                    <p class="view__value">Действие:</p>
-                    <mat-form-field appearance="fill">
-                        <mat-label></mat-label>
-                        <mat-select disableRipple>
-                            <mat-option value="1">Удалить выбранные обьекты</mat-option>
-
-                        </mat-select>
-                    </mat-form-field>
-                    <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
-                    <p class="view__value">Выбрано 0 из 100</p>
-                </div>
-            </div>
-            <div class="city-view__search search">
-                <div class="search__body">
-                    <div class="search__field">
-                        <div class="add-city__name name">
-                            <div class="name__item">
-                                <mat-form-field class="example-form-field">
-                                    <mat-label></mat-label>
-                                    <input matInput type="text" [(ngModel)]="value">
-                                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                                        (click)="value=''">
-                                        <mat-icon>close</mat-icon>
-                                    </button>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
-                    <button mat-raised-button class="search__buttons-save">Поиск</button>
-                </div>
-            </div>
-            <div class="view__nav">
-                <div class="view__body">
-                    <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                    <div class="view__value">Чечичичи</div>
-                </div>
-                <div class="view__value">Город</div>
-            </div>
-            <div class="view__item">
-                <div class="view__body">
-                    <div class="view__value"><mat-checkbox></mat-checkbox></div>
-                    <div class="view__value"><a href="/admin/neighborhoods/:id/change">Чечичичи</a></div>
-                </div>
-                <div class="view__value">Чечичичи</div>
-            </div>
-        </div>
+  <div class="city-view__container container">
+    <div class="city-view__head">
+      <h1 class="city-view__title">Выберите Район для изменения</h1>
+      <button mat-raised-button class="search__buttons-save" [routerLink]="['../','add-neighborhood']"
+        routerLinkActive="active">Добавить Район</button>
     </div>
+    <div class="city-view__view view">
+      <div class="view__header">
+        <div class="view__choose-action">
+          <p class="view__value">Действие:</p>
+          <mat-form-field appearance="fill">
+            <mat-label></mat-label>
+            <mat-select disableRipple #selectAction>
+              <mat-option value="Nothing">---------</mat-option>
+              <mat-option value="Delete">Удалить</mat-option>
+
+            </mat-select>
+          </mat-form-field>
+          <p><button mat-raised-button class="search__buttons-save"
+              (click)="DeleteSelectedNeighborhoods(selectAction.value)">Выполнить</button></p>
+
+        </div>
+      </div>
+      <div class="city-view__search search">
+        <div class="search__body">
+          <div class="search__field">
+            <div class="add-city__name name">
+              <div class="name__item">
+                <mat-form-field class="example-form-field">
+                  <mat-label></mat-label>
+                  <input matInput type="text" [(ngModel)]="searchQuery">
+                  <button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="searchQuery=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <button mat-raised-button class="search__buttons-save" (click)="Search()">Поиск</button>
+          <p class="view__value" *ngIf="neighborhoodsPagedResponse; else loading">Выбрано
+            {{selectedNeighborhoods.length}} из
+            {{neighborhoodsPagedResponse.TotalRecords}}</p>
+        </div>
+      </div>
+      <div class="view__nav">
+        <div class="view__body">
+          <div class="view__value"><mat-checkbox (change)="selectAll()" [checked]="allSelected"></mat-checkbox></div>
+          <div class="view__value">Район</div>
+        </div>
+        <div class="view__value">Город</div>
+      </div>
+      <div class="view__item" *ngFor="let neighborhood of neighborhoodsAndCheck; index as i;">
+        <div class="view__body">
+          <div class="view__value"><mat-checkbox (change)="selectNeighborhood(neighborhood.Data.Neighborhood_ID)"
+              [checked]="neighborhood.checked"></mat-checkbox></div>
+          <div class="view__value"><a
+              href="/admin/neighborhoods/{{neighborhood.Data.Neighborhood_ID}}/change">{{DisplayNeighborhoodName(neighborhood)}}</a>
+          </div>
+        </div>
+        <div class="view__value">{{DisplayCityName(neighborhood)}}</div>
+      </div>
+    </div>
+  </div>
+  <ng-template #loading>
+    <mat-spinner [diameter]="100" class="mat-spinner-color"></mat-spinner>
+  </ng-template>
 </section>
