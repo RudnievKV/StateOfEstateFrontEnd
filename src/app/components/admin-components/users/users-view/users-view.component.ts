@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import DataAndCheck from 'src/app/models/DataAndCheck';
 import PagedResponse from 'src/app/models/PagedResponse';
@@ -17,6 +17,7 @@ export class UsersViewComponent {
   constructor(
     private userService: UserService,
     private router: Router,
+    private activatedRoute: ActivatedRoute
 
   ) { }
   usersPagedResponse!: PagedResponse<UserDto>;
@@ -80,6 +81,15 @@ export class UsersViewComponent {
     this.loading = true;
     this.selectedUsers = [];
     this.allSelected = false;
+
+    this.router.navigate([], {
+      relativeTo: this.activatedRoute,
+      queryParams: {
+        query: this.searchQuery
+      },
+      queryParamsHandling: 'merge',
+      // preserve the existing query params in the route
+    });
     let params = new HttpParams();
     params = params.set("page-size", 100);
     params = params.set("page-number", 1);
