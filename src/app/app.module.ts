@@ -54,10 +54,7 @@ import { HomeComponent } from './components/user-components/home/home.component'
 import { environment } from '../environments/environment';
 import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
 
-// gallerey
-import { GalleryModule } from 'ng-gallery';
-import { LightboxModule } from 'ng-gallery/lightbox';
-//
+
 
 
 import { JwtModule } from "@auth0/angular-jwt";
@@ -157,10 +154,6 @@ export function tokenGetter() {
     MatCheckboxModule,
     GoogleMapsModule,
 
-    // gallerey
-    GalleryModule,
-    LightboxModule,
-    //
 
 
 
