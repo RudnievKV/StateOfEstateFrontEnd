@@ -13,14 +13,17 @@
                         помещений, подходящих для вас.</div>
                 </div>
                 <div class="search__menu menu">
+
                     <div class="menu__buttons">
-                        <button class="menu__search-btns active">Купить</button>
-                        <button class="menu__search-btns">Арендовать</button>
+                        <button class="menu__search-btns" [ngClass]="statusBuy ? 'activebtn' : 'notactive'"
+                            (click)="SetSearch('Buy')">Купить</button>
+                        <button class="menu__search-btns" [ngClass]="statusRent ? 'activebtn' : 'notactive'"
+                            (click)="SetSearch('Rent')">Арендовать</button>
                         <button class="menu__search-btns">Дома и виллы</button>
                         <button class="menu__search-btns">Участки</button>
                         <button class="menu__search-btns">Поиск по ID</button>
                     </div>
-                    <div class="menu__inputs">
+                    <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Buy')">
                         <div class="menu__input">
                             <div class="menu__multiselect">
                                 <div class="menu__selectBox" (click)="showCheckboxes()">
@@ -130,6 +133,144 @@
                             </div>
                         </div>
                     </div>
+                    <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Rent')">
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Город</div>
+                                    <select>
+                                        <option>Буба,Чеча</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Город</div>
+                                    <select>
+                                        <option>Буба,Чеча</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Кол-во спален</div>
+                                    <select>
+                                        <option>5+,2</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Цена</div>
+                                    <select>
+                                        <option>300$</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Опции</div>
+                                    <select>
+                                        <option>Кебаб в постель</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <button class="menu__search-btn">Поиск</button>
                 </div>
             </div>
@@ -150,8 +291,9 @@
             <div class="recomendation__body body">
                 <div class="body__property">
                     <div class="body__img">
-                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
-                            alt="">
+                        <a href="/Properties/ID228"><img
+                                src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                                alt=""></a>
                     </div>
                     <div class=" body__label">Полтава
                     </div>
@@ -160,7 +302,7 @@
                         <div class="body__price">$25,000</div>
                         <div class="body__space">360m2 Living Area</div>
                     </div>
-                    <button class="body__inquiry-btn">Send Inquiry</button>
+                    <a class="body__inquiry-btn">Send Inquiry</a>
                 </div>
                 <div class="body__property">
                     <div class="body__img">
@@ -174,7 +316,7 @@
                         <div class="body__price">$25,000</div>
                         <div class="body__space">360m2 Living Area</div>
                     </div>
-                    <button class="body__inquiry-btn">Send Inquiry</button>
+                    <a class="body__inquiry-btn">Send Inquiry</a>
                 </div>
                 <div class="body__property">
                     <div class="body__img">
@@ -188,7 +330,7 @@
                         <div class="body__price">$25,000</div>
                         <div class="body__space">360m2 Living Area</div>
                     </div>
-                    <button class="body__inquiry-btn">Send Inquiry</button>
+                    <a class="body__inquiry-btn">Send Inquiry</a>
                 </div>
             </div>
         </div>

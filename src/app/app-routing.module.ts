@@ -30,12 +30,35 @@ import { BenefitAddComponent } from './components/admin-components/benefits/bene
 import { BenefitsViewComponent } from './components/admin-components/benefits/benefits-view/benefits-view.component';
 import { BenefitChangeComponent } from './components/admin-components/benefits/benefit-change/benefit-change.component';
 import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
+import { SearchRentComponent } from './components/user-components/search-rent/search-rent.component';
+import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: HomeComponent
+    children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
+      {
+        path: 'search-rent',
+        component: SearchRentComponent,
+      },
+
+    ]
   },
+  {
+    path: 'Properties',
+    children: [
+      {
+        path: 'ID228',
+        component: UserPropertiesComponent,
+      },
+
+    ]
+  },
+
   {
     path: 'admin',
     children: [

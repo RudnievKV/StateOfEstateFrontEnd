@@ -1,1 +1,469 @@
-<p>search-rent works!</p>
+<app-header></app-header>
+<main class="main">
+    <section class="search__page">
+        <div class="search__container container">
+            <div class="search__block">
+                <div class="search__menu menu">
+                    <div class="menu__buttons">
+                        <button class="menu__search-btns activebtn">Арендовать</button>
+                        <button class="menu__search-btns">Поиск по ID</button>
+                    </div>
+                    <div class="menu__inputs">
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Срок аренды</div>
+                                    <select>
+                                        <option>Буба,Чеча</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Город</div>
+                                    <select>
+                                        <option>Буба,Чеча</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Кол-во спален</div>
+                                    <select>
+                                        <option>5+,2</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Цена</div>
+                                    <select>
+                                        <option>300$</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="menu__input">
+                            <div class="menu__multiselect">
+                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                    <div class="menu__value">Опции</div>
+                                    <select>
+                                        <option>Кебаб в постель</option>
+                                    </select>
+                                    <div class="menu__overSelect"></div>
+                                </div>
+                                <div id="checkboxes" *ngIf="showCheckbox">
+                                    <ul class="menu__dropdown">
+                                        <li>
+                                            <label for="allEvents">
+                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
+                                                    name="allEvents" (change)="selectAll();" />All Events
+                                            </label>
+                                        </li>
+                                        <li *ngFor="let channel of channelDDList">
+                                            <label for="{{channel.channelId}}">
+                                                <input type="checkbox" id="{{channel.channelId}}"
+                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
+                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="menu__search-btn">Поиск</button>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <section class="recomendation__page">
+        <div class="recomendation__container container">
+            <div class="title">
+                <div>
+                    <div class="title__btn grey">ПРЕДЛОЖЕНИЯ</div>
+                </div>
+                <div class="title__label">Актуальные предложения аренды недвижимости в Черногории</div>
+            </div>
+            <div class="recomendation__body body">
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 <br> Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+                <div class="body__property">
+                    <div class="body__img">
+                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                            alt="">
+                    </div>
+                    <div class=" body__label">Полтава
+                    </div>
+                    <div class="body__value">Богор, Джава Барат</div>
+                    <div class="body__info">
+                        <div class="body__price">$25,000</div>
+                        <div class="body__space">360m2 Living Area</div>
+                    </div>
+                    <button class="body__inquiry-btn">Send Inquiry</button>
+                </div>
+            </div>
+            <div class="number-of-page">
+                <span class="arrow left"></span>
+                <div class="number">1</div>
+                <div class="number">2</div>
+                <div class="number">3</div>
+                <div class="number">4</div>
+                <span class="arrow right"></span>
+            </div>
+        </div>
+    </section>
+</main>
+<app-footer></app-footer>
