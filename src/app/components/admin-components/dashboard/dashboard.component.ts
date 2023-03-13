@@ -14,6 +14,7 @@ export class DashboardComponent {
     private benefitService: BenefitService,
   ) { }
   async ngOnInit() {
+    /*
     let params = new HttpParams();
     params = params.set("page-size", 5);
     params = params.set("page-number", 5);
@@ -29,5 +30,6 @@ export class DashboardComponent {
 
     benefit.Local_Benefits = localBenefitValues;
     console.log(await firstValueFrom(this.benefitService.CreateBenefit(benefit)));
+    */
   }
 }

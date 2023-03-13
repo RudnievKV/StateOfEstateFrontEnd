@@ -29,6 +29,11 @@ export class CityService {
   GetCity(id: number): Observable<CityDto> {
     return this.http.get<CityDto>(`${this.apiUrl}api/cities/${id}`)
   }
+  GetCities(customParams: HttpParams): Observable<Array<CityDto>> {
+    return this.http.get<Array<CityDto>>(`${this.apiUrl}api/cities/cities-by-id`, {
+      params: customParams
+    });
+  }
   GetAllCities(): Observable<CityDto[]> {
     return this.http.get<CityDto[]>(`${this.apiUrl}api/cities/all`)
   }

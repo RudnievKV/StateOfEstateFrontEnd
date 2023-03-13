@@ -2,12 +2,12 @@
 <section class="add-city">
   <div class="add-city__container container">
     <div class="add-city__header">
-      <h1 class="add-city__title">Добавить Удобство</h1>
+      <h1 class="add-city__title">Добавить удобство</h1>
     </div>
     <div class="add-city__header-footer">
-      <button mat-raised-button class="add-city__buttons-save">Сохранить и добавить другого пользователя</button>
+      <button mat-raised-button class="add-city__buttons-save">Сохранить и добавить другое удобство</button>
       <button mat-raised-button class="add-city__buttons-save">Сохранить и продолжить изменения</button>
-      <button mat-raised-button class="add-city__buttons-save">Сохранить</button>
+      <button mat-raised-button class="add-city__buttons-save" (click)="Save()">Сохранить</button>
     </div>
     <div class="add-city__name name">
       <div class="add-city__choose-lang">
@@ -28,8 +28,8 @@
         <p class="name__value">Название(EN)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="benefitNameEn">
+          <button *ngIf="benefitNameEn" matSuffix mat-icon-button aria-label="Clear" (click)="benefitNameEn=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -38,8 +38,8 @@
         <p class="name__value">Название(RU)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="benefitNameRu">
+          <button *ngIf="benefitNameRu" matSuffix mat-icon-button aria-label="Clear" (click)="benefitNameRu=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -48,8 +48,8 @@
         <p class="name__value">Название(ME)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="benefitNameMe">
+          <button *ngIf="benefitNameMe" matSuffix mat-icon-button aria-label="Clear" (click)="benefitNameMe=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>
@@ -58,8 +58,8 @@
         <p class="name__value">Название(TR)</p>
         <mat-form-field class="example-form-field">
           <mat-label></mat-label>
-          <input matInput type="text" [(ngModel)]="value">
-          <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+          <input matInput type="text" [(ngModel)]="benefitNameTr">
+          <button *ngIf="benefitNameTr" matSuffix mat-icon-button aria-label="Clear" (click)="benefitNameTr=''">
             <mat-icon>close</mat-icon>
           </button>
         </mat-form-field>

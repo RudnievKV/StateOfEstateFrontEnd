@@ -23,17 +23,17 @@ export class CityChangeComponent {
     private localService: LocalService,
   ) { }
   city!: CityDto;
-  cityNameEn = '';
-  cityNameRu = '';
-  cityNameTr = '';
-  cityNameMe = '';
+  cityNameEn: string = '';
+  cityNameRu: string = '';
+  cityNameTr: string = '';
+  cityNameMe: string = '';
   id!: number;
   async ngOnInit() {
     this.routeSub = this.activatedRoute.params.subscribe(params => {
       console.log(params);
       this.id = params['id'];
     });
-    let cityPromise = await firstValueFrom(this.cityService.GetCity(this.id))
+    await firstValueFrom(this.cityService.GetCity(this.id))
       .catch(error => {
         console.log(error);
         this.router.navigateByUrl('admin/cities/view-cities');
@@ -53,6 +53,7 @@ export class CityChangeComponent {
       this.cityNameEn = enLocale.LocalCityName;
     }
     let ruLocale = this.city.Local_Cities.find(s => s.Local.LocalizationCode == 'ru');
+    console.log(ruLocale);
     if (ruLocale != undefined && ruLocale.LocalCityName != null) {
 
       this.cityNameRu = ruLocale.LocalCityName;
@@ -60,14 +61,16 @@ export class CityChangeComponent {
     }
     let meLocale = this.city.Local_Cities.find(s => s.Local.LocalizationCode == 'sr');
     if (meLocale != undefined && meLocale.LocalCityName != null) {
-      this.cityNameRu = meLocale.LocalCityName;
+      this.cityNameMe = meLocale.LocalCityName;
+      console.log(meLocale.LocalCityName);
     }
     let trLocale = this.city.Local_Cities.find(s => s.Local.LocalizationCode == 'tr');
     if (trLocale != undefined && trLocale.LocalCityName != null) {
-      this.cityNameRu = trLocale.LocalCityName;
+      this.cityNameTr = trLocale.LocalCityName;
+      console.log(trLocale.LocalCityName);
     }
   }
-  async DeleteCity() {
+  async Delete() {
     let result = await firstValueFrom(this.cityService.DeleteCity(this.id));
     if (result == true) {
       this.router.navigateByUrl('admin/cities/view-cities');
@@ -106,7 +109,7 @@ export class CityChangeComponent {
         //this.router.navigateByUrl('admin/cities/view-cities');
       })
       .then(result => {
-        if (!result) {
+        if (result) {
           this.router.navigateByUrl('admin/cities/view-cities');
         } else {
 

@@ -53,7 +53,7 @@ import { FooterComponent } from './components/user-components/footer/footer.comp
 import { HomeComponent } from './components/user-components/home/home.component';
 import { environment } from '../environments/environment';
 import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
-
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 
 
@@ -71,6 +71,7 @@ import { BenefitAddComponent } from './components/admin-components/benefits/bene
 import { BenefitChangeComponent } from './components/admin-components/benefits/benefit-change/benefit-change.component';
 import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
 import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component'
+import { MatNativeDateModule } from '@angular/material/core';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -161,6 +162,8 @@ export function tokenGetter() {
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
 
     MatCardModule,
     MatInputModule,
