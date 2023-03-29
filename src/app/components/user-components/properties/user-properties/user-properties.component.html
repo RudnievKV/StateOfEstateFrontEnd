@@ -13,19 +13,16 @@
                     видом. Наша компания оказывает услуги по аренде вашей недвижимости.
                 </div>
             </div>
-            <div class="property-images">
-
-            </div>
             <div class="property__info info">
                 <div class="info__description">
                     <div class="info__title"></div>
                     <div class="info__value"></div>
                 </div>
-                <div class="info__rent-price">
+                <div class="info__block">
                     <div class="info__title"></div>
                     <div class="info__value"></div>
                 </div>
-                <div class="info__detail">
+                <div class="info__block">
                     <div class="info__title">Детали</div>
                     <div class="info__value-block">
                         <p class="info__value">Местоположение: Столив</p>
@@ -36,21 +33,161 @@
                         <p class="info__value">Кол-во санузлов: 5xex</p>
                     </div>
                 </div>
-                <div class="info__facilities">
-                    <div class="info__title"></div>
-                    <div class="info__value"></div>
+                <div class="info__block">
+                    <div class="info__title">Удобства и преимущества</div>
+                    <div class="info__value-block">
+                        <p class="info__value">Вид на горы</p>
+                        <p class="info__value">Лифт</p>
+                        <p class="info__value">Вид на море</p>
+                        <p class="info__value">Новое здание</p>
+                        <p class="info__value">Терраса</p>
+                        <p class="info__value">Южная сторона</p>
+                    </div>
                 </div>
-                <div class="info__map">
-                    <div class="info__title"></div>
-                    <div class="info__value"></div>
+                <div class="info__map map">
+                    <div class="map__title">Объект на карте</div>
+                    <div class="map__value">
+                        <google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
+                        </google-map>
+                    </div>
                 </div>
-                <div class="info__consultation">
-                    <div class="info__title"></div>
-                    <div class="info__value"></div>
+                <div class="info__consultation consultation">
+                    <div class="consultation__title">Консультируем бесплатно</div>
+                    <div class="consultation__value">Оставьте заявку на консультацию и мы Вам перезвоним</div>
+                    <div class="consultation__callback">
+                        <div class="consultation__textfield">
+                            <label class="consultation__textfield-label">Ваше имя</label>
+                            <input class="consultation__textfield-input" type="text">
+                        </div>
+                        <div class="consultation__textfield">
+                            <label class="consultation__textfield-label">Ваш номер</label>
+                            <input class="consultation__textfield-input" type="text" value="+380501091319">
+                        </div>
+                        <div class="consultation__sumbit-button-wrap">
+                            <button class="consultation__submit-button" type="text">Отправить</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
     </div>
+    <section class="recommendation__page">
+        <div class="recommendation__container container">
+            <h1 class="recommendation__title">Похожие обьекты</h1>
+            <div class="container1">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="body__property">
+                                <div class="body__img">
+                                    <a href="/Properties/ID228"><img
+                                            src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                                            alt=""></a>
+                                </div>
+                                <div class=" body__label">Полтава
+                                </div>
+                                <div class="body__value">Богор, Джава Барат</div>
+                                <div class="body__info">
+                                    <div class="body__price">$25,000</div>
+                                    <div class="body__space">360m2 Living Area</div>
+                                </div>
+                                <a class="body__inquiry-btn">Send Inquiry</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="body__property">
+                                <div class="body__img">
+                                    <a href="/Properties/ID228"><img
+                                            src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                                            alt=""></a>
+                                </div>
+                                <div class=" body__label">Полтава
+                                </div>
+                                <div class="body__value">Богор, Джава Барат</div>
+                                <div class="body__info">
+                                    <div class="body__price">$25,000</div>
+                                    <div class="body__space">360m2 Living Area</div>
+                                </div>
+                                <a class="body__inquiry-btn">Send Inquiry</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="body__property">
+                                <div class="body__img">
+                                    <a href="/Properties/ID228"><img
+                                            src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                                            alt=""></a>
+                                </div>
+                                <div class=" body__label">Полтава
+                                </div>
+                                <div class="body__value">Богор, Джава Барат</div>
+                                <div class="body__info">
+                                    <div class="body__price">$25,000</div>
+                                    <div class="body__space">360m2 Living Area</div>
+                                </div>
+                                <a class="body__inquiry-btn">Send Inquiry</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="body__property">
+                                <div class="body__img">
+                                    <a href="/Properties/ID228"><img
+                                            src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                                            alt=""></a>
+                                </div>
+                                <div class=" body__label">Полтава
+                                </div>
+                                <div class="body__value">Богор, Джава Барат</div>
+                                <div class="body__info">
+                                    <div class="body__price">$25,000</div>
+                                    <div class="body__space">360m2 Living Area</div>
+                                </div>
+                                <a class="body__inquiry-btn">Send Inquiry</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="body__property">
+                                <div class="body__img">
+                                    <a href="/Properties/ID228"><img
+                                            src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                                            alt=""></a>
+                                </div>
+                                <div class=" body__label">Полтава
+                                </div>
+                                <div class="body__value">Богор, Джава Барат</div>
+                                <div class="body__info">
+                                    <div class="body__price">$25,000</div>
+                                    <div class="body__space">360m2 Living Area</div>
+                                </div>
+                                <a class="body__inquiry-btn">Send Inquiry</a>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="body__property">
+                                <div class="body__img">
+                                    <a href="/Properties/ID228"><img
+                                            src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
+                                            alt=""></a>
+                                </div>
+                                <div class=" body__label">Полтава
+                                </div>
+                                <div class="body__value">Богор, Джава Барат</div>
+                                <div class="body__info">
+                                    <div class="body__price">$25,000</div>
+                                    <div class="body__space">360m2 Living Area</div>
+                                </div>
+                                <a class="body__inquiry-btn">Send Inquiry</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-button-prev">
+                </div>
+                <div class="swiper-button-next">
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
 <app-footer></app-footer>

@@ -21,19 +21,20 @@
                             (click)="SetSearch('Rent')">Арендовать</button>
                         <button class="menu__search-btns">Дома и виллы</button>
                         <button class="menu__search-btns">Участки</button>
-                        <button class="menu__search-btns">Поиск по ID</button>
+                        <button class="menu__search-btns" [ngClass]="statusId ? 'activebtn' : 'notactive'"
+                            (click)="SetSearch('Id')">Поиск по ID</button>
                     </div>
                     <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Buy')">
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu1')">
                                     <div class="menu__value">Город</div>
                                     <select>
                                         <option>Буба,Чеча</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu1'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -53,14 +54,14 @@
                         </div>
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu2')">
                                     <div class="menu__value">Кол-во спален</div>
                                     <select>
                                         <option>5+,2</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu2'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -80,14 +81,14 @@
                         </div>
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu3')">
                                     <div class="menu__value">Цена</div>
                                     <select>
                                         <option>300$</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu3'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -107,14 +108,14 @@
                         </div>
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu4')">
                                     <div class="menu__value">Опции</div>
                                     <select>
                                         <option>Еще...</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu4'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -131,19 +132,22 @@
                                     </ul>
                                 </div>
                             </div>
+                        </div>
+                        <div class="menu__input">
+                            <button class="menu__search-btn">Поиск</button>
                         </div>
                     </div>
                     <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Rent')">
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu01')">
                                     <div class="menu__value">Город</div>
                                     <select>
                                         <option>Буба,Чеча</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu01'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -163,14 +167,14 @@
                         </div>
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu02')">
                                     <div class="menu__value">Город</div>
                                     <select>
                                         <option>Буба,Чеча</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu02'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -190,14 +194,14 @@
                         </div>
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu03')">
                                     <div class="menu__value">Кол-во спален</div>
                                     <select>
                                         <option>5+,2</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu03'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -217,14 +221,14 @@
                         </div>
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
                                     <div class="menu__value">Цена</div>
                                     <select>
                                         <option>300$</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -244,14 +248,14 @@
                         </div>
                         <div class="menu__input">
                             <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="showCheckboxes()">
+                                <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
                                     <div class="menu__value">Опции</div>
                                     <select>
                                         <option>Еще...</option>
                                     </select>
                                     <div class="menu__overSelect"></div>
                                 </div>
-                                <div id="checkboxes" *ngIf="showCheckbox">
+                                <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
                                     <ul class="menu__dropdown">
                                         <li>
                                             <label for="allEvents">
@@ -269,10 +273,19 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="menu__input">
+                            <button class="menu__search-btn">Поиск</button>
+                        </div>
                     </div>
 
-                    <button class="menu__search-btn">Поиск</button>
+                    <div class="" [hidden]="!(CurrentSearch == 'Id')">
+                        <div class="menu__search-id">
+                            <input type="text" placeholder="Поиск по ID">
+                        </div>
+                        <button class="menu__search-btn">Поиск</button>
+                    </div>
                 </div>
+
             </div>
         </div>
 
