@@ -9,7 +9,6 @@
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
-        gap: 33px;
         width: 100%;
 
         @media (max-width: 950px) {
@@ -31,6 +30,7 @@
 .newsletter {
 
     &__logo {
+        padding-top: 40px;
         color: #4BA586;
         font-size: 24px;
         font-weight: 600;
