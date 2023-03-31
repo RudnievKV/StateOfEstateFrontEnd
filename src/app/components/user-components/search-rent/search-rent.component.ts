@@ -55,11 +55,6 @@ export class SearchRentComponent {
     }
   ];
 
-  showCheckbox = false;
-
-  showCheckboxes() {
-    this.showCheckbox = !this.showCheckbox;
-  }
 
   selectAll() {
     for (var i = 0; i < this.channelDDList.length; i++) {
@@ -72,5 +67,34 @@ export class SearchRentComponent {
     });
   }
 
+  CurrentSearch = 'Rent';
+  statusRent: boolean = true;
+  statusId: boolean = false;
+  SetSearch(Search: string) {
+    this.CurrentSearch = Search;
+    if (Search == 'Rent' && this.statusRent == false) {
+      this.statusRent = true;
+      this.statusId = false;
+    }
+    else if (Search == 'Id' && this.statusId == false) {
+      this.statusRent = false;
+      this.statusId = true;
+    }
+
+  };
+
+  currentDropdown: any;
+
+  toggleDropdown(menuName: string) {
+    if (this.currentDropdown === menuName) {
+      this.currentDropdown = null; // close the dropdown menu
+    } else {
+      this.currentDropdown = menuName; // open the dropdown menu
+    }
+  }
+
 
 }
+
+
+
