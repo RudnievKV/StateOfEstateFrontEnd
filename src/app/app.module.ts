@@ -72,6 +72,9 @@ import { BenefitChangeComponent } from './components/admin-components/benefits/b
 import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
 import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component'
 import { MatNativeDateModule } from '@angular/material/core';
+import { SearchPlotsComponent } from './components/user-components/search-plots/search-plots.component';
+import { SearchVillasComponent } from './components/user-components/search-villas/search-villas.component';
+import { SearchCommercialComponent } from './components/user-components/search-commercial/search-commercial.component';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -147,6 +150,9 @@ export function tokenGetter() {
     BenefitChangeComponent,
     AdvertisingComponent,
     UserPropertiesComponent,
+    SearchPlotsComponent,
+    SearchVillasComponent,
+    SearchCommercialComponent,
   ],
   imports: [
     FormsModule,

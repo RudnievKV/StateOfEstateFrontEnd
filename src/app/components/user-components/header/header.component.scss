@@ -151,6 +151,8 @@ $maxWidthContainer: 768;
     }
 
     &__list {
+        justify-content: space-between;
+
         @media (min-width: 768px) {
             display: flex;
             row-gap: 5px;

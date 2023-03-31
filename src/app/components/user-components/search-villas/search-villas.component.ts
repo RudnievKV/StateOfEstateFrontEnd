@@ -1,12 +1,11 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-search-sale',
-  templateUrl: './search-sale.component.html',
-  styleUrls: ['./search-sale.component.scss']
+  selector: 'app-search-villas',
+  templateUrl: './search-villas.component.html',
+  styleUrls: ['./search-villas.component.scss']
 })
-export class SearchSaleComponent {
-
+export class SearchVillasComponent {
 
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
@@ -66,16 +65,25 @@ export class SearchSaleComponent {
     });
   }
 
-  CurrentSearch = 'Rent';
-  statusRent: boolean = true;
+  CurrentSearch = 'Buy';
+  statusBuy: boolean = true;
+  statusRent: boolean = false;
   statusId: boolean = false;
   SetSearch(Search: string) {
     this.CurrentSearch = Search;
-    if (Search == 'Rent' && this.statusRent == false) {
+
+    if (Search == 'Buy' && this.statusBuy == false) {
+      this.statusBuy = true;
+      this.statusRent = false;
+      this.statusId = false;
+    }
+    else if (Search == 'Rent' && this.statusRent == false) {
+      this.statusBuy = false;
       this.statusRent = true;
       this.statusId = false;
     }
     else if (Search == 'Id' && this.statusId == false) {
+      this.statusBuy = false;
       this.statusRent = false;
       this.statusId = true;
     }
@@ -91,6 +99,4 @@ export class SearchSaleComponent {
       this.currentDropdown = menuName; // open the dropdown menu
     }
   }
-
-
 }

@@ -3,25 +3,12 @@
     <section class="search__page">
         <div class="search__container container">
             <div class="search__block">
-                <div class="title">
-                    <div>
-                        <div class="title__btn">НЕДВИЖИМОСТЬ</div>
-                    </div>
-                    <div class="title__label">Давайте искать дом <br> вашей мечты</div>
-                    <div class="title__value">Изучите наш ассортимент красивой недвижимости с <br> добавлением отдельных
-                        жилых
-                        помещений, подходящих для вас.</div>
-                </div>
                 <div class="search__menu menu">
-
                     <div class="menu__buttons">
                         <button class="menu__search-btns" [ngClass]="statusBuy ? 'activebtn' : 'notactive'"
                             (click)="SetSearch('Buy')">Купить</button>
                         <button class="menu__search-btns" [ngClass]="statusRent ? 'activebtn' : 'notactive'"
                             (click)="SetSearch('Rent')">Арендовать</button>
-                        <button class="menu__search-btns" [routerLink]="'/villas'">Дома и виллы</button>
-                        <button class="menu__search-btns" [routerLink]="'/plots'">Участки</button>
-                        <button class="menu__search-btns" [routerLink]="'/commercial'">Коммерческая</button>
                         <button class="menu__search-btns" [ngClass]="statusId ? 'activebtn' : 'notactive'"
                             (click)="SetSearch('Id')">Поиск по ID</button>
                     </div>
@@ -134,8 +121,8 @@
                         <div class="menu__input">
                             <div class="menu__multiselect">
                                 <div class="menu__selectBox" (click)="toggleDropdown('menu01')">
-                                    <div class="menu__value">Город</div>
-                                    <div class="menu__text">300$<span></span></div>
+                                    <div class="menu__value">Срок аренды</div>
+                                    <div class="menu__text">Буба, Чеча<span></span></div>
                                     <div class="menu__overSelect"></div>
                                 </div>
                                 <div id="checkboxes" *ngIf="currentDropdown === 'menu01'">
@@ -185,7 +172,7 @@
                             <div class="menu__multiselect">
                                 <div class="menu__selectBox" (click)="toggleDropdown('menu03')">
                                     <div class="menu__value">Кол-во спален</div>
-                                    <div class="menu__text">5+, 2<span></span></div>
+                                    <div class="menu__text">Буба, Чеча<span></span></div>
                                     <div class="menu__overSelect"></div>
                                 </div>
                                 <div id="checkboxes" *ngIf="currentDropdown === 'menu03'">
@@ -210,7 +197,7 @@
                             <div class="menu__multiselect">
                                 <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
                                     <div class="menu__value">Цена</div>
-                                    <div class="menu__text">300$<span></span></div>
+                                    <div class="menu__text">Буба, Чеча<span></span></div>
                                     <div class="menu__overSelect"></div>
                                 </div>
                                 <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
@@ -235,7 +222,7 @@
                             <div class="menu__multiselect">
                                 <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
                                     <div class="menu__value">Опции</div>
-                                    <div class="menu__text">Еще... <span></span></div>
+                                    <div class="menu__text">Буба, Чеча<span></span></div>
                                     <div class="menu__overSelect"></div>
                                 </div>
                                 <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
@@ -260,7 +247,6 @@
                             <button class="menu__search-btn">Поиск</button>
                         </div>
                     </div>
-
                     <div class="" [hidden]="!(CurrentSearch == 'Id')">
                         <div class="menu__search-id">
                             <input type="text" placeholder="Поиск по ID">
@@ -268,253 +254,9 @@
                         <button class="menu__search-btn">Поиск</button>
                     </div>
                 </div>
-
             </div>
         </div>
 
-    </section>
-    <section class="recomendation__page">
-        <div class="recomendation__container container">
-            <div class="title">
-                <div>
-                    <div class="title__btn grey">ПРЕДЛОЖЕНИЯ</div>
-                </div>
-                <div class="title__label">Лучшие рекомендации</div>
-                <div class="title__value">Откройте для себя наш эксклюзивный выбор лучших <br> уникальных архитектурных
-                    шедевров класса люкс.
-                </div>
-            </div>
-            <div class="recomendation__body body">
-                <div class="body__property">
-                    <div class="body__img">
-                        <a href="/Properties/ID228"><img
-                                src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
-                                alt=""></a>
-                    </div>
-                    <div class=" body__label">Полтава
-                    </div>
-                    <div class="body__value">Богор, Джава Барат</div>
-                    <div class="body__info">
-                        <div class="body__price">$25,000</div>
-                        <div class="body__space">360m2 Living Area</div>
-                    </div>
-                    <a class="body__inquiry-btn">Send Inquiry</a>
-                </div>
-                <div class="body__property">
-                    <div class="body__img">
-                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
-                            alt="">
-                    </div>
-                    <div class=" body__label">Полтава
-                    </div>
-                    <div class="body__value">Богор, Джава Барат</div>
-                    <div class="body__info">
-                        <div class="body__price">$25,000</div>
-                        <div class="body__space">360m2 Living Area</div>
-                    </div>
-                    <a class="body__inquiry-btn">Send Inquiry</a>
-                </div>
-                <div class="body__property">
-                    <div class="body__img">
-                        <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
-                            alt="">
-                    </div>
-                    <div class=" body__label">Полтава
-                    </div>
-                    <div class="body__value">Богор, Джава Барат</div>
-                    <div class="body__info">
-                        <div class="body__price">$25,000</div>
-                        <div class="body__space">360m2 Living Area</div>
-                    </div>
-                    <a class="body__inquiry-btn">Send Inquiry</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="adnvante__block">
-        <div class="adnvante__container container">
-            <div class="title">
-                <div>
-                    <div class="title__btn">НАШИ ПРЕИМУЩЕСТВА
-                    </div>
-                </div>
-                <div class="title__label">Giving you peace of mind</div>
-            </div>
-            <div class="adnvante__about-us abouts-us">
-                <div class="about-us__body">
-                    <div class="about-us__img"><img src="https://img.icons8.com/emoji/512/green-heart.png" alt=""></div>
-                    <div class="about-us__value">Комфортный
-                    </div>
-                    <div class="about-us__text">Наслаждайтесь удобствами для жизни, разработанными, чтобы обеспечить
-                        каждому домовладельцу современный комфорт, в двух
-                        шагах от школ, церквей и больниц.</div>
-                </div>
-                <div class="about-us__body">
-                    <div class="about-us__img"><img src="https://img.icons8.com/emoji/512/green-heart.png" alt=""></div>
-                    <div class="about-us__value">Комфортный
-                    </div>
-                    <div class="about-us__text">Наслаждайтесь удобствами для жизни, разработанными, чтобы обеспечить
-                        каждому домовладельцу современный комфорт, в двух
-                        шагах от школ, церквей и больниц.</div>
-                </div>
-                <div class="about-us__body">
-                    <div class="about-us__img"><img src="https://img.icons8.com/emoji/512/green-heart.png" alt=""></div>
-                    <div class="about-us__value">Комфортный
-                    </div>
-                    <div class="about-us__text">Наслаждайтесь удобствами для жизни, разработанными, чтобы обеспечить
-                        каждому домовладельцу современный комфорт, в двух
-                        шагах от школ, церквей и больниц.</div>
-                </div>
-                <div class="about-us__body">
-                    <div class="about-us__img"><img src="https://img.icons8.com/emoji/512/green-heart.png" alt=""></div>
-                    <div class="about-us__value">Комфортный
-                    </div>
-                    <div class="about-us__text">Наслаждайтесь удобствами для жизни, разработанными, чтобы обеспечить
-                        каждому домовладельцу современный комфорт, в двух
-                        шагах от школ, церквей и больниц.</div>
-                </div>
-                <div class="about-us__body">
-                    <div class="about-us__img"><img src="https://img.icons8.com/emoji/512/green-heart.png" alt=""></div>
-                    <div class="about-us__value">Комфортный
-                    </div>
-                    <div class="about-us__text">Наслаждайтесь удобствами для жизни, разработанными, чтобы обеспечить
-                        каждому домовладельцу современный комфорт, в двух
-                        шагах от школ, церквей и больниц.</div>
-                </div>
-                <div class="about-us__body">
-                    <div class="about-us__img"><img src="https://img.icons8.com/emoji/512/green-heart.png" alt=""></div>
-                    <div class="about-us__value">Комфортный
-                    </div>
-                    <div class="about-us__text">Наслаждайтесь удобствами для жизни, разработанными, чтобы обеспечить
-                        каждому домовладельцу современный комфорт, в двух
-                        шагах от школ, церквей и больниц.</div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="our-team__page">
-        <div class="our-team__container container">
-            <div class="title">
-                <div>
-                    <div class="title__btn grey">О НАС</div>
-                </div>
-                <div class="title__label">Сколько сейчас стоит ваша недвижимость?</div>
-                <div class="title__value">Мы заработали себе репутацию настоящих экспертов в своей области. Мы получили
-                    больше знаний об интересах покупателей,
-                    нашем районе и рынке, чем любой другой бренд, потому что мы живем локально и работаем для местных
-                    жителей.
-                </div>
-            </div>
-            <div class="our-team__raiting raiting">
-                <div class="raiting__img">
-                    <img src="https://media.admagazine.ru/photos/6221e2a66c8dba98f241fa9b/4:3/w_1600%2Ch_1200%2Cc_limit/%25D1%2581%25D0%25B5%25D0%25BB%25D1%258C%25D1%2581%25D0%25BA%25D0%25BE%25D1%2585%25D0%25BE%25D0%25B7.%2520%2520web%2520(7%2520of%252053).jpg"
-                        alt="">
-                </div>
-                <div class=" raiting__statistic">
-                    <div class="raiting__body">
-                        <div class="raiting__number">100+</div>
-                        <div class="raiting__value">Кол-во <br> продаж</div>
-                    </div>
-                    <div class="raiting__body">
-                        <div class="raiting__number">200+</div>
-                        <div class="raiting__value">Кол-во <br> аренд</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="comments__page">
-        <div class="comments__container container">
-            <div class="title">
-                <div>
-                    <div class="title__btn grey">ОТЗЫВЫ КЛИЕНТА</div>
-                </div>
-                <div class="comments__link-block">
-                    <div class="title__label">Что люди говорят о нас?</div>
-                    <div class="title__button">Узнать больше<span>></span></div>
-                </div>
-            </div>
-            <div class="comments__body">
-                <div class="comments__user-block user-block">
-                    <div class="user-block__img">
-                        <img src="https://www.pngall.com/wp-content/uploads/4/Quotation-Symbol-PNG.png" alt="">
-                    </div>
-                    <div class="user-block__title">
-                        Оказалось, что это именно тот дом, который мы хотели.
-                    </div>
-                    <div class="user-block__value">
-                        Мы хотим выразить нашу благодарность за вашу усердную работу по поиску
-                        нам временного дома, который оказался именно тем,
-                        что мы хотели.
-                    </div>
-                    <div class="user-block__block-user">
-                        <div class="user-block__user-img">
-                            <img src="https://www.freeiconspng.com/thumbs/face-png/obama-face-png-3.png" alt="">
-                        </div>
-                        <div class="user-block__person">
-                            <div class="user-block__name">
-                                Джейдон Аминофф
-                            </div>
-                            <div class="user-block__skills">
-                                UX-дизайнер
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comments__user-block user-block">
-                    <div class="user-block__img">
-                        <img src="https://www.pngall.com/wp-content/uploads/4/Quotation-Symbol-PNG.png" alt="">
-                    </div>
-                    <div class="user-block__title">
-                        Оказалось, что это именно тот дом, который мы хотели.
-                    </div>
-                    <div class="user-block__value">
-                        Мы хотим выразить нашу благодарность за вашу усердную работу по поиску
-                        нам временного дома, который оказался именно тем,
-                        что мы хотели.
-                    </div>
-                    <div class="user-block__block-user">
-                        <div class="user-block__user-img">
-                            <img src="https://www.freeiconspng.com/thumbs/face-png/obama-face-png-3.png" alt="">
-                        </div>
-                        <div class="user-block__person">
-                            <div class="user-block__name">
-                                Джейдон Аминофф
-                            </div>
-                            <div class="user-block__skills">
-                                UX-дизайнер
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="comments__user-block user-block">
-                    <div class="user-block__img">
-                        <img src="https://www.pngall.com/wp-content/uploads/4/Quotation-Symbol-PNG.png" alt="">
-                    </div>
-                    <div class="user-block__title">
-                        Оказалось, что это именно тот дом, который мы хотели.
-                    </div>
-                    <div class="user-block__value">
-                        Мы хотим выразить нашу благодарность за вашу усердную работу по поиску
-                        нам временного дома, который оказался именно тем,
-                        что мы хотели.
-                    </div>
-                    <div class="user-block__block-user">
-                        <div class="user-block__user-img">
-                            <img src="https://www.freeiconspng.com/thumbs/face-png/obama-face-png-3.png" alt="">
-                        </div>
-                        <div class="user-block__person">
-                            <div class="user-block__name">
-                                Джейдон Аминофф
-                            </div>
-                            <div class="user-block__skills">
-                                UX-дизайнер
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </section>
 </main>
 <app-footer></app-footer>
