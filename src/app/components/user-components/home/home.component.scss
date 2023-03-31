@@ -58,6 +58,10 @@ $maxWidthContainer: 768;
             padding-top: 40px;
             padding-bottom: 40px;
         }
+
+        .title {
+            padding-bottom: 30px;
+        }
     }
 
     &__container {}
@@ -231,12 +235,17 @@ $maxWidthContainer: 768;
 //=====================================================================
 .our-team {
 
+
     &__page {
         padding-top: 120px;
         background-color: #FEFEFF;
 
         @media (max-width: 768px) {
             padding-top: 40px;
+        }
+
+        .title {
+            padding-bottom: 50px;
         }
     }
 
