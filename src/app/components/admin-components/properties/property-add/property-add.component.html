@@ -8,39 +8,19 @@
     <div class="add-property__header-footer">
       <button mat-raised-button class="add-property__buttons-save">Сохранить и добавить другого пользователя</button>
       <button mat-raised-button class="add-property__buttons-save">Сохранить и продолжить изменения</button>
-      <button mat-raised-button class="add-property__buttons-save">Сохранить</button>
+      <button mat-raised-button class="add-property__buttons-save" (click)="Save()">Сохранить</button>
     </div>
     <div class="add-property__options options">
       <div class="options__body">
         <div class="options__item">
-          <p class="options__value">Код аренды</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-        <div class="options__item">
-          <p class="options__value">Код продажи</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value1">
-            <button *ngIf="value1" matSuffix mat-icon-button aria-label="Clear" (click)="value1=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-        <div class="options__item">
           <p class="options__value">Статус аренды</p>
           <mat-form-field appearance="fill">
             <mat-label></mat-label>
-            <mat-select disableRipple>
-              <mat-option value="1">Черновик</mat-option>
-              <mat-option value="2">Опубликовано</mat-option>
-              <mat-option value="3">Неактивно</mat-option>
-              <mat-option value="3">В архиве</mat-option>
+            <mat-select disableRipple [value]="selectedRentStatus">
+              <mat-option value="Draft">Черновик</mat-option>
+              <mat-option value="Published">Опубликовано</mat-option>
+              <mat-option value="NotActive">Неактивно</mat-option>
+              <mat-option value="Archived">В архиве</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -48,11 +28,11 @@
           <p class="options__value">Статус продажи</p>
           <mat-form-field appearance="fill">
             <mat-label></mat-label>
-            <mat-select disableRipple>
-              <mat-option value="1">Черновик</mat-option>
-              <mat-option value="2">Опубликовано</mat-option>
-              <mat-option value="3">Неактивно</mat-option>
-              <mat-option value="3">В архиве</mat-option>
+            <mat-select disableRipple [value]="selectedSaleStatus">
+              <mat-option value="Draft">Черновик</mat-option>
+              <mat-option value="Published">Опубликовано</mat-option>
+              <mat-option value="NotActive">Неактивно</mat-option>
+              <mat-option value="Archived">В архиве</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -76,8 +56,8 @@
               <p class="name__value">Заголовок продажи(EN)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="saleTitleEn">
+                <button *ngIf="saleTitleEn" matSuffix mat-icon-button aria-label="Clear" (click)="saleTitleEn=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -86,8 +66,8 @@
               <p class="name__value">Заголовок аренды(EN)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="rentTitleEn">
+                <button *ngIf="rentTitleEn" matSuffix mat-icon-button aria-label="Clear" (click)="rentTitleEn=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -96,14 +76,14 @@
               <p class="options__value">Описание продажи(EN)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="saleDescriptionEn"></textarea>
               </mat-form-field>
             </div>
             <div class="options__item">
               <p class="options__value">Описание аренды(EN)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="rentDescriptionEn"></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -112,8 +92,8 @@
               <p class="name__value">Заголовок продажи(RU)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="saleTitleRu">
+                <button *ngIf="saleTitleRu" matSuffix mat-icon-button aria-label="Clear" (click)="saleTitleRu=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -122,8 +102,8 @@
               <p class="name__value">Заголовок аренды(RU)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="rentTitleRu">
+                <button *ngIf="rentTitleRu" matSuffix mat-icon-button aria-label="Clear" (click)="rentTitleRu=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -132,14 +112,14 @@
               <p class="options__value">Описание продажи(RU)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="saleDescriptionRu"></textarea>
               </mat-form-field>
             </div>
             <div class="options__item">
               <p class="options__value">Описание аренды(RU)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="rentDescriptionRu"></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -148,8 +128,8 @@
               <p class="name__value">Заголовок продажи(ME)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="saleTitleMe">
+                <button *ngIf="saleTitleMe" matSuffix mat-icon-button aria-label="Clear" (click)="saleTitleMe=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -158,8 +138,8 @@
               <p class="name__value">Заголовок аренды(ME)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="rentTitleMe">
+                <button *ngIf="rentTitleMe" matSuffix mat-icon-button aria-label="Clear" (click)="rentTitleMe=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -168,14 +148,14 @@
               <p class="options__value">Описание продажи(ME)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="saleDescriptionMe"></textarea>
               </mat-form-field>
             </div>
             <div class="options__item">
               <p class="options__value">Описание аренды(ME)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="rentDescriptionMe"></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -184,8 +164,8 @@
               <p class="name__value">Заголовок продажи(TR)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="saleTitleTr">
+                <button *ngIf="saleTitleTr" matSuffix mat-icon-button aria-label="Clear" (click)="saleTitleTr=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -194,8 +174,8 @@
               <p class="name__value">Заголовок аренды(TR)</p>
               <mat-form-field class="example-form-field">
                 <mat-label></mat-label>
-                <input matInput type="text" [(ngModel)]="value">
-                <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+                <input matInput type="text" [(ngModel)]="rentTitleTr">
+                <button *ngIf="rentTitleTr" matSuffix mat-icon-button aria-label="Clear" (click)="rentTitleTr=''">
                   <mat-icon>close</mat-icon>
                 </button>
               </mat-form-field>
@@ -204,14 +184,14 @@
               <p class="options__value">Описание продажи(TR)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="saleDescriptionTr"></textarea>
               </mat-form-field>
             </div>
             <div class="options__item">
               <p class="options__value">Описание аренды(TR)</p>
               <mat-form-field class="example-full-width">
                 <mat-label></mat-label>
-                <textarea matInput placeholder=""></textarea>
+                <textarea matInput placeholder="" [(ngModel)]="rentDescriptionTr"></textarea>
               </mat-form-field>
             </div>
           </div>
@@ -220,40 +200,51 @@
           <p class="options__value">Заметка</p>
           <mat-form-field class="example-full-width">
             <mat-label></mat-label>
-            <textarea matInput placeholder=""></textarea>
+            <textarea matInput placeholder="" [(ngModel)]="notes"></textarea>
           </mat-form-field>
         </div>
         <div class="options__item">
           <p class="options__value">Город</p>
-          <mat-form-field appearance="fill">
-            <mat-label></mat-label>
-            <mat-select disableRipple>
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
+          <mat-form-field appearance="fill" *ngIf="cities; else loading">
+            <mat-label>Город</mat-label>
+
+            <mat-select [formControl]="cityCtrl" #citySelect>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="cityFilterCtrl" noEntriesFoundLabel="Нету результатов."
+                  placeholderLabel="Найти город..."></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let city of filteredCities | async" [value]="city">
+                {{DisplayCityName(city)}}
+              </mat-option>
             </mat-select>
+
+
           </mat-form-field>
         </div>
         <div class="options__item">
           <p class="options__value">Район</p>
-          <mat-form-field appearance="fill">
-            <mat-label></mat-label>
-            <mat-select disableRipple>
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
+          <mat-form-field appearance="fill" *ngIf="neighborhoods; else loading">
+            <mat-label>Район</mat-label>
+            <mat-select [formControl]="neighborhoodCtrl" #neighborhoodSelect>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="neighborhoodFilterCtrl" noEntriesFoundLabel="Нету результатов."
+                  placeholderLabel="Найти район..."></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let neighborhood of filteredNeighborhoods | async" [value]="neighborhood">
+                {{DisplayNeighborhoodName(neighborhood)}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
         <div class="options__item">
           <p class="options__value">Тип</p>
           <mat-form-field appearance="fill">
-            <mat-label></mat-label>
-            <mat-select disableRipple>
-              <mat-option value="1">Квартира</mat-option>
-              <mat-option value="2">Дом</mat-option>
-              <mat-option value="3">Участок</mat-option>
-              <mat-option value="3">Коммерческая</mat-option>
+            <mat-label>Тип</mat-label>
+            <mat-select disableRipple [value]="selectedType">
+              <mat-option value="Apartment">Квартира</mat-option>
+              <mat-option value="House">Дом</mat-option>
+              <mat-option value="Land">Участок</mat-option>
+              <mat-option value="Commercial">Коммерческая</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -261,8 +252,8 @@
           <p class="options__value">Площадь помещения</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="houseAreaSquare" pattern="[0-9]+">
+            <button *ngIf="houseAreaSquare" matSuffix mat-icon-button aria-label="Clear" (click)="houseAreaSquare=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -271,8 +262,8 @@
           <p class="options__value">Площадь земли</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="landAreaSquare">
+            <button *ngIf="landAreaSquare" matSuffix mat-icon-button aria-label="Clear" (click)="landAreaSquare=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -281,8 +272,8 @@
           <p class="options__value">Этаж</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="floor">
+            <button *ngIf="floor" matSuffix mat-icon-button aria-label="Clear" (click)="floor=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -291,8 +282,9 @@
           <p class="options__value">Этажей в здании</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="floorsInABuilding">
+            <button *ngIf="floorsInABuilding" matSuffix mat-icon-button aria-label="Clear"
+              (click)="floorsInABuilding=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -301,8 +293,8 @@
           <p class="options__value">Год постройки</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="constructionYear">
+            <button *ngIf="constructionYear" matSuffix mat-icon-button aria-label="Clear" (click)="constructionYear=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -311,8 +303,8 @@
           <p class="options__value">Кол-во комнат</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="roomCount">
+            <button *ngIf="roomCount" matSuffix mat-icon-button aria-label="Clear" (click)="roomCount=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -321,34 +313,39 @@
           <p class="options__value">Кол-во спален</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
+            <mat-select disableRipple [value]="selectedBedroomCount">
+              <mat-option value="---">-------</mat-option>
+              <mat-option value="0">Студия</mat-option>
+              <mat-option value="1">1</mat-option>
+              <mat-option value="2">2</mat-option>
+              <mat-option value="3">3</mat-option>
+              <mat-option value="4">4</mat-option>
+              <mat-option value="5">5+</mat-option>
+            </mat-select>
           </mat-form-field>
         </div>
         <div class="options__item">
           <p class="options__value">Кол-во санузлов</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="bathroomCount">
+            <button *ngIf="bathroomCount" matSuffix mat-icon-button aria-label="Clear" (click)="bathroomCount=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
         </div>
         <div class="options__item">
           <p class="options__value">Удобства</p>
-          <mat-form-field appearance="fill">
-            <mat-label>Toppings</mat-label>
-            <mat-select [formControl]="toppings" multiple>
-              <mat-select-trigger>
-                {{toppings.value?.[0] || ''}}
-                <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
-                  (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                </span>
-              </mat-select-trigger>
-              <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+          <mat-form-field appearance="fill" *ngIf="benefits; else loading">
+            <mat-label>Удобства</mat-label>
+            <mat-select [formControl]="benefitMultiCtrl" placeholder="Удобства" [multiple]="true" #benefitsSelect>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="benefitMultiFilterCtrl" noEntriesFoundLabel="Нету результатов."
+                  placeholderLabel="Найти удобства..."></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let benefit of filteredBenefitsMulti | async" [value]="benefit">
+                {{DisplayBenefitName(benefit)}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -356,8 +353,8 @@
           <p class="options__value">Цена аренды</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="rentPrice">
+            <button *ngIf="rentPrice" matSuffix mat-icon-button aria-label="Clear" (click)="rentPrice=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -366,8 +363,9 @@
           <p class="options__value">Цена аренды (до сезона)</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="rentPriceBeforeSeason">
+            <button *ngIf="rentPriceBeforeSeason" matSuffix mat-icon-button aria-label="Clear"
+              (click)="rentPriceBeforeSeason=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -376,8 +374,9 @@
           <p class="options__value">Цена аренды (весь сезон)</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="rentPriceFullSeason">
+            <button *ngIf="rentPriceFullSeason" matSuffix mat-icon-button aria-label="Clear"
+              (click)="rentPriceFullSeason=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -386,20 +385,24 @@
           <p class="options__value">Цена продажи</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="salePrice">
+            <button *ngIf="salePrice" matSuffix mat-icon-button aria-label="Clear" (click)="salePrice=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
         </div>
         <div class="options__item">
           <p class="options__value">Главный контрагент</p>
-          <mat-form-field appearance="fill">
-            <mat-label></mat-label>
-            <mat-select disableRipple>
-              <mat-option value="1">1</mat-option>
-              <mat-option value="2">2</mat-option>
-              <mat-option value="3">3</mat-option>
+          <mat-form-field appearance="fill" *ngIf="counterparties; else loading">
+            <mat-label>Главный контрагент</mat-label>
+            <mat-select [formControl]="counterpartyCtrl" #counterpartySelect>
+              <mat-option>
+                <ngx-mat-select-search [formControl]="counterpartyFilterCtrl" noEntriesFoundLabel="Нету результатов."
+                  placeholderLabel="Найти контрагента..."></ngx-mat-select-search>
+              </mat-option>
+              <mat-option *ngFor="let counterparty of filteredCounterparties | async" [value]="counterparty">
+                {{counterparty.FullName}}
+              </mat-option>
             </mat-select>
           </mat-form-field>
         </div>
@@ -407,8 +410,9 @@
           <p class="options__value">Кол-во контрагентов</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="number" [(ngModel)]="counterAgentNumber">
+            <button *ngIf="counterAgentNumber" matSuffix mat-icon-button aria-label="Clear"
+              (click)="counterAgentNumber=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -417,25 +421,28 @@
           <p class="options__value">Видео ID</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="text" [(ngModel)]="videoID">
+            <button *ngIf="videoID" matSuffix mat-icon-button aria-label="Clear" (click)="videoID=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
         </div>
-        <div class="options__checkbox" [formGroup]="toppings1">
+        <div class="options__checkbox">
           <h4>Выберите условия</h4>
-          <p><mat-checkbox formControlName="pepperoni">Продвигается в аренде</mat-checkbox></p>
-          <p><mat-checkbox formControlName="extracheese">Продвигается в продаже</mat-checkbox></p>
-          <p><mat-checkbox formControlName="mushroom">Домашние животные</mat-checkbox></p>
-          <mat-checkbox formControlName="mushroom">НоКебаб</mat-checkbox>
+          <p><mat-checkbox [(ngModel)]="rentPromoteStatus">Продвигается в
+              аренде</mat-checkbox>
+          </p>
+          <p><mat-checkbox [(ngModel)]="salePromoteStatus">Продвигается в
+              продаже</mat-checkbox></p>
+          <p><mat-checkbox [(ngModel)]="pets">Домашние животные</mat-checkbox></p>
+          <mat-checkbox [(ngModel)]="turkishKebabs">НоКебаб</mat-checkbox>
         </div>
         <div class="options__item">
           <p class="options__value">Ссылка на доп материалы</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+            <input matInput type="text" [(ngModel)]="additionalInfo">
+            <button *ngIf="additionalInfo" matSuffix mat-icon-button aria-label="Clear" (click)="additionalInfo=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
@@ -446,59 +453,74 @@
       <p class="end__title">МЕСТОПОЛОЖЕНИЕ</p>
 
       <div class="end__body">
-        <div class="end__item">
-          <p class="options__value">ШИРОТА</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
+        <div class="end__labels">
+          <p class="options__value">Широта</p>
+          <p class="options__value">Долгота</p>
         </div>
-        <div class="end__item">
-          <p class="options__value">ДОЛГОТА</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-        <div class="end__item">
-          <p class="options__value">УДАЛИТЬ?</p>
+        <div class="end__forms">
+          <div class="end__form-cont"><mat-form-field class="example-form-field">
+              <mat-label></mat-label>
+              <input matInput type="text" [(ngModel)]="coordinateX">
+              <button *ngIf="coordinateX" matSuffix mat-icon-button aria-label="Clear" (click)="coordinateX=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field></div>
+          <div class="end__form-cont"><mat-form-field class="example-form-field">
+              <mat-label></mat-label>
+              <input matInput type="text" [(ngModel)]="coordinateY">
+              <button *ngIf="coordinateY" matSuffix mat-icon-button aria-label="Clear" (click)="coordinateY=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field></div>
         </div>
       </div>
       <div class="end__map">
-        <google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
+        <google-map height="400px" width="100%" [center]="center" [zoom]="zoom" (mapClick)="addMarker($event)"
+          [options]="mapOptions">
+          <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
+            [options]="markerOptions"></map-marker>
         </google-map>
       </div>
       <p class="end__title">Картинка Обьекта</p>
       <div class="end__body">
-        <div class="end__item">
+        <div class="end__labels">
           <p class="options__value">Сортировка</p>
-          <mat-form-field class="example-form-field">
-            <mat-label></mat-label>
-            <input matInput type="text" [(ngModel)]="value">
-            <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
-              <mat-icon>close</mat-icon>
-            </button>
-          </mat-form-field>
-        </div>
-        <div class="end__item">
           <p class="options__value">Файл</p>
-          <input type="file">
+          <p class="options__value">Удалить</p>
         </div>
-        <div class="end__item">
-          <p class="options__value">Удалить?</p>
+        <div class="end__forms" *ngFor="let photo of photos; index as i">
+          <div class="end__form-cont"><mat-form-field class="example-form-field">
+              <mat-label></mat-label>
+              <input matInput type="text" [(ngModel)]="photo.Position">
+              <button *ngIf="photo.Position" matSuffix mat-icon-button aria-label="Clear" (click)="photo.Position=''">
+                <mat-icon>close</mat-icon>
+              </button>
+            </mat-form-field></div>
+          <div class="end__form-cont whiteText">
+            <input type="file" class="invisible-file-input" (change)="handleOneFileInput(i, $event)" accept="image/*"
+              #fileUpload>
+            <button class="end__btn" (click)="fileUpload.click()">Выбрать файл</button>
+            <span *ngIf="photo.Photo; else NoPhoto">{{photo.Photo.name}}</span>
+            <ng-template #NoPhoto> Файл не выбран</ng-template>
+          </div>
+          <div class="end__form-cont">
+            <button (click)="DeletePhoto(i)">delete</button>
+          </div>
         </div>
+
+        <button class="end__btn" (click)="AddPhoto()">Добавить 1 обьект</button>
+        <input type="file" class="invisible-file-input" accept="image/*" (change)="handleMultipleFileInputs($event)"
+          multiple #filesUpload>
+        <button class="end__btn" (click)="filesUpload.click()">Добавить несколько обьектов</button>
       </div>
     </div>
     <div class="add-property__header-footer last">
       <button mat-raised-button class="add-property__buttons-save">Сохранить и добавить другого пользователя</button>
       <button mat-raised-button class="add-property__buttons-save">Сохранить и продолжить изменения</button>
-      <button mat-raised-button class="add-property__buttons-save">Сохранить</button>
+      <button mat-raised-button class="add-property__buttons-save" (click)="Save()">Сохранить</button>
     </div>
   </div>
+  <ng-template #loading>
+    <mat-spinner [diameter]="100" class="mat-spinner-color"></mat-spinner>
+  </ng-template>
 </section>

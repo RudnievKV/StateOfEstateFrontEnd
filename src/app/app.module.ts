@@ -75,6 +75,8 @@ import { BenefitChangeComponent } from './components/admin-components/benefits/b
 import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
 import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component'
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -157,7 +159,9 @@ export function tokenGetter() {
     ReactiveFormsModule,
     MatCheckboxModule,
     GoogleMapsModule,
+    MatAutocompleteModule,
 
+    NgxMatSelectSearchModule,
     // gallerey
     GalleryModule,
     LightboxModule,

@@ -31,8 +31,8 @@ export class PropertyDto {
   Pets!: boolean;
   TurkishKebabs!: boolean;
   AdditionalInfo!: string | null;
-  CoordinateX!: number;
-  CoordinateY!: number;
+  CoordinateX!: number | null;
+  CoordinateY!: number | null;
   BedroomCount!: number | null;
   HouseAreaSquare!: number | null;
   LandAreaSquare!: number | null;

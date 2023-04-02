@@ -1,133 +1,120 @@
 <app-admin-header></app-admin-header>
 <section class="proeprty-view">
-    <div class="proeprty-view__container container">
-        <div class="proeprty-view__head">
-            <h1 class="poeprty-view__title">Выберите Обьект для изменения</h1>
-            <button mat-raised-button class="search__buttons-save">Добавить Контрагента</button>
-        </div>
-        <div class="proeprty-view__view view">
-            <div class="view__header">
-                <div class="view__choose-action">
-                    <p class="view__value">Действие</p>
-                    <mat-form-field appearance="fill">
-                        <mat-label></mat-label>
-                        <mat-select disableRipple>
-                            <mat-option value="1">Удалить выбранные обьекты</mat-option>
+  <div class="proeprty-view__container container">
+    <div class="proeprty-view__head">
+      <h1 class="poeprty-view__title">Выберите Обьект для изменения</h1>
+      <button mat-raised-button class="search__buttons-save" [routerLink]="['../','add-property']"
+        routerLinkActive="active">Добавить Обьект</button>
+    </div>
+    <div class="proeprty-view__view view">
+      <div class="view__header">
+        <div class="view__choose-action">
+          <p class="view__value">Действие</p>
+          <mat-form-field appearance="fill">
+            <mat-label></mat-label>
+            <mat-select disableRipple #selectAction>
+              <mat-option value="Nothing">---------</mat-option>
+              <mat-option value="Delete">Удалить</mat-option>
 
-                        </mat-select>
-                    </mat-form-field>
-                    <p><button mat-raised-button class="search__buttons-save">Удалить</button></p>
-                    <p class="view__value">Выбрано 0 из 100</p>
-                </div>
-            </div>
-            <div class="proeprty-view__search search">
-                <div class="search__body">
-                    <div class="search__field">
-                        <div class="add-city__name name">
-                            <div class="name__item">
-                                <mat-form-field class="example-form-field">
-                                    <mat-label></mat-label>
-                                    <input matInput type="text" [(ngModel)]="value">
-                                    <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear"
-                                        (click)="value=''">
-                                        <mat-icon>close</mat-icon>
-                                    </button>
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
-                    <button mat-raised-button class="search__buttons-save">Поиск</button>
-                </div>
-            </div>
-            <div class="view__nav">
-                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder">Карт.</div>
-                <div class="view__value">Инфо</div>
-                <div class="view__value">Статус аренды</div>
-                <div class="view__value">Статус продажи</div>
-                <div class="view__value">Цена аренды</div>
-                <div class="view__value">Цена продажи</div>
-            </div>
-            <div class="view__item">
-                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
-                <div class="view__value">Мяу</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">100000</div>
-                <div class="view__value">10000000</div>
-            </div>
-            <div class="view__item">
-                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
-                <div class="view__value">Мяу</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">100000</div>
-                <div class="view__value">10000000</div>
-            </div>
-            <div class="view__item">
-                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
-                <div class="view__value">Мяу</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">100000</div>
-                <div class="view__value">10000000</div>
-            </div>
-            <div class="view__item">
-                <div class="view__value-check"><mat-checkbox></mat-checkbox></div>
-                <div class="view__img-holder"><a href="/admin/properties/:id/change">Карт.</a></div>
-                <div class="view__value">Мяу</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">Активный</div>
-                <div class="view__value">100000</div>
-                <div class="view__value">10000000</div>
-            </div>
+            </mat-select>
+          </mat-form-field>
+          <p><button mat-raised-button class="search__buttons-save"
+              (click)="DeleteSelectedProperties(selectAction.value)">Выполнить</button></p>
+
         </div>
+      </div>
+      <div class="proeprty-view__search search">
+        <div class="search__body">
+          <div class="search__field">
+            <div class="add-city__name name">
+              <div class="name__item">
+                <mat-form-field class="example-form-field">
+                  <mat-label></mat-label>
+                  <input matInput type="text" [(ngModel)]="searchQuery">
+                  <button *ngIf="searchQuery" matSuffix mat-icon-button aria-label="Clear" (click)="searchQuery=''">
+                    <mat-icon>close</mat-icon>
+                  </button>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+          <button mat-raised-button class="search__buttons-save" (click)="Search()">Поиск</button>
+          <p class="view__value" *ngIf="propertiesPagedResponse; else loading">Выбрано {{selectedProperties.length}} из
+            {{propertiesPagedResponse.TotalRecords}}</p>
+        </div>
+      </div>
+      <div class="view__nav">
+        <div class="view__value-check"><mat-checkbox (change)="selectAll()" [checked]="allSelected"></mat-checkbox>
+        </div>
+        <div class="view__img-holder">Карт.</div>
+        <div class="view__value">Инфо</div>
+        <div class="view__value">Статус аренды</div>
+        <div class="view__value">Статус продажи</div>
+        <div class="view__value">Цена аренды</div>
+        <div class="view__value">Цена продажи</div>
+      </div>
+      <div class="view__item" *ngFor="let property of propertiesAndCheck; index as i;">
+        <div class="view__value-check"><mat-checkbox (change)="selectProperty(property.Data.Property_ID)"
+            [checked]="property.checked"></mat-checkbox></div>
+        <div class="view__img-holder"><a [routerLink]="['../',property.Data.Property_ID]"
+            routerLinkActive="active">Карт.</a></div>
+        <div class="view__value">
+          {{property.Data.Type}}<br>
+          ID: {{property.Data.Property_ID}}
+          <span>контрагент</span>
+        </div>
+        <div class="view__value">{{property.Data.RentStatus}}</div>
+        <div class="view__value">{{property.Data.SaleStatus}}</div>
+        <div class="view__value">{{property.Data.RentPrice}}</div>
+        <div class="view__value">{{property.Data.SalePrice}}</div>
+      </div>
     </div>
-    <div class="proeprty-view__side-bar side-bar container">
-        <nav class="side-bar__body">
-            <ul class="side-bar__list">
-                <p class="side-bar__value">Статус аренды</p>
-                <li class="side-bar__item">
-                    <a href="" class="side-bar__link">Все</a>
-                    <a href="" class="side-bar__link">опубликованные</a>
-                    <a href="" class="side-bar__link">Не активные</a>
-                    <a href="" class="side-bar__link">Черновик</a>
-                    <a href="" class="side-bar__link">Архив</a>
-                </li>
-            </ul>
-            <ul class="side-bar__list">
-                <p class="side-bar__value">Sell Status</p>
-                <li class="side-bar__item">
-                    <a href="" class="side-bar__link">Все</a>
-                    <a href="" class="side-bar__link">опубликованные</a>
-                    <a href="" class="side-bar__link">Не активные</a>
-                    <a href="" class="side-bar__link">Черновик</a>
-                    <a href="" class="side-bar__link">Архив</a>
-                </li>
-            </ul>
-            <ul class="side-bar__list">
-                <p class="side-bar__value">#спален</p>
-                <li class="side-bar__item">
-                    <a href="" class="side-bar__link">Все</a>
-                    <a href="" class="side-bar__link">Студия</a>
-                    <a href="" class="side-bar__link">1 спальня</a>
-                    <a href="" class="side-bar__link">2 спальни</a>
-                    <a href="" class="side-bar__link">3 спальни</a>
-                    <a href="" class="side-bar__link">4 спальни</a>
-                    <a href="" class="side-bar__link">5+ спален</a>
-                </li>
-            </ul>
-            <ul class="side-bar__list">
-                <p class="side-bar__value">Корректность</p>
-                <li class="side-bar__item">
-                    <a href="" class="side-bar__link">Все</a>
-                    <a href="" class="side-bar__link">Без Контрагента
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </div>
+  </div>
+  <div class="proeprty-view__side-bar side-bar container">
+    <nav class="side-bar__body">
+      <ul class="side-bar__list">
+        <p class="side-bar__value">Статус аренды</p>
+        <li class="side-bar__item">
+          <a href="" class="side-bar__link">Все</a>
+          <a href="" class="side-bar__link">опубликованные</a>
+          <a href="" class="side-bar__link">Не активные</a>
+          <a href="" class="side-bar__link">Черновик</a>
+          <a href="" class="side-bar__link">Архив</a>
+        </li>
+      </ul>
+      <ul class="side-bar__list">
+        <p class="side-bar__value">Sell Status</p>
+        <li class="side-bar__item">
+          <a href="" class="side-bar__link">Все</a>
+          <a href="" class="side-bar__link">опубликованные</a>
+          <a href="" class="side-bar__link">Не активные</a>
+          <a href="" class="side-bar__link">Черновик</a>
+          <a href="" class="side-bar__link">Архив</a>
+        </li>
+      </ul>
+      <ul class="side-bar__list">
+        <p class="side-bar__value">#спален</p>
+        <li class="side-bar__item">
+          <a href="" class="side-bar__link">Все</a>
+          <a href="" class="side-bar__link">Студия</a>
+          <a href="" class="side-bar__link">1 спальня</a>
+          <a href="" class="side-bar__link">2 спальни</a>
+          <a href="" class="side-bar__link">3 спальни</a>
+          <a href="" class="side-bar__link">4 спальни</a>
+          <a href="" class="side-bar__link">5+ спален</a>
+        </li>
+      </ul>
+      <ul class="side-bar__list">
+        <p class="side-bar__value">Корректность</p>
+        <li class="side-bar__item">
+          <a href="" class="side-bar__link">Все</a>
+          <a href="" class="side-bar__link">Без Контрагента
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <ng-template #loading>
+    <mat-spinner [diameter]="100" class="mat-spinner-color"></mat-spinner>
+  </ng-template>
 </section>

@@ -32,8 +32,8 @@ export class PropertyService {
   GetAllProperties(): Observable<PropertyDto[]> {
     return this.http.get<PropertyDto[]>(`${this.apiUrl}api/properties/all`)
   }
-  CreateProperty(property: PropertyCreateDto): Observable<PropertyDto> {
-    return this.http.post<PropertyDto>(`${this.apiUrl}api/properties`, property);
+  CreateProperty(formData: FormData): Observable<PropertyDto> {
+    return this.http.post<PropertyDto>(`${this.apiUrl}api/properties`, formData);
   }
   UpdateProperty(property: PropertyUpdateDto, id: number): Observable<PropertyDto> {
     return this.http.put<PropertyDto>(`${this.apiUrl}api/properties/${id}`, property);
@@ -41,5 +41,9 @@ export class PropertyService {
   DeleteProperty(id: number): Observable<Object> {
     return this.http.delete(`${this.apiUrl}api/properties/${id}`);
   }
-
+  DeleteProperties(customParams: HttpParams): Observable<Object> {
+    return this.http.delete(`${this.apiUrl}api/properties`, {
+      params: customParams
+    });
+  }
 }
