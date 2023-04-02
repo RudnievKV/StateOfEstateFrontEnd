@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
 @Component({
-  selector: 'app-search-rent',
-  templateUrl: './search-rent.component.html',
-  styleUrls: ['./search-rent.component.scss']
+  selector: 'app-search-plots',
+  templateUrl: './search-plots.component.html',
+  styleUrls: ['./search-plots.component.scss']
 })
-export class SearchRentComponent {
-  toppings = new FormControl('');
+export class SearchPlotsComponent {
 
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
@@ -67,17 +65,19 @@ export class SearchRentComponent {
     });
   }
 
-  CurrentSearch = 'Rent';
-  statusRent: boolean = true;
+  CurrentSearch = 'Buy';
+  statusBuy: boolean = true;
   statusId: boolean = false;
   SetSearch(Search: string) {
     this.CurrentSearch = Search;
-    if (Search == 'Rent' && this.statusRent == false) {
-      this.statusRent = true;
+
+    if (Search == 'Buy' && this.statusBuy == false) {
+      this.statusBuy = true;
       this.statusId = false;
     }
+
     else if (Search == 'Id' && this.statusId == false) {
-      this.statusRent = false;
+      this.statusBuy = false;
       this.statusId = true;
     }
 
@@ -92,9 +92,4 @@ export class SearchRentComponent {
       this.currentDropdown = menuName; // open the dropdown menu
     }
   }
-
-
 }
-
-
-

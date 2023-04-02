@@ -51,14 +51,12 @@ $maxWidthContainer: 768;
 .container {}
 
 .title {
-    gap: 20px;
-
     &__btn {
         background-color: #F8F9FE;
     }
 
     &__label {
-        font-size: 50px;
+        @include adaptive-value("font-size", 44, 38, 0, );
         max-width: 800px;
 
         @media (max-width: 768px) {
@@ -76,41 +74,132 @@ $maxWidthContainer: 768;
 .property-images {
     margin: 0 auto;
     background-color: #F5F5F5;
-
-
-    gallery {
-        background-color: #F5F5F5;
-
-    }
 }
 
 .info {
 
     &__description {}
 
-    &__title {}
+    &__title {
+        padding-bottom: 5px;
+        color: #1F2744;
+        font-size: 2rem;
+        font-weight: 600;
+    }
 
     &__value {
-        width: 30%;
+        flex: 0 0 25%;
+        color: #73788C;
+        font-size: 16px;
+        font-weight: 500;
     }
 
     &__rent-price {}
 
-    &__detail {}
+    &__block {
+        padding-top: 25px;
+    }
 
-    &__facilities {}
+    &__map {
+        padding-top: 25px;
+    }
 
-    &__map {}
-
-    &__consultation {}
+    &__consultation {
+        padding-top: 25px;
+        text-align: center;
+    }
 
     &__value-block {
         display: flex;
-        gap: 20px;
         flex-wrap: wrap;
+        column-gap: 10px;
 
         &__value {
             width: 30%;
         }
+    }
+}
+
+.map {
+
+    &__title {
+        color: #1F2744;
+        font-size: 2rem;
+        font-weight: 600;
+        padding-bottom: 15px;
+    }
+
+    &__value {}
+}
+
+.consultation {
+    padding-top: 50px;
+    padding-bottom: 100px;
+
+    &__title {
+        color: #1F2744;
+        font-size: 2rem;
+        font-weight: 600;
+        padding-bottom: 15px;
+    }
+
+    &__value {
+        color: #73788C;
+        font-size: 18px;
+        font-weight: 500;
+        padding-bottom: 25px;
+    }
+
+    &__callback {
+        display: flex;
+        width: 75%;
+        margin: 0 auto;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+
+    &__textfield {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        margin: 0 auto;
+    }
+
+    &__textfield-label {
+        text-align: left;
+        color: #73788C;
+        font-size: 16px;
+        font-weight: 500;
+
+    }
+
+    &__textfield-input {
+        border-radius: 5px;
+        border: none;
+        background-color: #F5F5F5;
+        padding: 10px 20px;
+        font-size: 16px;
+        min-width: 210px;
+    }
+
+    &__sumbit-button-wrap {
+        display: flex;
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px 20px;
+        padding-top: 23px;
+
+    }
+
+
+    &__submit-button {
+        font-size: 16px;
+        background-color: #69B99D;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 0px;
+        min-width: 250px;
+        color: #F5F5F5;
+        font-weight: 600;
     }
 }

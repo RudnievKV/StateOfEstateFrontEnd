@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { GalleryItem, ImageItem } from 'ng-gallery';
+import Swiper, { Navigation } from 'swiper';
+Swiper.use([Navigation]);
 
 @Component({
   selector: 'app-user-properties',
@@ -7,25 +8,44 @@ import { GalleryItem, ImageItem } from 'ng-gallery';
   styleUrls: ['./user-properties.component.scss']
 })
 export class UserPropertiesComponent {
+  display: any;
+  center: google.maps.LatLngLiteral = { lat: 24, lng: 12 };
+  zoom = 4;
 
-  images!: GalleryItem[];
+  ngAfterViewInit(): void {
+    const mySwiper = new Swiper('.swiper-container', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      slidesOffsetBefore: -30,
+      slidesOffsetAfter: -30,
+      speed: 400,
+      slidesPerView: 4,
+      spaceBetween: 20,
+      breakpoints: {
+        // when window width is <= 767px (mobile)
+        80: {
+          slidesPerView: 1,
+          spaceBetween: 20
+        },
+        767: {
+          slidesPerView: 2,
+          spaceBetween: 20
+        },
+        986: {
+          slidesPerView: 3,
+          spaceBetween: 20
+        },
+        1200: {
+          slidesPerView: 4,
+          spaceBetween: 20
+        },
 
-  ngOnInit() {
-    // Set gallery items array
-    this.images = [
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
-      new ImageItem({ src: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg', thumb: 'https://look.com.ua/pic/201210/1280x720/look.com.ua-52342.jpg' }),
+      }
+    });
 
-      // ... more items
-    ];
+
+
   }
 }

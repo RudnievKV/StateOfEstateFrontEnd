@@ -53,6 +53,15 @@ $maxWidthContainer: 768;
         padding-top: 100px;
         background-color: #FEFEFF;
         padding-bottom: 120px;
+
+        @media (max-width: 768px) {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .title {
+            padding-bottom: 30px;
+        }
     }
 
     &__container {}
@@ -161,6 +170,11 @@ $maxWidthContainer: 768;
         padding-top: 0px;
         padding-top: 100px;
         padding-bottom: 100px;
+
+        @media (max-width: 768px) {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
     }
 
     &__container {}
@@ -221,9 +235,18 @@ $maxWidthContainer: 768;
 //=====================================================================
 .our-team {
 
+
     &__page {
         padding-top: 120px;
         background-color: #FEFEFF;
+
+        @media (max-width: 768px) {
+            padding-top: 40px;
+        }
+
+        .title {
+            padding-bottom: 50px;
+        }
     }
 
     &__container {
@@ -298,6 +321,11 @@ $maxWidthContainer: 768;
         padding-top: 100px;
         background-color: #FEFEFF;
         padding-bottom: 100px;
+
+        @media (max-width: 768px) {
+            padding-top: 80px;
+            padding-bottom: 40px;
+        }
     }
 
     &__body {
@@ -324,6 +352,9 @@ $maxWidthContainer: 768;
 .container {}
 
 .title {
+    @media (max-width: 768px) {
+        padding-bottom: 0px;
+    }
 
     &__btn {}
 

@@ -54,10 +54,7 @@ import { HomeComponent } from './components/user-components/home/home.component'
 import { environment } from '../environments/environment';
 import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-// gallerey
-import { GalleryModule } from 'ng-gallery';
-import { LightboxModule } from 'ng-gallery/lightbox';
-//
+
 
 
 import { JwtModule } from "@auth0/angular-jwt";
@@ -75,6 +72,9 @@ import { BenefitChangeComponent } from './components/admin-components/benefits/b
 import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
 import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component'
 import { MatNativeDateModule } from '@angular/material/core';
+import { SearchPlotsComponent } from './components/user-components/search-plots/search-plots.component';
+import { SearchVillasComponent } from './components/user-components/search-villas/search-villas.component';
+import { SearchCommercialComponent } from './components/user-components/search-commercial/search-commercial.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
@@ -152,6 +152,9 @@ export function tokenGetter() {
     BenefitChangeComponent,
     AdvertisingComponent,
     UserPropertiesComponent,
+    SearchPlotsComponent,
+    SearchVillasComponent,
+    SearchCommercialComponent,
   ],
   imports: [
     FormsModule,
@@ -162,10 +165,8 @@ export function tokenGetter() {
     MatAutocompleteModule,
 
     NgxMatSelectSearchModule,
-    // gallerey
-    GalleryModule,
-    LightboxModule,
-    //
+
+
 
 
 

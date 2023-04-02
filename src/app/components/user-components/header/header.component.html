@@ -8,20 +8,15 @@
                     <li class="menu__item">
                         <a class="menu__link" [routerLink]="'/search-rent'" [routerLinkActive]="'active'">Аренда</a>
                     </li>
-                    <li class="menu__item"><a href="" class="menu__link">Продажа</a>
-                        <span class="arrow down"></span>
-                        <ul class="sub-menu__list">
-                            <li>
-                                <a href="" class="sub-menu__link">Дома и виллы</a>
-                            </li>
-                            <li>
-                                <a href="" class="sub-menu__link">Участки</a>
-                            </li>
-                        </ul>
+                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/search-sell'"
+                            [routerLinkActive]="'active'">Продажа</a>
                     </li>
-                    <li class="menu__item"><a href="" class="menu__link">Управление недвижимостью</a></li>
-                    <li class="menu__item"><a href="" class="menu__link">Еще...</a>
-                        <span class="arrow down"></span>
+                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/plots'"
+                            [routerLinkActive]="'active'">Участки</a></li>
+                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/villas'"
+                            [routerLinkActive]="'active'">Дома и виллы</a>
+                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/commercial'"
+                            [routerLinkActive]="'active'">Коммерческая</a>
                     </li>
                 </ul>
             </nav>
