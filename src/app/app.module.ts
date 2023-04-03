@@ -77,6 +77,7 @@ import { SearchVillasComponent } from './components/user-components/search-villa
 import { SearchCommercialComponent } from './components/user-components/search-commercial/search-commercial.component';
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { TranslocoRootModule } from './transloco-root.module';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -190,7 +191,9 @@ export function tokenGetter() {
         tokenGetter,
         allowedDomains: environment.tokenWhiteListedDomains
       }
-    })
+    }),
+
+    TranslocoRootModule
   ],
   providers: [
     {
