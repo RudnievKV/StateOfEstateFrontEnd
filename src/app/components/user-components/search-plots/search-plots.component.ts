@@ -6,6 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./search-plots.component.scss']
 })
 export class SearchPlotsComponent {
+  textContent = 'Продажа Добра Вода № 2579. Продается дом (109м2) в поселке Добры Воды. Участок 500м2. Паркинг на 2 автомобиля. Резервуар для воды 20м3. До моря 1500 метров. На участке растут: миндаль, мушмула, виноград, смоква, лимон. Вид на море. 1этаж: гостиная, кухня, спальня, санузел, терраса 2 этаж: 2 спальни, санузел, терраса';
+  symbolLimit = 110;
 
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
