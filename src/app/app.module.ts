@@ -51,6 +51,7 @@ import { SearchRentComponent } from './components/user-components/search-rent/se
 import { HeaderComponent } from './components/user-components/header/header.component';
 import { FooterComponent } from './components/user-components/footer/footer.component';
 import { HomeComponent } from './components/user-components/home/home.component';
+import { PropertyCardComponent } from './components/user-components/properties/property-card/property-card.component';
 import { environment } from '../environments/environment';
 import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -78,6 +79,13 @@ import { SearchCommercialComponent } from './components/user-components/search-c
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { TranslocoRootModule } from './transloco-root.module';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
+
+
+
+
+
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -115,6 +123,8 @@ export function tokenGetter() {
     PartnersViewComponent,
     PartnerChangeComponent,
     PartnerAddComponent,
+
+    PropertyCardComponent,
 
 
 
@@ -167,6 +177,10 @@ export function tokenGetter() {
 
     NgxMatSelectSearchModule,
 
+    GalleryModule,
+    LightboxModule,
+
+
 
 
 
@@ -198,12 +212,13 @@ export function tokenGetter() {
   providers: [
     {
       provide: AUTH_API_URL,
-      useValue: environment.authApi
+      useValue: environment.authApi,
     },
     {
       provide: MONTENEGRO_API_URL,
       useValue: environment.montenegroApi
-    }
+    },
+
   ],
   bootstrap: [AppComponent]
 })

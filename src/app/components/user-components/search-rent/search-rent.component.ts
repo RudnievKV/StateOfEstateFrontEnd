@@ -10,6 +10,8 @@ import { BenefitService } from 'src/app/services/benefit.service';
 import { CityService } from 'src/app/services/city.service';
 import { PropertyService } from 'src/app/services/property.service';
 
+
+
 @Component({
   selector: 'app-search-rent',
   templateUrl: './search-rent.component.html',

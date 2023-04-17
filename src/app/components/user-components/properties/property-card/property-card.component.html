@@ -1,0 +1,24 @@
+<div class="swiper-slide">
+    <div class="body__property">
+        <div class="body__img">
+            <div class="image-swiper">
+                <div class="image-swiper-container" [style.transform]="'translateX(' + (-currentIndx * 100) + '%)'">
+                    <div class="image-swiper-slide" *ngFor="let url of property.urls;let i = index">
+                        <img src="{{ url }}" alt="Image {{ i + 1 }}" />
+                    </div>
+                </div>
+                <div class="image-swiper-navigation">
+                    <span class="prev" (click)="goToPrev()"></span>
+                    <span class="next" (click)="goToNext()"></span>
+                </div>
+            </div>
+        </div>
+        <div class="body__label">{{property.title}}</div>
+        <div class="body__value">{{property.location}}</div>
+        <div class="body__info">
+            <div class="body__price">{{property.price}}</div>
+            <div class="body__space">{{property.size}}</div>
+        </div>
+        <a class="body__inquiry-btn">Send Inquiry</a>
+    </div>
+</div>

@@ -118,6 +118,42 @@ $maxWidthContainer: 768;
             width: 30%;
         }
     }
+
+    &__gallery {}
+}
+
+
+.gallery {
+
+    &__items {
+        display: grid;
+        gap: 10px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+
+    &__item {
+        position: relative;
+        padding: 0px 0px 85% 0px;
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        &_big {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+    }
+
+    &__item:first-child {
+        grid-column: span 2;
+        grid-row: span 2;
+    }
 }
 
 .map {
@@ -202,4 +238,72 @@ $maxWidthContainer: 768;
         color: #F5F5F5;
         font-weight: 600;
     }
+}
+
+
+.image-swiper {
+    position: relative;
+    overflow: hidden;
+}
+
+.image-swiper-container {
+    display: flex;
+    transition: transform 0.3s ease-in-out;
+}
+
+.image-swiper-slide {
+    flex: 0 0 100%;
+    width: 100%;
+}
+
+.image-swiper img {
+    width: 100%;
+    height: 200px;
+}
+
+.image-swiper-navigation {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.image-swiper-navigation span {
+    background-color: inherit;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.image-swiper-navigation span::before {
+    content: '';
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #69B99D;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.image-swiper-navigation .prev::before {
+    border-right: none;
+    border-top: none;
+    transform: translate(-50%, -50%) rotate(45deg);
+}
+
+.image-swiper-navigation .next::before {
+    border-left: none;
+    border-bottom: none;
+    transform: translate(-50%, -50%) rotate(45deg);
 }
