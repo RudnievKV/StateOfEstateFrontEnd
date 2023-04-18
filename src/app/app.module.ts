@@ -51,6 +51,7 @@ import { SearchRentComponent } from './components/user-components/search-rent/se
 import { HeaderComponent } from './components/user-components/header/header.component';
 import { FooterComponent } from './components/user-components/footer/footer.component';
 import { HomeComponent } from './components/user-components/home/home.component';
+import { PropertyCardComponent } from './components/user-components/properties/property-card/property-card.component';
 import { environment } from '../environments/environment';
 import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -84,6 +85,14 @@ import { PropertyPricePipe } from 'src/pipes/propertyPrice.pipe';
 import { CityNameByPropertyPipe } from 'src/pipes/cityNameByPropertyPipe.pipe';
 import { PropertySquarePipe } from 'src/pipes/propertySquare.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { GalleryModule } from 'ng-gallery';
+import { LightboxModule } from 'ng-gallery/lightbox';
+
+
+
+
+
+
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
@@ -91,6 +100,7 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+
 
     // PIPES
     CityNameByPropertyPipe,
@@ -125,6 +135,8 @@ export function tokenGetter() {
     PartnersViewComponent,
     PartnerChangeComponent,
     PartnerAddComponent,
+
+    PropertyCardComponent,
 
 
 
@@ -177,6 +189,10 @@ export function tokenGetter() {
     NgxPaginationModule,
     NgxMatSelectSearchModule,
 
+    GalleryModule,
+    LightboxModule,
+
+
 
 
 
@@ -212,12 +228,13 @@ export function tokenGetter() {
     },
     {
       provide: AUTH_API_URL,
-      useValue: environment.authApi
+      useValue: environment.authApi,
     },
     {
       provide: MONTENEGRO_API_URL,
       useValue: environment.montenegroApi
-    }
+    },
+
   ],
   bootstrap: [AppComponent]
 })

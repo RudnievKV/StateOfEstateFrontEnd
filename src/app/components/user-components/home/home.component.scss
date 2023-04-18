@@ -125,6 +125,9 @@ $maxWidthContainer: 768;
         color: #A6A6A6;
         font-weight: 600;
         font-size: 16px;
+        // text-overflow: ellipsis;
+        // overflow: hidden;
+        // max-height: 100px;
     }
 
     &__info {

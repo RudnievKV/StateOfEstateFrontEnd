@@ -347,8 +347,8 @@
         </div>
         <div class="title__label">Актуальные предложения аренды недвижимости в Черногории</div>
       </div>
-      <div>
-        <div class="recomendation__body body" *ngIf="propertiesRent; else loading">
+      <div *ngIf="propertiesRent; else loading">
+        <div class="recomendation__body body">
           <div class="body__property"
             *ngFor="let property of propertiesRent.Data | paginate: { id: 'server', itemsPerPage: 20, currentPage: propertiesRent.PageNumber, totalItems: propertiesRent.TotalRecords }">
             <div class="body__img">
