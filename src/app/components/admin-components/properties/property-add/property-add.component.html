@@ -16,7 +16,7 @@
           <p class="options__value">Статус аренды</p>
           <mat-form-field appearance="fill">
             <mat-label></mat-label>
-            <mat-select disableRipple [value]="selectedRentStatus">
+            <mat-select disableRipple [(ngModel)]="selectedRentStatus">
               <mat-option value="Draft">Черновик</mat-option>
               <mat-option value="Published">Опубликовано</mat-option>
               <mat-option value="NotActive">Неактивно</mat-option>
@@ -28,7 +28,7 @@
           <p class="options__value">Статус продажи</p>
           <mat-form-field appearance="fill">
             <mat-label></mat-label>
-            <mat-select disableRipple [value]="selectedSaleStatus">
+            <mat-select disableRipple [(ngModel)]="selectedSaleStatus">
               <mat-option value="Draft">Черновик</mat-option>
               <mat-option value="Published">Опубликовано</mat-option>
               <mat-option value="NotActive">Неактивно</mat-option>
@@ -240,7 +240,7 @@
           <p class="options__value">Тип</p>
           <mat-form-field appearance="fill">
             <mat-label>Тип</mat-label>
-            <mat-select disableRipple [value]="selectedType">
+            <mat-select disableRipple [(ngModel)]="selectedType">
               <mat-option value="Apartment">Квартира</mat-option>
               <mat-option value="House">Дом</mat-option>
               <mat-option value="Land">Участок</mat-option>
@@ -313,7 +313,7 @@
           <p class="options__value">Кол-во спален</p>
           <mat-form-field class="example-form-field">
             <mat-label></mat-label>
-            <mat-select disableRipple [value]="selectedBedroomCount">
+            <mat-select disableRipple [(value)]="selectedBedroomCount">
               <mat-option value="---">-------</mat-option>
               <mat-option value="0">Студия</mat-option>
               <mat-option value="1">1</mat-option>

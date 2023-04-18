@@ -1,254 +1,380 @@
 <app-header></app-header>
 <main class="main">
-    <section class="search__page">
-        <div class="search__container container">
-            <div class="search__block">
-                <div class="search__menu menu">
-                    <div class="menu__buttons">
-                        <button class="menu__search-btns" [ngClass]="statusBuy ? 'activebtn' : 'notactive'"
-                            (click)="SetSearch('Buy')">Купить</button>
-                        <button class="menu__search-btns" [ngClass]="statusRent ? 'activebtn' : 'notactive'"
-                            (click)="SetSearch('Rent')">Арендовать</button>
-                        <button class="menu__search-btns" [ngClass]="statusId ? 'activebtn' : 'notactive'"
-                            (click)="SetSearch('Id')">Поиск по ID</button>
-                    </div>
-                    <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Buy')">
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu1')">
-                                    <div class="menu__value">Город</div>
-                                    <div class="menu__text">Буба, Чеча<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu1'">
-                                    <ul class="menu__dropdown">
-                                        <li>
-                                            <label for="allEvents">
-                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
-                                                    name="allEvents" (change)="selectAll();" />All Events
-                                            </label>
-                                        </li>
-                                        <li *ngFor="let channel of channelDDList">
-                                            <label for="{{channel.channelId}}">
-                                                <input type="checkbox" id="{{channel.channelId}}"
-                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
-                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+  <section class="search__page">
+    <div class="search__container container">
+      <div class="search__block">
+        <div class="search__menu menu">
+          <div class="menu__buttons">
+            <button class="menu__search-btns" [ngClass]="statusBuy ? 'activebtn' : 'notactive'"
+              (click)="SetSearch('Buy')">Купить</button>
+            <button class="menu__search-btns" [ngClass]="statusRent ? 'activebtn' : 'notactive'"
+              (click)="SetSearch('Rent')">Арендовать</button>
+            <button class="menu__search-btns" [ngClass]="statusId ? 'activebtn' : 'notactive'"
+              (click)="SetSearch('Id')">Поиск по ID</button>
+          </div>
+          <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Buy')">
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu02')">
+                  <div class="menu__value">Город</div>
+                  <div class="menu__text">
+                    <div *ngIf="selectedCitiesSale.length > 0; else noSelected" style="display: flex;">
+                      <div *ngFor="let selectedCity of selectedCitiesSale; last as isLast; first as isFirst"
+                        style="display: flex;">
+                        <div *ngIf="isFirst">
+                          {{displayCityName(selectedCity)}}
                         </div>
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu2')">
-                                    <div class="menu__value">Кол-во спален</div>
-                                    <div class="menu__text">Буба, Чеча<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu2'">
-                                    <ul class="menu__dropdown">
-                                        <li>
-                                            <label for="allEvents">
-                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
-                                                    name="allEvents" (change)="selectAll();" />All Events
-                                            </label>
-                                        </li>
-                                        <li *ngFor="let channel of channelDDList">
-                                            <label for="{{channel.channelId}}">
-                                                <input type="checkbox" id="{{channel.channelId}}"
-                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
-                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu3')">
-                                    <div class="menu__value">Цена</div>
-                                    <div class="menu__text">Буба, Чеча<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu3'">
-                                    <ul class="menu__dropdown">
-                                        <div class="menu__set-price">
-                                            <p>Цена от ($)</p>
-                                            <input type="number">
-                                        </div>
-                                        <div class="menu__set-price">
-                                            <p>Цена до ($)</p>
-                                            <input type="number">
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu4')">
-                                    <div class="menu__value">Опции</div>
-                                    <div class="menu__text">Буба, Чеча<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu4'">
-                                    <ul class="menu__dropdown">
-                                        <li>
-                                            <label for="allEvents">
-                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
-                                                    name="allEvents" (change)="selectAll();" />All Events
-                                            </label>
-                                        </li>
-                                        <li *ngFor="let channel of channelDDList">
-                                            <label for="{{channel.channelId}}">
-                                                <input type="checkbox" id="{{channel.channelId}}"
-                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
-                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <button class="menu__search-btn">Поиск</button>
-                        </div>
-                    </div>
-                    <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Rent')">
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu01')">
-                                    <div class="menu__value">Город</div>
-                                    <div class="menu__text">300$<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu01'">
-                                    <ul class="menu__dropdown">
-                                        <li>
-                                            <label for="allEvents">
-                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
-                                                    name="allEvents" (change)="selectAll();" />All Events
-                                            </label>
-                                        </li>
-                                        <li *ngFor="let channel of channelDDList">
-                                            <label for="{{channel.channelId}}">
-                                                <input type="checkbox" id="{{channel.channelId}}"
-                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
-                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu02')">
-                                    <div class="menu__value">Город</div>
-                                    <div class="menu__text">Буба, Чеча<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu02'">
-                                    <ul class="menu__dropdown">
-                                        <li>
-                                            <label for="allEvents">
-                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
-                                                    name="allEvents" (change)="selectAll();" />All Events
-                                            </label>
-                                        </li>
-                                        <li *ngFor="let channel of channelDDList">
-                                            <label for="{{channel.channelId}}">
-                                                <input type="checkbox" id="{{channel.channelId}}"
-                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
-                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu03')">
-                                    <div class="menu__value">Кол-во спален</div>
-                                    <div class="menu__text">5+, 2<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu03'">
-                                    <ul class="menu__dropdown">
-                                        <li>
-                                            <label for="allEvents">
-                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
-                                                    name="allEvents" (change)="selectAll();" />All Events
-                                            </label>
-                                        </li>
-                                        <li *ngFor="let channel of channelDDList">
-                                            <label for="{{channel.channelId}}">
-                                                <input type="checkbox" id="{{channel.channelId}}"
-                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
-                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
-                                    <div class="menu__value">Цена</div>
-                                    <div class="menu__text">300$<span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
-                                    <ul class="menu__dropdown">
-                                        <div class="menu__set-price">
-                                            <p>Цена от ($)</p>
-                                            <input type="number">
-                                        </div>
-                                        <div class="menu__set-price">
-                                            <p>Цена до ($)</p>
-                                            <input type="number">
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <div class="menu__multiselect">
-                                <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
-                                    <div class="menu__value">Опции</div>
-                                    <div class="menu__text">Еще... <span></span></div>
-                                    <div class="menu__overSelect"></div>
-                                </div>
-                                <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
-                                    <ul class="menu__dropdown">
-                                        <li>
-                                            <label for="allEvents">
-                                                <input type="checkbox" id="allEvents" [(ngModel)]="selectedAll"
-                                                    name="allEvents" (change)="selectAll();" />All Events
-                                            </label>
-                                        </li>
-                                        <li *ngFor="let channel of channelDDList">
-                                            <label for="{{channel.channelId}}">
-                                                <input type="checkbox" id="{{channel.channelId}}"
-                                                    [(ngModel)]="channel.selected" (change)="checkIfAllSelected();"
-                                                    name="{{channel.channelId}}" />{{channel.channelName}}</label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="menu__input">
-                            <button class="menu__search-btn">Поиск</button>
-                        </div>
-                    </div>
-                    <div class="" [hidden]="!(CurrentSearch == 'Id')">
-                        <div class="menu__search-id">
-                            <input type="text" placeholder="Поиск по ID">
-                        </div>
-                        <button class="menu__search-btn">Поиск</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+                        <!-- <div *ngIf="!isLast">
+                                                  {{displayCityName(selectedCity)}},
+                                                </div>
+                                                <div *ngIf="isLast">
+                                                  {{displayCityName(selectedCity)}}
+                                                </div> -->
+                      </div>
 
-    </section>
+                    </div>
+                    <span></span>
+                    <ng-template #noSelected>
+                      <ul>
+                        <li>Буба, Чеча </li>
+                      </ul>
+                    </ng-template>
+                  </div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu02'">
+                  <ul class="menu__dropdown">
+                    <li *ngFor="let city of citiesSale">
+                      <label for="{{city.Data.City_ID}}">
+                        <input type="checkbox" id="{{city.Data.City_ID}}" [(ngModel)]="city.checked"
+                          (change)="selectCitySale(city);"
+                          name="{{displayCityAndCheckName(city)}}" />{{displayCityAndCheckName(city)}}</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu03')">
+                  <div class="menu__value">Кол-во спален</div>
+                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu03'">
+                  <ul class="menu__dropdown">
+                    <li>
+                      <label for="studio">
+                        <input type="checkbox" id="studio" name="bedroomCount" value="0"
+                          [(ngModel)]="studioSale" />Студия</label>
+                    </li>
+                    <li>
+                      <label for="1">
+                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomSale" />1
+                        спальня</label>
+                    </li>
+                    <li>
+                      <label for="2">
+                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsSale" />2
+                        спальни</label>
+                    </li>
+                    <li>
+                      <label for="3">
+                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsSale" />3
+                        спальни</label>
+                    </li>
+                    <li>
+                      <label for="4">
+                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsSale" />4
+                        спальни</label>
+                    </li>
+                    <li>
+                      <label for="5">
+                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsSale" />5+
+                        спален</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
+                  <div class="menu__value">Цена</div>
+                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
+                  <ul class="menu__dropdown">
+                    <div class="menu__set-price">
+                      <p>Цена от ($)</p>
+                      <input type="number" [(ngModel)]="priceFromSale">
+                    </div>
+                    <div class="menu__set-price">
+                      <p>Цена до ($)</p>
+                      <input type="number" [(ngModel)]="priceToSale">
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
+                  <div class="menu__value">Опции</div>
+                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
+                  <ul class="menu__dropdown">
+                    <li *ngFor="let benefit of benefitsSale">
+                      <label for="{{benefit.Data.Benefit_ID}}">
+                        <input type="checkbox" id="{{benefit.Data.Benefit_ID}}" [(ngModel)]="benefit.checked"
+                          (change)="selectBenefitSale(benefit);"
+                          name="{{displayBenefitAndCheckName(benefit)}}" />{{displayBenefitAndCheckName(benefit)}}</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <button class="menu__search-btn" (click)="searchSaleProperties(1)">Поиск</button>
+            </div>
+          </div>
+          <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Rent')">
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu06')">
+                  <div class="menu__value">Срок аренды</div>
+                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu06'">
+                  <ul class="menu__dropdown">
+                    <li>
+                      <label for="Any">
+                        <input type="radio" id="Any" value="any" (change)="changeRentalPeriod($event);"
+                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />- Любой -</label>
+                      <label for="LongTerm">
+                        <input type="radio" id="LongTerm" value="long-term" (change)="changeRentalPeriod($event);"
+                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />Долгосрочно</label>
+                      <label for="FullSeason">
+                        <input type="radio" id="FullSeason" value="whole-season" (change)="changeRentalPeriod($event);"
+                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />Весь турсезон</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu07')">
+                  <div class="menu__value">Город</div>
+                  <div class="menu__text">
+                    <div *ngIf="selectedCitiesRent.length > 0; else noSelected" style="display: flex;">
+                      <div *ngFor="let selectedCity of selectedCitiesRent; last as isLast; first as isFirst"
+                        style="display: flex;">
+                        <div *ngIf="isFirst">
+                          {{displayCityName(selectedCity)}}
+                        </div>
+                        <!-- <div *ngIf="!isLast">
+                                                  {{displayCityName(selectedCity)}},
+                                                </div>
+                                                <div *ngIf="isLast">
+                                                  {{displayCityName(selectedCity)}}
+                                                </div> -->
+                      </div>
+
+                    </div>
+                    <span></span>
+                    <ng-template #noSelected>
+                      <ul>
+                        <li>Буба, Чеча </li>
+                      </ul>
+                    </ng-template>
+                  </div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu07'">
+                  <ul class="menu__dropdown">
+                    <li *ngFor="let city of citiesRent">
+                      <label for="{{city.Data.City_ID}}">
+                        <input type="checkbox" id="{{city.Data.City_ID}}" [(ngModel)]="city.checked"
+                          (change)="selectCityRent(city);"
+                          name="{{displayCityAndCheckName(city)}}" />{{displayCityAndCheckName(city)}}</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu09')">
+                  <div class="menu__value">Кол-во спален</div>
+                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu09'">
+                  <ul class="menu__dropdown">
+                    <li>
+                      <label for="studio">
+                        <input type="checkbox" id="studio" name="bedroomCount" value="0"
+                          [(ngModel)]="studioRent" />Студия</label>
+                    </li>
+                    <li>
+                      <label for="1">
+                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomRent" />1
+                        спальня</label>
+                    </li>
+                    <li>
+                      <label for="2">
+                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsRent" />2
+                        спальни</label>
+                    </li>
+                    <li>
+                      <label for="3">
+                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsRent" />3
+                        спальни</label>
+                    </li>
+                    <li>
+                      <label for="4">
+                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsRent" />4
+                        спальни</label>
+                    </li>
+                    <li>
+                      <label for="5">
+                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsRent" />5+
+                        спален</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu10')">
+                  <div class="menu__value">Цена</div>
+                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu10'">
+                  <ul class="menu__dropdown">
+                    <div class="menu__set-price">
+                      <p>Цена от ($)</p>
+                      <input type="number" [(ngModel)]="priceFromRent">
+                    </div>
+                    <div class="menu__set-price">
+                      <p>Цена до ($)</p>
+                      <input type="number" [(ngModel)]="priceToRent">
+                    </div>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <div class="menu__multiselect">
+                <div class="menu__selectBox" (click)="toggleDropdown('menu11')">
+                  <div class="menu__value">Опции</div>
+                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__overSelect"></div>
+                </div>
+                <div id="checkboxes" *ngIf="currentDropdown === 'menu11'">
+                  <ul class="menu__dropdown">
+                    <li *ngFor="let benefit of benefitsRent">
+                      <label for="{{benefit.Data.Benefit_ID}}">
+                        <input type="checkbox" id="{{benefit.Data.Benefit_ID}}" [(ngModel)]="benefit.checked"
+                          (change)="selectBenefitRent(benefit);"
+                          name="{{displayBenefitAndCheckName(benefit)}}" />{{displayBenefitAndCheckName(benefit)}}</label>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="menu__input">
+              <button class="menu__search-btn" (click)="searchRentProperties(1)">Поиск</button>
+            </div>
+          </div>
+          <div class="" [hidden]="!(CurrentSearch == 'Id')">
+            <div class="menu__search-id">
+              <input type="text" placeholder="Поиск по ID">
+            </div>
+            <button class="menu__search-btn">Поиск</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+  <section class="recomendation__page" [hidden]="!(CurrentSearch == 'Buy')">
+    <div class="recomendation__container container">
+      <div class="title">
+        <div>
+          <div class="title__btn grey">ПРЕДЛОЖЕНИЯ</div>
+        </div>
+        <div class="title__label">Актуальные предложения продажи недвижимости в Черногории</div>
+      </div>
+      <div *ngIf="propertiesSale; else loading">
+        <div class="recomendation__body body">
+          <div class="body__property"
+            *ngFor="let property of propertiesSale.Data | paginate: { id: 'server', itemsPerPage: 20, currentPage: propertiesSale.PageNumber, totalItems: propertiesSale.TotalRecords }">
+            <div class="body__img">
+
+              <img src="{{getFirstPictureUrl(property)}}" alt="">
+
+            </div>
+            <div class=" body__label">{{property | cityNameByProperty}}
+            </div>
+            <div class="body__value">Богор, Джава Барат</div>
+            <div class="body__info">
+              <div class="body__price">${{property | propertyPrice : rentalPeriodOnLoad}}</div>
+              <div class="body__space">{{property | propertySquare}} м² <br> Living Area</div>
+            </div>
+            <button class="body__inquiry-btn">Send Inquiry</button>
+          </div>
+        </div>
+        <div class="number-of-page">
+          <pagination-controls (pageChange)="searchSaleProperties($event)" id="server" previousLabel="Назад"
+            nextLabel="Вперед"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="recomendation__page" [hidden]="!(CurrentSearch == 'Rent')">
+    <div class="recomendation__container container">
+      <div class="title">
+        <div>
+          <div class="title__btn grey">ПРЕДЛОЖЕНИЯ</div>
+        </div>
+        <div class="title__label">Актуальные предложения аренды недвижимости в Черногории</div>
+      </div>
+      <div *ngIf="propertiesRent; else loading">
+        <div class="recomendation__body body">
+          <div class="body__property"
+            *ngFor="let property of propertiesRent.Data | paginate: { id: 'server', itemsPerPage: 20, currentPage: propertiesRent.PageNumber, totalItems: propertiesRent.TotalRecords }">
+            <div class="body__img">
+
+              <img src="{{getFirstPictureUrl(property)}}" alt="">
+
+            </div>
+            <div class=" body__label">{{property | cityNameByProperty}}
+            </div>
+            <div class="body__value">Богор, Джава Барат</div>
+            <div class="body__info">
+              <div class="body__price">${{property | propertyPrice : rentalPeriodOnLoad}}</div>
+              <div class="body__space">{{property | propertySquare}} м² <br> Living Area</div>
+            </div>
+            <button class="body__inquiry-btn">Send Inquiry</button>
+          </div>
+        </div>
+        <div class="number-of-page">
+          <pagination-controls (pageChange)="searchRentProperties($event)" id="server" previousLabel="Назад"
+            nextLabel="Вперед"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </section>
 </main>
+<ng-template #loading>
+  <mat-spinner [diameter]="100" class="mat-spinner-color"></mat-spinner>
+</ng-template>
 <app-footer></app-footer>

@@ -26,6 +26,11 @@ export class PropertyService {
       params: customParams
     });
   }
+  SearchPropertiesPaged(customParams: HttpParams): Observable<PagedResponse<PropertyDto>> {
+    return this.http.get<PagedResponse<PropertyDto>>(`${this.apiUrl}api/properties/search`, {
+      params: customParams
+    });
+  }
   GetProperty(id: number): Observable<PropertyDto> {
     return this.http.get<PropertyDto>(`${this.apiUrl}api/properties/${id}`)
   }

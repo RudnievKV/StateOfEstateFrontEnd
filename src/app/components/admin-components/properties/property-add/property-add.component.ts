@@ -362,12 +362,12 @@ export class PropertyAddComponent {
     formData.append(`BathroomCount`, this.bathroomCount);
     formData.append(`ConstructionYear`, this.constructionYear);
     if (this.coordinateX == '') {
-      formData.append(`CoordinateX`, null);
+      //formData.append(`CoordinateX`, null);
     } else {
       formData.append(`CoordinateX`, this.coordinateX.replace('.', ','));
     }
     if (this.coordinateY == '') {
-      formData.append(`CoordinateY`, null);
+      //formData.append(`CoordinateY`, null);
     } else {
       formData.append(`CoordinateY`, this.coordinateY.replace('.', ','));
     }
@@ -377,14 +377,14 @@ export class PropertyAddComponent {
     formData.append(`LandAreaSquare`, this.landAreaSquare);
     formData.append(`Notes`, this.notes);
     formData.append(`Pets`, this.pets);
-    formData.append(`RentCode`, null);
+    //formData.append(`RentCode`, null);
     formData.append(`RentPrice`, this.rentPrice);
     formData.append(`RentPriceBeforeSeason`, this.rentPriceBeforeSeason);
     formData.append(`RentPriceFullSeason`, this.rentPriceFullSeason);
     formData.append(`RentStatus`, this.selectedRentStatus);
     formData.append(`SaleStatus`, this.selectedSaleStatus);
     formData.append(`RoomCount`, this.roomCount);
-    formData.append(`SaleCode`, null);
+    //formData.append(`SaleCode`, null);
     formData.append(`SalePrice`, this.salePrice);
     formData.append(`SalePromoteStatus`, this.salePromoteStatus);
     formData.append(`TurkishKebabs`, this.turkishKebabs);

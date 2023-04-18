@@ -78,7 +78,12 @@ import { SearchCommercialComponent } from './components/user-components/search-c
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { TranslocoRootModule } from './transloco-root.module';
-
+import { UrlSerializer } from '@angular/router';
+import { CustomUrlSerializer } from 'src/serializers/customUrlSerializer';
+import { PropertyPricePipe } from 'src/pipes/propertyPrice.pipe';
+import { CityNameByPropertyPipe } from 'src/pipes/cityNameByPropertyPipe.pipe';
+import { PropertySquarePipe } from 'src/pipes/propertySquare.pipe';
+import { NgxPaginationModule } from 'ngx-pagination';
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
 }
@@ -86,6 +91,11 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
+
+    // PIPES
+    CityNameByPropertyPipe,
+    PropertyPricePipe,
+    PropertySquarePipe,
 
     // USER COMPONENTS
     SearchSaleComponent,
@@ -164,7 +174,7 @@ export function tokenGetter() {
     MatCheckboxModule,
     GoogleMapsModule,
     MatAutocompleteModule,
-
+    NgxPaginationModule,
     NgxMatSelectSearchModule,
 
 
@@ -196,6 +206,10 @@ export function tokenGetter() {
     TranslocoRootModule
   ],
   providers: [
+    {
+      provide: UrlSerializer,
+      useClass: CustomUrlSerializer
+    },
     {
       provide: AUTH_API_URL,
       useValue: environment.authApi
