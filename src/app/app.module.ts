@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GoogleMapsModule } from '@angular/google-maps';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
@@ -82,11 +82,22 @@ import { TranslocoRootModule } from './transloco-root.module';
 import { UrlSerializer } from '@angular/router';
 import { CustomUrlSerializer } from 'src/serializers/customUrlSerializer';
 import { PropertyPricePipe } from 'src/pipes/propertyPrice.pipe';
-import { CityNameByPropertyPipe } from 'src/pipes/cityNameByPropertyPipe.pipe';
+import { CityNameByPropertyPipe } from 'src/pipes/cityNameByProperty.pipe';
 import { PropertySquarePipe } from 'src/pipes/propertySquare.pipe';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GalleryModule } from 'ng-gallery';
 import { LightboxModule } from 'ng-gallery/lightbox';
+import { PropertyTitlePipe } from 'src/pipes/propertyTitle.pipe';
+import { TruncatePipe } from 'src/pipes/truncate.pipe';
+import { PropertyDescriptionPipe } from 'src/pipes/propertyDescription.pipe';
+import { PropertyCityNamePipe } from 'src/pipes/propertyCityName.pipe';
+import { PropertyAreaPipe } from 'src/pipes/propertyArea.pipe';
+import { BenefitNamePipe } from 'src/pipes/benefitName.pipe';
+import { isDateGreaterThanTodayPipe } from 'src/pipes/isDateGreaterThanToday.pipe';
+import { JsonDateInterceptor } from './interceptors/JsonDateInterceptor';
+import { CityAndCheckNamePipe } from 'src/pipes/cityAndCheckName.pipe';
+import { BenefitAndCheckNamePipe } from 'src/pipes/benefitAndCheckName.pipe';
+import { CityNamePipe } from 'src/pipes/cityName.pipe';
 
 
 
@@ -106,6 +117,16 @@ export function tokenGetter() {
     CityNameByPropertyPipe,
     PropertyPricePipe,
     PropertySquarePipe,
+    PropertyDescriptionPipe,
+    PropertyAreaPipe,
+    BenefitNamePipe,
+    PropertyCityNamePipe,
+    PropertyTitlePipe,
+    TruncatePipe,
+    isDateGreaterThanTodayPipe,
+    CityAndCheckNamePipe,
+    BenefitAndCheckNamePipe,
+    CityNamePipe,
 
     // USER COMPONENTS
     SearchSaleComponent,
@@ -225,6 +246,11 @@ export function tokenGetter() {
     {
       provide: UrlSerializer,
       useClass: CustomUrlSerializer
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JsonDateInterceptor,
+      multi: true
     },
     {
       provide: AUTH_API_URL,

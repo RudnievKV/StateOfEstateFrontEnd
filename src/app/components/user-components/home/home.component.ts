@@ -2,7 +2,8 @@ import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { firstValueFrom, forkJoin } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription, firstValueFrom, forkJoin } from 'rxjs';
 import { BenefitDto } from 'src/app/models/BenefitDtos/BenefitDto';
 import { CityDto } from 'src/app/models/CityDtos/CityDto';
 import DataAndCheck from 'src/app/models/DataAndCheck';
@@ -25,12 +26,20 @@ export class HomeComponent {
     private _propertyService: PropertyService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
+    private _translocoService: TranslocoService
   ) {
     this._router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
+    this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
+      this.trigger = this.trigger + 1;
+    });
   }
-
+  languageChangeSubscription!: Subscription;
+  trigger = 0;
+  ngOnDestroy() {
+    this.languageChangeSubscription.unsubscribe();
+  }
   citiesRent!: Array<DataAndCheck<CityDto>>;
   benefitsRent!: Array<DataAndCheck<BenefitDto>>;
 
@@ -189,6 +198,7 @@ export class HomeComponent {
   searchSaleProperties() {
     let params = new HttpParams();
     params = params.append("page-number", 1);
+    params = params.append("for-sale", true);
 
     this.selectedCitiesSale.forEach(city => {
       params = params.append("cities", city.City_ID);

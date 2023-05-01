@@ -102,6 +102,7 @@ export class PropertyAddComponent {
   selectedCounterparty!: CounterpartyDto;
   counterAgentNumber = '';
   videoID = '';
+  isForSale = false;
   rentPromoteStatus = false;
   salePromoteStatus = false;
   pets = false;
@@ -392,6 +393,7 @@ export class PropertyAddComponent {
     formData.append(`VideoID`, this.videoID);
     formData.append(`RentPromoteStatus`, this.rentPromoteStatus);
     formData.append(`Floor`, this.floor);
+    formData.append(`IsForSale`, this.isForSale);
 
     newProperty.AdditionalInfo = this.additionalInfo;
     newProperty.BathroomCount = parseInt(this.bathroomCount);
@@ -419,6 +421,7 @@ export class PropertyAddComponent {
     newProperty.TurkishKebabs = this.turkishKebabs;
     newProperty.Type = this.selectedType;
     newProperty.VideoID = this.videoID;
+    newProperty.IsForSale = this.isForSale;
 
 
 
@@ -428,16 +431,25 @@ export class PropertyAddComponent {
     let localTrId = this.locals.find(s => s.LocalizationCode == 'tr')!.Local_ID;
     let localMeId = this.locals.find(s => s.LocalizationCode == 'sr')!.Local_ID;
 
-    let localEn = new LocalPropertyValue(localEnId, this.rentTitleEn, this.rentDescriptionEn);
-    let localRu = new LocalPropertyValue(localRuId, this.rentTitleRu, this.rentDescriptionRu);
-    let localTr = new LocalPropertyValue(localTrId, this.rentTitleTr, this.rentDescriptionTr);
-    let localMe = new LocalPropertyValue(localMeId, this.rentTitleMe, this.rentDescriptionMe);
+    let localEnRent = new LocalPropertyValue(localEnId, this.rentTitleEn, this.rentDescriptionEn, "Rent");
+    let localRuRent = new LocalPropertyValue(localRuId, this.rentTitleRu, this.rentDescriptionRu, "Rent");
+    let localTrRent = new LocalPropertyValue(localTrId, this.rentTitleTr, this.rentDescriptionTr, "Rent");
+    let localMeRent = new LocalPropertyValue(localMeId, this.rentTitleMe, this.rentDescriptionMe, "Rent");
 
+    let localEnSale = new LocalPropertyValue(localEnId, this.saleTitleEn, this.saleDescriptionEn, "Sale");
+    let localRuSale = new LocalPropertyValue(localRuId, this.saleTitleRu, this.saleDescriptionRu, "Sale");
+    let localTrSale = new LocalPropertyValue(localTrId, this.saleTitleTr, this.saleDescriptionTr, "Sale");
+    let localMeSale = new LocalPropertyValue(localMeId, this.saleTitleMe, this.saleDescriptionMe, "Sale");
     let local_Properties = new Array<LocalPropertyValue>();
-    local_Properties.push(localEn);
-    local_Properties.push(localRu);
-    local_Properties.push(localTr);
-    local_Properties.push(localMe);
+    local_Properties.push(localEnRent);
+    local_Properties.push(localRuRent);
+    local_Properties.push(localTrRent);
+    local_Properties.push(localMeRent);
+
+    local_Properties.push(localEnSale);
+    local_Properties.push(localRuSale);
+    local_Properties.push(localTrSale);
+    local_Properties.push(localMeSale);
     newProperty.Local_Properties = local_Properties;
 
     newProperty.Photos = this.photos;

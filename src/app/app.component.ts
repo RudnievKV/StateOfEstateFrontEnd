@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { TranslocoService } from '@ngneat/transloco';
+import { getBrowserLang } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Front-End';
+  title = 'State of Estate';
+  constructor(
+    private _translocoService: TranslocoService
+  ) { }
+  ngOnInit() {
+    let browserLanguage = getBrowserLang();
+    if (browserLanguage) {
+      console.log("Browser Language = " + browserLanguage);
+      this._translocoService.setActiveLang(browserLanguage);
+    }
+  }
 }

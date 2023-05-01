@@ -57,8 +57,9 @@
         <div class="view__value"><a href="admin/reminders/{{notification.Data.Notification_ID}}/change">Напоминание
             #{{notification.Data.Notification_ID}}</a></div>
         <div class="view__value">{{notification.Data.Property_ID}}</div>
-        <div class="view__value">{{notification.Data.ActivationDate}}</div>
-        <div class="view__value" *ngIf="CompareTodayAndDate(notification.Data.ActivationDate); else notActive"></div>
+        <div class="view__value">{{notification.Data.ActivationDate.toLocaleDateString()}}</div>
+        <div class="view__value" *ngIf="notification.Data.ActivationDate | isDateGreaterThanToday; else notActive">
+        </div>
         <ng-template #notActive>
           <div class="view__value">❗</div>
         </ng-template>

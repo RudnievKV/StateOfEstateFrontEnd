@@ -1,50 +1,45 @@
 <header class="header">
-    <div class="header__container container">
-        <a [routerLinkActive]="'active'" [routerLink]="''" [routerLinkActiveOptions]="{exact: true}"
-            class="header__logo">Dimas</a>
-        <div class="header__menu menu ">
-            <nav class="menu__body" [ngClass]="status ? 'menu-opeb' : 'menu__body'">
-                <ul class="menu__list">
-                    <li class="menu__item">
-                        <a class="menu__link" [routerLink]="'/search-rent'" [routerLinkActive]="'active'">Аренда</a>
-                    </li>
-                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/search-sell'"
-                            [routerLinkActive]="'active'">Продажа</a>
-                    </li>
-                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/plots'"
-                            [routerLinkActive]="'active'">Участки</a></li>
-                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/villas'"
-                            [routerLinkActive]="'active'">Дома и виллы</a>
-                    <li class="menu__item"><a href="" class="menu__link" [routerLink]="'/commercial'"
-                            [routerLinkActive]="'active'">Коммерческая</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="header__lang lang">
-            <nav class="lang__menu">
-                <ul class="lang__list">
-                    <li>
-                        <div class="lang__body">
-                            <a href="" class="lang__link">RU</a>
-                            <span class="arrow down"></span>
-                        </div>
-                        <ul class="sub-lang__list">
-                            <li>
-                                <a href="" class="sub-lang__link">Eng</a>
-                            </li>
-                            <li>
-                                <a href="" class="sub-lang__link">Tr</a>
-                            </li>
-                            <li>
-                                <a href="" class="sub-lang__link">Me</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
-            <button [ngClass]="status ? 'open' : 'icon-menu'" (click)="clickEvent()" type="button"
-                class="icon-menu"><span class=""></span></button>
-        </div>
+  <div class="header__container container">
+    <a [routerLinkActive]="'active'" [routerLink]="''" [routerLinkActiveOptions]="{exact: true}"
+      class="header__logo">State of Estate</a>
+    <div class="header__menu menu " *transloco="let t; read: 'header'">
+      <nav class="menu__body" [ngClass]="status ? 'menu-opeb' : 'menu__body'">
+        <ul class="menu__list">
+          <li class="menu__item">
+            <a class="menu__link" routerLink="/search-rent" [routerLinkActive]="'active'">{{ t('rent') }}</a>
+          </li>
+          <li class="menu__item"><a class="menu__link" routerLink="/search-sell" [routerLinkActive]="'active'">{{
+              t('sale') }}</a>
+          </li>
+          <li class="menu__item"><a class="menu__link" routerLink="/plots" [routerLinkActive]="'active'">{{ t('land')
+              }}</a>
+          </li>
+          <li class="menu__item"><a class="menu__link" routerLink="/villas" [routerLinkActive]="'active'">{{
+              t('houseAndVillas') }}</a>
+          <li class="menu__item"><a class="menu__link" routerLink="/commercial" [routerLinkActive]="'active'">{{
+              t('Commercial') }}</a>
+          </li>
+        </ul>
+      </nav>
     </div>
+    <div class="header__lang lang">
+      <nav class="lang__menu">
+        <ul class="lang__list">
+          <li>
+            <div class="lang__body">
+              <a (click)="languageChange($event)" class="lang__link">{{currentLanguage}}</a>
+              <span class="arrow down"></span>
+            </div>
+            <ul class="sub-lang__list">
+              <li *ngFor="let language of secondaryLanguages;">
+                <a (click)="languageChange($event)" class="sub-lang__link">{{language}}</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <button [ngClass]="status ? 'open' : 'icon-menu'" (click)="clickEvent($event)" type="button"
+        class="icon-menu"><span class=""></span></button>
+    </div>
+  </div>
 </header>

@@ -1,34 +1,37 @@
 <app-header></app-header>
 <main class="main">
-  <section class="search__page">
+  <section class="search__page" *transloco="let t; read: 'searchMenuOptions'">
     <div class="search__container container">
       <div class="search__block">
         <div class="search__menu menu">
           <div class="menu__buttons">
             <button class="menu__search-btns" [ngClass]="statusBuy ? 'activebtn' : 'notactive'"
-              (click)="SetSearch('Buy')">Купить</button>
+              (click)="SetSearch('Buy')">{{
+              t('menuSearchSaleButton') }}</button>
             <button class="menu__search-btns" [ngClass]="statusRent ? 'activebtn' : 'notactive'"
-              (click)="SetSearch('Rent')">Арендовать</button>
+              (click)="SetSearch('Rent')">{{
+              t('menuSearchRentButton') }}</button>
             <button class="menu__search-btns" [ngClass]="statusId ? 'activebtn' : 'notactive'"
-              (click)="SetSearch('Id')">Поиск по ID</button>
+              (click)="SetSearch('Id')">{{
+              t('menuSearchByIDButton') }}</button>
           </div>
           <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Buy')">
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu02')">
-                  <div class="menu__value">Город</div>
+                  <div class="menu__value">{{ t('city') }}</div>
                   <div class="menu__text">
                     <div *ngIf="selectedCitiesSale.length > 0; else noSelected" style="display: flex;">
                       <div *ngFor="let selectedCity of selectedCitiesSale; last as isLast; first as isFirst"
                         style="display: flex;">
                         <div *ngIf="isFirst">
-                          {{displayCityName(selectedCity)}}
+                          {{selectedCity | cityName : trigger}}
                         </div>
                         <!-- <div *ngIf="!isLast">
-                                                  {{displayCityName(selectedCity)}},
+                                                  {{selectedCity | cityName : trigger}},
                                                 </div>
                                                 <div *ngIf="isLast">
-                                                  {{displayCityName(selectedCity)}}
+                                                  {{selectedCity | cityName : trigger}}
                                                 </div> -->
                       </div>
 
@@ -36,7 +39,7 @@
                     <span></span>
                     <ng-template #noSelected>
                       <ul>
-                        <li>Буба, Чеча </li>
+                        <li>{{ t('cityExample') }} </li>
                       </ul>
                     </ng-template>
                   </div>
@@ -47,8 +50,8 @@
                     <li *ngFor="let city of citiesSale">
                       <label for="{{city.Data.City_ID}}">
                         <input type="checkbox" id="{{city.Data.City_ID}}" [(ngModel)]="city.checked"
-                          (change)="selectCitySale(city);"
-                          name="{{displayCityAndCheckName(city)}}" />{{displayCityAndCheckName(city)}}</label>
+                          (change)="selectCitySale(city);" name="{{city | cityAndCheckName : trigger}}" />{{city |
+                        cityAndCheckName : trigger}}</label>
                     </li>
                   </ul>
                 </div>
@@ -57,41 +60,41 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu03')">
-                  <div class="menu__value">Кол-во спален</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('bedroomNumber') }}</div>
+                  <div class="menu__text">0<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu03'">
                   <ul class="menu__dropdown">
                     <li>
                       <label for="studio">
-                        <input type="checkbox" id="studio" name="bedroomCount" value="0"
-                          [(ngModel)]="studioSale" />Студия</label>
+                        <input type="checkbox" id="studio" name="bedroomCount" value="0" [(ngModel)]="studioSale" />{{
+                        t('zeroBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="1">
-                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomSale" />1
-                        спальня</label>
+                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomSale" />{{
+                        t('oneBedroom')}}</label>
                     </li>
                     <li>
                       <label for="2">
-                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsSale" />2
-                        спальни</label>
+                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsSale" />{{
+                        t('twoBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="3">
-                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsSale" />3
-                        спальни</label>
+                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsSale" />{{
+                        t('threeBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="4">
-                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsSale" />4
-                        спальни</label>
+                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsSale" />{{
+                        t('fourBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="5">
-                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsSale" />5+
-                        спален</label>
+                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsSale" />{{
+                        t('fiveBedrooms')}}</label>
                     </li>
                   </ul>
                 </div>
@@ -100,18 +103,18 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
-                  <div class="menu__value">Цена</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('price')}}</div>
+                  <div class="menu__text">----<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
                   <ul class="menu__dropdown">
                     <div class="menu__set-price">
-                      <p>Цена от ($)</p>
+                      <p>{{ t('priceFrom')}}</p>
                       <input type="number" [(ngModel)]="priceFromSale">
                     </div>
                     <div class="menu__set-price">
-                      <p>Цена до ($)</p>
+                      <p>{{ t('priceTo')}}</p>
                       <input type="number" [(ngModel)]="priceToSale">
                     </div>
                   </ul>
@@ -121,8 +124,8 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
-                  <div class="menu__value">Опции</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('benefit')}}</div>
+                  <div class="menu__text">{{ t('benefitExample')}}<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
@@ -131,22 +134,23 @@
                       <label for="{{benefit.Data.Benefit_ID}}">
                         <input type="checkbox" id="{{benefit.Data.Benefit_ID}}" [(ngModel)]="benefit.checked"
                           (change)="selectBenefitSale(benefit);"
-                          name="{{displayBenefitAndCheckName(benefit)}}" />{{displayBenefitAndCheckName(benefit)}}</label>
+                          name="{{benefit | benefitAndCheckName : trigger}}" />{{benefit |
+                        benefitAndCheckName : trigger}}</label>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="menu__input">
-              <button class="menu__search-btn" (click)="searchSaleProperties(1)">Поиск</button>
+              <button class="menu__search-btn" (click)="searchSaleProperties(1)">{{ t('searchButton')}}</button>
             </div>
           </div>
           <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Rent')">
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu06')">
-                  <div class="menu__value">Срок аренды</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('rentalPeriod') }}</div>
+                  <div class="menu__text">{{ t('rentalPeriodExample') }}<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu06'">
@@ -154,13 +158,13 @@
                     <li>
                       <label for="Any">
                         <input type="radio" id="Any" value="any" (change)="changeRentalPeriod($event);"
-                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />- Любой -</label>
+                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />{{ t('rentalPeriodAny') }}</label>
                       <label for="LongTerm">
                         <input type="radio" id="LongTerm" value="long-term" (change)="changeRentalPeriod($event);"
-                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />Долгосрочно</label>
+                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />{{ t('rentalPeriodLongTerm') }}</label>
                       <label for="FullSeason">
                         <input type="radio" id="FullSeason" value="whole-season" (change)="changeRentalPeriod($event);"
-                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />Весь турсезон</label>
+                          name="RentalPeriod" [(ngModel)]="rentalPeriod" />{{ t('rentalPeriodFullSeason') }}</label>
                     </li>
                   </ul>
                 </div>
@@ -169,19 +173,19 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu07')">
-                  <div class="menu__value">Город</div>
+                  <div class="menu__value">{{ t('city') }}</div>
                   <div class="menu__text">
                     <div *ngIf="selectedCitiesRent.length > 0; else noSelected" style="display: flex;">
                       <div *ngFor="let selectedCity of selectedCitiesRent; last as isLast; first as isFirst"
                         style="display: flex;">
                         <div *ngIf="isFirst">
-                          {{displayCityName(selectedCity)}}
+                          {{selectedCity | cityName : trigger}}
                         </div>
                         <!-- <div *ngIf="!isLast">
-                                                  {{displayCityName(selectedCity)}},
+                                                  {{selectedCity | cityName : trigger}},
                                                 </div>
                                                 <div *ngIf="isLast">
-                                                  {{displayCityName(selectedCity)}}
+                                                  {{selectedCity | cityName : trigger}}
                                                 </div> -->
                       </div>
 
@@ -189,7 +193,7 @@
                     <span></span>
                     <ng-template #noSelected>
                       <ul>
-                        <li>Буба, Чеча </li>
+                        <li>{{ t('cityExample') }} </li>
                       </ul>
                     </ng-template>
                   </div>
@@ -200,8 +204,8 @@
                     <li *ngFor="let city of citiesRent">
                       <label for="{{city.Data.City_ID}}">
                         <input type="checkbox" id="{{city.Data.City_ID}}" [(ngModel)]="city.checked"
-                          (change)="selectCityRent(city);"
-                          name="{{displayCityAndCheckName(city)}}" />{{displayCityAndCheckName(city)}}</label>
+                          (change)="selectCityRent(city);" name="{{city | cityAndCheckName : trigger}}" />{{city |
+                        cityAndCheckName : trigger}}</label>
                     </li>
                   </ul>
                 </div>
@@ -210,41 +214,41 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu09')">
-                  <div class="menu__value">Кол-во спален</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('bedroomNumber') }}</div>
+                  <div class="menu__text">0<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu09'">
                   <ul class="menu__dropdown">
                     <li>
                       <label for="studio">
-                        <input type="checkbox" id="studio" name="bedroomCount" value="0"
-                          [(ngModel)]="studioRent" />Студия</label>
+                        <input type="checkbox" id="studio" name="bedroomCount" value="0" [(ngModel)]="studioRent" />{{
+                        t('zeroBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="1">
-                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomRent" />1
-                        спальня</label>
+                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomRent" />{{
+                        t('oneBedroom')}}</label>
                     </li>
                     <li>
                       <label for="2">
-                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsRent" />2
-                        спальни</label>
+                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsRent" />{{
+                        t('twoBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="3">
-                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsRent" />3
-                        спальни</label>
+                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsRent" />{{
+                        t('threeBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="4">
-                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsRent" />4
-                        спальни</label>
+                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsRent" />{{
+                        t('fourBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="5">
-                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsRent" />5+
-                        спален</label>
+                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsRent" />{{
+                        t('fiveBedrooms')}}</label>
                     </li>
                   </ul>
                 </div>
@@ -253,18 +257,18 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu10')">
-                  <div class="menu__value">Цена</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('price')}}</div>
+                  <div class="menu__text">----<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu10'">
                   <ul class="menu__dropdown">
                     <div class="menu__set-price">
-                      <p>Цена от ($)</p>
+                      <p>{{ t('priceFrom')}}</p>
                       <input type="number" [(ngModel)]="priceFromRent">
                     </div>
                     <div class="menu__set-price">
-                      <p>Цена до ($)</p>
+                      <p>{{ t('priceTo')}}</p>
                       <input type="number" [(ngModel)]="priceToRent">
                     </div>
                   </ul>
@@ -274,31 +278,31 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu11')">
-                  <div class="menu__value">Опции</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('benefit')}}</div>
+                  <div class="menu__text">{{ t('benefitExample')}}<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu11'">
                   <ul class="menu__dropdown">
                     <li *ngFor="let benefit of benefitsRent">
-                      <label for="{{benefit.Data.Benefit_ID}}">
-                        <input type="checkbox" id="{{benefit.Data.Benefit_ID}}" [(ngModel)]="benefit.checked"
-                          (change)="selectBenefitRent(benefit);"
-                          name="{{displayBenefitAndCheckName(benefit)}}" />{{displayBenefitAndCheckName(benefit)}}</label>
+                      <label for="{{benefit.Data.Benefit_ID}}">{{benefit | benefitAndCheckName : trigger}}
+                        <input type="checkbox" id="{{benefit.Data.Benefit_ID}}" (change)="selectBenefitRent(benefit);"
+                          name="{{benefit | benefitAndCheckName : trigger}}" />{{benefit |
+                        benefitAndCheckName : trigger}}</label>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="menu__input">
-              <button class="menu__search-btn" (click)="searchRentProperties(1)">Поиск</button>
+              <button class="menu__search-btn" (click)="searchRentProperties(1)">{{ t('searchButton')}}</button>
             </div>
           </div>
           <div class="" [hidden]="!(CurrentSearch == 'Id')">
             <div class="menu__search-id">
-              <input type="text" placeholder="Поиск по ID">
+              <input type="text" placeholder="{{ t('menuSearchByIDButton')}}">
             </div>
-            <button class="menu__search-btn">Поиск</button>
+            <button class="menu__search-btn">{{ t('searchButton')}}</button>
           </div>
         </div>
       </div>
@@ -307,14 +311,14 @@
   </section>
   <section class="recomendation__page" [hidden]="!(CurrentSearch == 'Buy')">
     <div class="recomendation__container container">
-      <div class="title">
+      <div class="title" *transloco="let t; read: 'searchCommercialPage'">
         <div>
-          <div class="title__btn grey">ПРЕДЛОЖЕНИЯ</div>
+          <div class="title__btn grey">{{ t('title')}}</div>
         </div>
-        <div class="title__label">Актуальные предложения продажи недвижимости в Черногории</div>
+        <div class="title__label">{{ t('saleTitleLabel')}}</div>
       </div>
       <div *ngIf="propertiesSale; else loading">
-        <div class="recomendation__body body">
+        <div class="recomendation__body body" *transloco="let t; read: 'propertyCard'">
           <div class="body__property"
             *ngFor="let property of propertiesSale.Data | paginate: { id: 'server', itemsPerPage: 20, currentPage: propertiesSale.PageNumber, totalItems: propertiesSale.TotalRecords }">
             <div class="body__img">
@@ -322,53 +326,55 @@
               <img src="{{getFirstPictureUrl(property)}}" alt="">
 
             </div>
-            <div class=" body__label">{{property | cityNameByProperty}}
+            <div class=" body__label">{{property | cityNameByProperty : trigger}}
             </div>
-            <div class="body__value">Богор, Джава Барат</div>
+            <div class="body__value">{{property | propertyDescription: trigger | truncate : [120]}}</div>
             <div class="body__info">
               <div class="body__price">${{property | propertyPrice : rentalPeriodOnLoad}}</div>
-              <div class="body__space">{{property | propertySquare}} м² <br> Living Area</div>
+              <div class="body__space" innerHTML="{{property | propertySquare}} {{t('spaceArea')}}"></div>
             </div>
-            <button class="body__inquiry-btn">Send Inquiry</button>
+            <button class="body__inquiry-btn">{{t('sendInquiryButton')}}</button>
           </div>
         </div>
-        <div class="number-of-page">
-          <pagination-controls (pageChange)="searchSaleProperties($event)" id="server" previousLabel="Назад"
-            nextLabel="Вперед"></pagination-controls>
+        <div class="number-of-page" *transloco="let t; read: 'pagination'">
+          <pagination-controls (pageChange)="searchSaleProperties($event)" id="server" previousLabel="{{t('back')}}"
+            nextLabel="{{t('next')}}"></pagination-controls>
         </div>
       </div>
     </div>
   </section>
   <section class="recomendation__page" [hidden]="!(CurrentSearch == 'Rent')">
     <div class="recomendation__container container">
-      <div class="title">
+      <div class="title" *transloco="let t; read: 'searchVillasPage'">
         <div>
-          <div class="title__btn grey">ПРЕДЛОЖЕНИЯ</div>
+          <div class="title__btn grey">{{ t('title')}}</div>
         </div>
-        <div class="title__label">Актуальные предложения аренды недвижимости в Черногории</div>
+        <div class="title__label">{{ t('rentTitleLabel')}}</div>
       </div>
       <div *ngIf="propertiesRent; else loading">
-        <div class="recomendation__body body">
+        <div class="recomendation__body body" *transloco="let t; read: 'propertyCard'">
           <div class="body__property"
             *ngFor="let property of propertiesRent.Data | paginate: { id: 'server', itemsPerPage: 20, currentPage: propertiesRent.PageNumber, totalItems: propertiesRent.TotalRecords }">
             <div class="body__img">
 
-              <img src="{{getFirstPictureUrl(property)}}" alt="">
+              <a [routerLink]="propertyLink" routerLinkActive="active" ariaCurrentWhenActive="page">
+                <img src="{{getFirstPictureUrl(property)}}" alt="">
+              </a>
 
             </div>
-            <div class=" body__label">{{property | cityNameByProperty}}
+            <div class=" body__label">{{property | cityNameByProperty : trigger}}
             </div>
-            <div class="body__value">Богор, Джава Барат</div>
+            <div class="body__value">{{property | propertyDescription: trigger | truncate : [120]}}</div>
             <div class="body__info">
               <div class="body__price">${{property | propertyPrice : rentalPeriodOnLoad}}</div>
-              <div class="body__space">{{property | propertySquare}} м² <br> Living Area</div>
+              <div class="body__space" innerHTML="{{property | propertySquare}} {{t('spaceArea')}}"></div>
             </div>
-            <button class="body__inquiry-btn">Send Inquiry</button>
+            <button class="body__inquiry-btn">{{t('sendInquiryButton')}}</button>
           </div>
         </div>
-        <div class="number-of-page">
-          <pagination-controls (pageChange)="searchRentProperties($event)" id="server" previousLabel="Назад"
-            nextLabel="Вперед"></pagination-controls>
+        <div class="number-of-page" *transloco="let t; read: 'pagination'">
+          <pagination-controls (pageChange)="searchRentProperties($event)" id="server" previousLabel="{{t('back')}}"
+            nextLabel="{{t('next')}}"></pagination-controls>
         </div>
       </div>
     </div>

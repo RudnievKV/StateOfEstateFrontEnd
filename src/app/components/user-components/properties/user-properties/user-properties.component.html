@@ -1,107 +1,129 @@
 <app-header></app-header>
-<main class="main">
-    <div class="property__page">
-        <div class="property__container container">
-            <div class="title">
-                <div>
-                    <div class="title__btn">ID 228</div>
-                </div>
-                <div class="title__label">Сдаётся квартира в Бечичах с 2 спальнями</div>
-                <div class="title__value">Аренда Бечичи № 2805. Сдается квартира в Бечичи с 2 спальнями на год. Есть
-                    место для
-                    парковки. Плазма. Большая терраса с
-                    видом. Наша компания оказывает услуги по аренде вашей недвижимости.
-                </div>
-            </div>
-            <div class="property__info info">
-                <div class="info__description">
-                    <div class="info__title"></div>
-                    <div class="info__value"></div>
-                </div>
-                <div class="info__block">
-                    <div class="info__title"></div>
-                    <div class="info__value"></div>
-                </div>
-                <div class="image-swiper">
-                    <!-- <ngx-image-swiper [config]="swiperConfig" [images]="images"></ngx-image-swiper> -->
-                </div>
-                <gallery style="background-color: #F5F5F5;" [items]="images" thumbPosition="bottom"
-                    (click)="onItemClick($event)"></gallery>
-                <div class="info__block">
-                    <div class="info__title">Детали</div>
-                    <div class="info__value-block">
-                        <p class="info__value">Местоположение: Столив</p>
-                        <p class="info__value">Кол-во спален: 5+</p>
-                        <p class="info__value">Площадь: 350 м²</p>
-                        <p class="info__value">Кол-во санузлов: 5</p>
-                        <p class="info__value">Кол-во санузлов: 5</p>
-                        <p class="info__value">Кол-во санузлов: 5xex</p>
-                    </div>
-                </div>
-                <div class="info__block">
-                    <div class="info__title">Удобства и преимущества</div>
-                    <div class="info__value-block">
-                        <p class="info__value">Вид на горы</p>
-                        <p class="info__value">Лифт</p>
-                        <p class="info__value">Вид на море</p>
-                        <p class="info__value">Новое здание</p>
-                        <p class="info__value">Терраса</p>
-                        <p class="info__value">Южная сторона</p>
-                    </div>
-                </div>
-                <div class="info__map map">
-                    <div class="map__title">Объект на карте</div>
-                    <div class="map__value">
-                        <google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
-                        </google-map>
-                    </div>
-                </div>
-                <div class="info__consultation consultation">
-                    <div class="consultation__title">Консультируем бесплатно</div>
-                    <div class="consultation__value">Оставьте заявку на консультацию и мы Вам перезвоним</div>
-                    <div class="consultation__callback">
-                        <div class="consultation__textfield">
-                            <label class="consultation__textfield-label">Ваше имя</label>
-                            <input class="consultation__textfield-input" type="text">
-                        </div>
-                        <div class="consultation__textfield">
-                            <label class="consultation__textfield-label">Ваш номер</label>
-                            <input class="consultation__textfield-input" type="text" value="+380501091319">
-                        </div>
-                        <div class="consultation__sumbit-button-wrap">
-                            <button class="consultation__submit-button" type="text">Отправить</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+<main class="main" *transloco="let t; read: 'propertyPage'">
+  <div class="property__page">
+    <div class="property__container container" *ngIf="property; else loading">
+      <div class="title">
+        <div>
+          <div class="title__btn">ID {{property.Property_ID}}</div>
         </div>
-    </div>
-    <section class="recommendations__page">
-        <div class="recommendations__container container">
-            <div class="title">
-                <div>
-                    <div class="title__btn grey">Похожие обьекты</div>
-                </div>
-                <div class="title__label">Лучшие рекомендации</div>
-                <div class="title__value">Откройте для себя наш эксклюзивный выбор лучших <br> уникальных архитектурных
-                    шедевров класса люкс.
-                </div>
+        <div class="title__label">{{property | propertyTitle : trigger : type}}</div>
+        <div class="title__value">{{property | propertyDescription : trigger : type}}Аренда Бечичи
+          № 2805.
+          Сдается квартира в Бечичи с 2 спальнями на год. Есть
+          место для
+          парковки. Плазма. Большая терраса с
+          видом. Наша компания оказывает услуги по аренде вашей недвижимости.
+        </div>
+      </div>
+      <div class="property__info info">
+        <div class="info__description">
+          <div class="info__title"></div>
+          <div class="info__value"></div>
+        </div>
+        <div class="info__block">
+          <div class="info__title"></div>
+          <div class="info__value"></div>
+        </div>
+        <div class="image-swiper">
+          <!-- <ngx-image-swiper [config]="swiperConfig" [images]="images"></ngx-image-swiper> -->
+        </div>
+        <gallery style="background-color: #F5F5F5;" [items]="images" thumbPosition="bottom"
+          (click)="onItemClick($event)" *ngIf="property; else loading"></gallery>
+        <div class="info__block">
+          <div class="info__title">{{ t('detailsTitle') }}</div>
+          <div class="info__value-block">
+            <p class="info__value">{{ t('location', { cityName: property | propertyCityName : trigger }) }}</p>
+            <p class="info__value"
+              *ngIf="property.BedroomCount == 5 && property.BedroomCount; else lessThanFiveBedrooms">{{t('bedroomCount',
+              { bedroomCount: property.BedroomCount}) }}+</p>
+            <ng-template #lessThanFiveBedrooms>
+              <p class="info__value" *ngIf="property.BedroomCount">{{t('bedroomCount', { bedroomCount:
+                property.BedroomCount}) }}</p>
+            </ng-template>
+
+            <p class="info__value" *ngIf="property.HouseAreaSquare">{{t('houseFootage', { houseAreaSquare:
+              property.HouseAreaSquare}) }}</p>
+            <p class="info__value" *ngIf="property.LandAreaSquare">{{t('landFootage', { landAreaSquare:
+              property.LandAreaSquare}) }}</p>
+            <p class="info__value" *ngIf="property.BathroomCount">{{t('bathroomCount', { bathroomCount:
+              property.BathroomCount}) }}</p>
+            <p class="info__value" *ngIf="property.Floor">{{t('floor', { floor: property.Floor}) }}</p>
+            <p class="info__value" *ngIf="property.FloorsInABuilding">{{t('floorsInABuilding', { floorsInABuilding:
+              property.FloorsInABuilding}) }}
+            </p>
+            <p class="info__value" *ngIf="property.ConstructionYear">{{t('constructionYear', { constructionYear:
+              property.ConstructionYear}) }}</p>
+          </div>
+        </div>
+        <div class="info__block">
+          <div class="info__title">{{ t('benefitsTitle') }}</div>
+          <div class="info__value-block">
+            <p class="info__value" *ngFor="let benefit of property.Benefits; index as i;">{{benefit | benefitName :
+              trigger}}</p>
+            <!-- <p class="info__value">Лифт</p>
+            <p class="info__value">Вид на море</p>
+            <p class="info__value">Новое здание</p>
+            <p class="info__value">Терраса</p>
+            <p class="info__value">Южная сторона</p> -->
+          </div>
+        </div>
+        <div class="info__map map">
+          <div class="map__title">{{ t('mapTitle') }}</div>
+          <div class="map__value">
+            <google-map height="400px" width="100%" [center]="center" [zoom]="zoom">
+              <map-marker *ngFor="let markerPosition of markerPositions" [position]="markerPosition"
+                [options]="markerOptions"></map-marker>
+            </google-map>
+          </div>
+        </div>
+        <div class="info__consultation consultation">
+          <div class="consultation__title">{{ t('consultationTitle') }}</div>
+          <div class="consultation__value">{{ t('consultationValue') }}</div>
+          <div class="consultation__callback">
+            <div class="consultation__textfield">
+              <label class="consultation__textfield-label">{{ t('consultationUserName') }}</label>
+              <input class="consultation__textfield-input" type="text">
             </div>
-            <div class="container1">
-                <div class="swiper-container">
-                    <div class="swiper-wrapper">
-                        <div class="swiper-slide" *ngFor="let property of properties">
-                            <app-property-card [property]="property"></app-property-card>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="swiper-button-prev">
+            <div class="consultation__textfield">
+              <label class="consultation__textfield-label">{{ t('consultationUserPhone') }}</label>
+              <input class="consultation__textfield-input" type="text" value="+380501091319">
+            </div>
+            <div class="consultation__sumbit-button-wrap">
+              <button class="consultation__submit-button" type="text">{{ t('consultationSendButton') }}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <section class="recommendations__page">
+    <div class="recommendations__container container">
+      <div class="title">
+        <div>
+          <div class="title__btn grey">{{ t('recommendationTitle') }}</div>
+        </div>
+        <div class="title__label">{{ t('bestRecommendationsTitle') }}</div>
+        <div class="title__value" [innerHTML]="t('bestRecommendationsValue')">
+        </div>
+      </div>
+      <div class="container1">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let property of similarProperties">
+              <app-property-card [property]="property"></app-property-card>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="swiper-button-prev">
                 </div>
                 <div class="swiper-button-next">
                 </div> -->
-            </div>
-        </div>
-    </section>
+      </div>
+    </div>
+  </section>
 </main>
+<ng-template #loading>
+  <mat-spinner [diameter]="100" class="mat-spinner-color"></mat-spinner>
+</ng-template>
 <app-footer></app-footer>

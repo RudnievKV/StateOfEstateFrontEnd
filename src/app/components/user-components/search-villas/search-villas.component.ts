@@ -1,7 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { firstValueFrom, forkJoin } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription, firstValueFrom, forkJoin } from 'rxjs';
 import { BenefitDto } from 'src/app/models/BenefitDtos/BenefitDto';
 import { CityDto } from 'src/app/models/CityDtos/CityDto';
 import DataAndCheck from 'src/app/models/DataAndCheck';
@@ -20,16 +21,27 @@ export class SearchVillasComponent {
 
   textContent = 'Продажа Добра Вода № 2579. Продается дом (109м2) в поселке Добры Воды. Участок 500м2. Паркинг на 2 автомобиля. Резервуар для воды 20м3. До моря 1500 метров. На участке растут: миндаль, мушмула, виноград, смоква, лимон. Вид на море. 1этаж: гостиная, кухня, спальня, санузел, терраса 2 этаж: 2 спальни, санузел, терраса';
   symbolLimit = 110;
+
   constructor(
     private _benefitService: BenefitService,
     private _cityService: CityService,
     private _propertyService: PropertyService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
+    private _translocoService: TranslocoService
   ) {
     this._router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
+    this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
+      this.currentDropdown = null;
+      this.trigger = this.trigger + 1;
+    });
+  }
+  languageChangeSubscription!: Subscription;
+  trigger = 0;
+  ngOnDestroy() {
+    this.languageChangeSubscription.unsubscribe();
   }
 
   citiesRent!: Array<DataAndCheck<CityDto>>;
@@ -59,6 +71,7 @@ export class SearchVillasComponent {
 
     if (httpParams.has("rental-period")) {
       this.CurrentSearch = 'Rent';
+      this.propertyLink = "properties/r";
       this.statusBuy = false;
       this.statusRent = true;
       this.statusId = false;
@@ -420,6 +433,7 @@ export class SearchVillasComponent {
   searchSaleProperties(pageNumber: number) {
     let params = new HttpParams();
     params = params.append("page-number", pageNumber);
+    params = params.append("for-sale", true);
 
     this.selectedCitiesSale.forEach(city => {
       params = params.append("cities", city.City_ID);
@@ -485,6 +499,7 @@ export class SearchVillasComponent {
   statusBuy: boolean = true;
   statusRent: boolean = false;
   statusId: boolean = false;
+  propertyLink = "properties/s";
   SetSearch(Search: string) {
     this.CurrentSearch = Search;
 
@@ -492,11 +507,13 @@ export class SearchVillasComponent {
       this.statusBuy = true;
       this.statusRent = false;
       this.statusId = false;
+      this.propertyLink = "properties/s";
     }
     else if (Search == 'Rent' && this.statusRent == false) {
       this.statusBuy = false;
       this.statusRent = true;
       this.statusId = false;
+      this.propertyLink = "properties/r";
     }
     else if (Search == 'Id' && this.statusId == false) {
       this.statusBuy = false;

@@ -38,6 +38,7 @@ export class PropertyDto {
   LandAreaSquare!: number | null;
   Floor!: number | null;
   BathroomCount!: number | null;
+  IsForSale!: boolean;
   Type!: string;
 
   constructor() {

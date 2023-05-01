@@ -20,6 +20,7 @@ export class PropertyCreateDto {
   SalePrice!: number | null;
   CounterAgentNumber!: number | null;
   VideoID!: string | null;
+  IsForSale!: boolean;
   RentPromoteStatus!: boolean;
   SalePromoteStatus!: boolean;
   Pets!: boolean;
@@ -42,11 +43,14 @@ export class PropertyCreateDto {
 export class LocalPropertyValue {
   LocalPropertyTitle!: string | null;
   LocalPropertyDescription!: string | null;
+  LocalPropertyType!: string;
+
   Local_ID!: number;
-  constructor(Local_ID: number, LocalPropertyTitle: string, LocalPropertyDescription: string) {
+  constructor(Local_ID: number, LocalPropertyTitle: string, LocalPropertyDescription: string, LocalPropertyType: string) {
     this.Local_ID = Local_ID;
     this.LocalPropertyTitle = LocalPropertyTitle;
     this.LocalPropertyDescription = LocalPropertyDescription;
+    this.LocalPropertyType = LocalPropertyType;
   }
 }
 export class PhotoPositionValue {

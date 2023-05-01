@@ -2,7 +2,8 @@ import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { firstValueFrom, forkJoin } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription, firstValueFrom, forkJoin } from 'rxjs';
 import { BenefitDto } from 'src/app/models/BenefitDtos/BenefitDto';
 import { CityDto } from 'src/app/models/CityDtos/CityDto';
 import DataAndCheck from 'src/app/models/DataAndCheck';
@@ -26,10 +27,20 @@ export class SearchRentComponent {
     private _propertyService: PropertyService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
+    private _translocoService: TranslocoService
   ) {
     this._router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
+    this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
+      this.currentDropdown = null;
+      this.trigger = this.trigger + 1;
+    });
+  }
+  languageChangeSubscription!: Subscription;
+  trigger = 0;
+  ngOnDestroy() {
+    this.languageChangeSubscription.unsubscribe();
   }
 
   cities!: Array<DataAndCheck<CityDto>>;
@@ -187,18 +198,6 @@ export class SearchRentComponent {
   nextPageUrl = '';
   totalPagesArray = new Array<number>();
 
-  displayCityAndCheckName(cityDtoAndCheck: DataAndCheck<CityDto>) {
-    let city = cityDtoAndCheck.Data;
-    return city.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
-  }
-  displayCityName(cityDto: CityDto) {
-    return cityDto.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
-  }
-  displayBenefitAndCheckName(benefitDtoAndCheck: DataAndCheck<BenefitDto>) {
-    let benefit = benefitDtoAndCheck.Data;
-    return benefit.Local_Benefits.find(element => element.Local.LocalizationCode == 'ru')?.LocalBenefitName;
-  }
-
   selectedCities = new Array<CityDto>();
   selectCity(city: DataAndCheck<CityDto>) {
     if (city.checked) {
@@ -325,8 +324,6 @@ export class SearchRentComponent {
       this.currentDropdown = menuName; // open the dropdown menu
     }
   }
-
-
 }
 
 

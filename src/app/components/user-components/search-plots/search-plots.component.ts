@@ -1,7 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { firstValueFrom, forkJoin } from 'rxjs';
+import { TranslocoService } from '@ngneat/transloco';
+import { Subscription, firstValueFrom, forkJoin } from 'rxjs';
 import { BenefitDto } from 'src/app/models/BenefitDtos/BenefitDto';
 import { CityDto } from 'src/app/models/CityDtos/CityDto';
 import DataAndCheck from 'src/app/models/DataAndCheck';
@@ -26,12 +27,21 @@ export class SearchPlotsComponent {
     private _propertyService: PropertyService,
     private _router: Router,
     private _activatedRoute: ActivatedRoute,
+    private _translocoService: TranslocoService
   ) {
     this._router.routeReuseStrategy.shouldReuseRoute = () => {
       return false;
     };
+    this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
+      this.currentDropdown = null;
+      this.trigger = this.trigger + 1;
+    });
   }
-
+  languageChangeSubscription!: Subscription;
+  trigger = 0;
+  ngOnDestroy() {
+    this.languageChangeSubscription.unsubscribe();
+  }
   cities!: Array<DataAndCheck<CityDto>>;
   benefits!: Array<DataAndCheck<BenefitDto>>;
   properties!: PagedResponse<PropertyDto>;

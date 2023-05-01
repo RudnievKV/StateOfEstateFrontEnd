@@ -1,10 +1,10 @@
 {
   "header": {
-    "rent": "Rent",
-    "sale": "Sale",
-    "land": "Land Plots",
-    "houseAndVillas": "House and Villas",
-    "Commercial": "Commercial"
+    "rent": "Аренда",
+    "sale": "Продажа",
+    "land": "Участки",
+    "houseAndVillas": "Дома и виллы",
+    "Commercial": "Коммерческая"
   },
   "footer": {
     "newsletterText": "We have built our reputation as true local area experts.",

@@ -34,6 +34,9 @@ export class PropertyService {
   GetProperty(id: number): Observable<PropertyDto> {
     return this.http.get<PropertyDto>(`${this.apiUrl}api/properties/${id}`)
   }
+  GetSimilarProperties(id: number): Observable<PropertyDto[]> {
+    return this.http.get<PropertyDto[]>(`${this.apiUrl}api/properties/similar/${id}`)
+  }
   GetAllProperties(): Observable<PropertyDto[]> {
     return this.http.get<PropertyDto[]>(`${this.apiUrl}api/properties/all`)
   }

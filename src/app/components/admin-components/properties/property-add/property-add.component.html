@@ -36,6 +36,12 @@
             </mat-select>
           </mat-form-field>
         </div>
+        <div class="options__item">
+          <p class="options__value"></p>
+          <p><mat-checkbox [(ngModel)]="isForSale">Для продажи</mat-checkbox>
+          </p>
+        </div>
+
         <div class="add-city__name name">
           <div class="add-city__choose-lang">
             <button mat-raised-button class class="add-property__buttons-save" (click)="SetLanguage('Ru')">

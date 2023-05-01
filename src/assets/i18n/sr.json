@@ -1,1 +1,146 @@
-{}
+{
+  "header": {
+    "rent": "Rent",
+    "sale": "Sale",
+    "land": "Land Plots",
+    "houseAndVillas": "House and Villas",
+    "Commercial": "Commercial"
+  },
+  "footer": {
+    "newsletterText": "We have built our reputation as true local area experts.",
+    "newsletter": "Newsletter",
+    "newsletterSearchButton": "Search",
+    "service": "Service",
+    "aboutUs": "About us",
+    "careers": "Careers",
+    "termsAndConditions": "Terms & Conditions",
+    "privacyAndPolicy": "Privacy & Policy",
+    "community": "Community",
+    "findAgents": "Find Agents",
+    "lifestyle": "Lifestyle",
+    "legalNotice": "Legal notice",
+    "followUsOn": "Follow us on"
+  },
+  "pagination": {
+    "next": "Вперед",
+    "back": "Назад"
+  },
+  "propertyCard": {
+    "spaceArea": "m2 <br> Living Area",
+    "sendInquiryButton": "Send Inquiry"
+  },
+  "propertyPage": {
+    "detailsTitle": "Детали",
+    "location": "Местоположение: {{cityName}}",
+    "houseFootage": "Площадь: {{houseAreaSquare}} м²",
+    "landFootage": "Площадь участка: {{landAreaSquare}} м²",
+    "bedroomCount": "Кол-во спален: {{bedroomCount}}",
+    "bathroomCount": "Кол-во санузлов: {{bathroomCount}}",
+    "floor": "Этаж: {{floor}}",
+    "floorsInABuilding": "Этажей в здании: {{floorsInABuilding}}",
+    "constructionYear": "Год постройки: {{constructionYear}}",
+    "benefitsTitle": "Удобства и преимущества",
+    "mapTitle": "Объект на карте",
+    "consultationTitle": "Консультируем бесплатно",
+    "consultationValue": "Оставьте заявку на консультацию и мы Вам перезвоним",
+    "consultationUserName": "Ваше имя",
+    "consultationUserPhone": "Ваш номер",
+    "consultationSendButton": "Отправить",
+    "recommendationTitle": "Похожие обьекты",
+    "bestRecommendationsTitle": "Лучшие рекомендации",
+    "bestRecommendationsValue": "Откройте для себя наш эксклюзивный выбор лучших <br> уникальных архитектурных шедевров класса люкс."
+  },
+  "homePage": {
+    "title": "Недвижимость",
+    "titleLable": "Давайте искать дом вашей мечты",
+    "titleValue": "Изучите наш ассортимент красивой недвижимости с добавлением отдельных жилых помещений, подходящих для вас.",
+    "recommendationsSection": {
+      "title": "ПРЕДЛОЖЕНИЯ",
+      "titleLabel": "Лучшие рекомендации",
+      "titleValue": "Откройте для себя наш эксклюзивный выбор лучших уникальных архитектурных шедевров класса люкс."
+    },
+    "advantagesSection": {
+      "title": "НАШИ ПРЕИМУЩЕСТВА",
+      "titleLable": "Giving you peace of mind",
+      "firstAdvantageTitle": "Комфортный",
+      "firstAdvantageText": "Наслаждайтесь удобствами для жизни, разработанными, чтобы обеспечить каждому домовладельцу современный комфорт, в двух шагах от школ, церквей и больниц."
+    },
+    "aboutUsSection": {
+      "title": "О НАС",
+      "titleLabel": "Сколько сейчас стоит ваша недвижимость?",
+      "titleValue": "Мы заработали себе репутацию настоящих экспертов в своей области. Мы получили больше знаний об интересах покупателей, нашем районе и рынке, чем любой другой бренд, потому что мы живем локально и работаем для местных жителей.",
+      "saleCount": "Кол-во продаж",
+      "rentCount": "Кол-во аренд"
+    },
+    "commentsSection": {
+      "title": "ОТЗЫВЫ КЛИЕНТА",
+      "titleLabel": "Что люди говорят о нас?",
+      "firstCommentTitle": "Оказалось, что это именно тот дом, который мы хотели.",
+      "firstCommentValue": "Мы хотим выразить нашу благодарность за вашу усердную работу по поиску нам временного дома, который оказался именно тем, что мы хотели.",
+      "firstCommentName": "Джейдон Аминофф",
+      "firstCommentSkills": "UX-дизайнер",
+      "secondCommentTitle": "Оказалось, что это именно тот дом, который мы хотели.",
+      "secondCommentValue": "Мы хотим выразить нашу благодарность за вашу усердную работу по поиску нам временного дома, который оказался именно тем, что мы хотели.",
+      "secondCommentName": "Джейдон Аминофф",
+      "secondCommentSkills": "UX-дизайнер",
+      "thirdCommentTitle": "Оказалось, что это именно тот дом, который мы хотели.",
+      "thirdCommentValue": "Мы хотим выразить нашу благодарность за вашу усердную работу по поиску нам временного дома, который оказался именно тем, что мы хотели.",
+      "thirdCommentName": "Джейдон Аминофф",
+      "thirdCommentSkills": "UX-дизайнер"
+    }
+  },
+  "searchMenuOptions": {
+    "menuSearchSaleButton": "Купить",
+    "menuSearchRentButton": "Арендовать",
+    "menuSearchHouseAndVillasButton": "Дома и виллы",
+    "menuSearchPlotsButton": "Участки",
+    "menuSearchCommercialButton": "Коммерческая",
+    "menuSearchByIDButton": "Поиск по ID",
+    "city": "Город",
+    "cityExample": "Буба, Чеча",
+    "bedroomNumber": "Кол-во спален",
+    "zeroBedrooms": "Студия",
+    "oneBedroom": "1 спальня",
+    "twoBedrooms": "2 спальни",
+    "threeBedrooms": "3 спальни",
+    "fourBedrooms": "4 спальни",
+    "fiveBedrooms": "5+ спален",
+    "price": "Цена",
+    "priceFrom": "Цена от ($)",
+    "priceTo": "Цена до ($)",
+    "benefit": "Опции",
+    "benefitExample": "Буба, Чеча",
+    "searchButton": "Поиск",
+    "rentalPeriod": "Срок аренды",
+    "rentalPeriodExample": "- Любой -",
+    "rentalPeriodAny": "- Любой -",
+    "rentalPeriodLongTerm": "Долгосрочно",
+    "rentalPeriodFullSeason": "Весь турсезон",
+    "landSquare": "Площадь",
+    "landSquareExample": "Буба, Чеча",
+    "landFootageFrom": "Площадь от ( м² )",
+    "landFootageTo": "Площадь до ( м² )"
+  },
+  "searchRentPage": {
+    "title": "ПРЕДЛОЖЕНИЯ",
+    "titleLabel": "Актуальные предложения аренды недвижимости в Черногории"
+  },
+  "searchSalePage": {
+    "title": "ПРЕДЛОЖЕНИЯ",
+    "titleLabel": "Актуальные предложения продажи недвижимости в Черногории"
+  },
+  "searchPlotsPage": {
+    "title": "ПРЕДЛОЖЕНИЯ",
+    "titleLabel": "Актуальные предложения продажи недвижимости в Черногории"
+  },
+  "searchVillasPage": {
+    "title": "ПРЕДЛОЖЕНИЯ",
+    "saleTitleLabel": "Актуальные предложения продажи недвижимости в Черногории",
+    "rentTitleLabel": "Актуальные предложения аренды недвижимости в Черногории"
+  },
+  "searchCommercialPage": {
+    "title": "ПРЕДЛОЖЕНИЯ",
+    "saleTitleLabel": "Актуальные предложения продажи недвижимости в Черногории",
+    "rentTitleLabel": "Актуальные предложения аренды недвижимости в Черногории"
+  }
+}

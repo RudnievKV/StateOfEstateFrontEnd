@@ -1,32 +1,34 @@
 <app-header></app-header>
 <main class="main">
-  <section class="search__page">
+  <section class="search__page" *transloco="let t; read: 'searchMenuOptions'">
     <div class="search__container container">
       <div class="search__block">
         <div class="search__menu menu">
           <div class="menu__buttons">
             <button class="menu__search-btns" [ngClass]="statusRent ? 'activebtn' : 'notactive'"
-              (click)="SetSearch('Rent')">Купить</button>
+              (click)="SetSearch('Rent')">{{
+              t('menuSearchSaleButton') }}</button>
             <button class="menu__search-btns" [ngClass]="statusId ? 'activebtn' : 'notactive'"
-              (click)="SetSearch('Id')">Поиск по ID</button>
+              (click)="SetSearch('Id')">{{
+              t('menuSearchByIDButton') }}</button>
           </div>
           <div class="menu__inputs" [hidden]="!(CurrentSearch == 'Rent')">
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu02')">
-                  <div class="menu__value">Город</div>
+                  <div class="menu__value">{{ t('city') }}</div>
                   <div class="menu__text">
                     <div *ngIf="selectedCities.length > 0; else noSelected" style="display: flex;">
                       <div *ngFor="let selectedCity of selectedCities; last as isLast; first as isFirst"
                         style="display: flex;">
                         <div *ngIf="isFirst">
-                          {{displayCityName(selectedCity)}}
+                          {{selectedCity | cityName : trigger}}
                         </div>
                         <!-- <div *ngIf="!isLast">
-                                                  {{displayCityName(selectedCity)}},
+                                                  {{selectedCity | cityName : trigger}},
                                                 </div>
                                                 <div *ngIf="isLast">
-                                                  {{displayCityName(selectedCity)}}
+                                                  {{selectedCity | cityName : trigger}}
                                                 </div> -->
                       </div>
 
@@ -34,7 +36,7 @@
                     <span></span>
                     <ng-template #noSelected>
                       <ul>
-                        <li>Буба, Чеча </li>
+                        <li>{{ t('cityExample') }}</li>
                       </ul>
                     </ng-template>
                   </div>
@@ -45,8 +47,8 @@
                     <li *ngFor="let city of cities">
                       <label for="{{city.Data.City_ID}}">
                         <input type="checkbox" id="{{city.Data.City_ID}}" [(ngModel)]="city.checked"
-                          (change)="selectCity(city);"
-                          name="{{displayCityAndCheckName(city)}}" />{{displayCityAndCheckName(city)}}</label>
+                          (change)="selectCity(city);" name="{{city | cityAndCheckName : trigger}}" />{{city |
+                        cityAndCheckName : trigger}}</label>
                     </li>
                   </ul>
                 </div>
@@ -55,41 +57,41 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu03')">
-                  <div class="menu__value">Кол-во спален</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('bedroomNumber') }}</div>
+                  <div class="menu__text">0<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu03'">
                   <ul class="menu__dropdown">
                     <li>
                       <label for="studio">
-                        <input type="checkbox" id="studio" name="bedroomCount" value="0"
-                          [(ngModel)]="studio" />Студия</label>
+                        <input type="checkbox" id="studio" name="bedroomCount" value="0" [(ngModel)]="studio" />{{
+                        t('zeroBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="1">
-                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroom" />1
-                        спальня</label>
+                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroom" />{{
+                        t('oneBedroom')}}</label>
                     </li>
                     <li>
                       <label for="2">
-                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedrooms" />2
-                        спальни</label>
+                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedrooms" />{{
+                        t('twoBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="3">
-                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedrooms" />3
-                        спальни</label>
+                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedrooms" />{{
+                        t('threeBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="4">
-                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedrooms" />4
-                        спальни</label>
+                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedrooms" />{{
+                        t('fourBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="5">
-                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedrooms" />5+
-                        спален</label>
+                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedrooms" />{{
+                        t('fiveBedrooms')}}</label>
                     </li>
                   </ul>
                 </div>
@@ -98,18 +100,18 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
-                  <div class="menu__value">Цена</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('price')}}</div>
+                  <div class="menu__text">----<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
                   <ul class="menu__dropdown">
                     <div class="menu__set-price">
-                      <p>Цена от ($)</p>
+                      <p>{{ t('priceFrom')}}</p>
                       <input type="number" [(ngModel)]="priceFrom">
                     </div>
                     <div class="menu__set-price">
-                      <p>Цена до ($)</p>
+                      <p>{{ t('priceTo')}}</p>
                       <input type="number" [(ngModel)]="priceTo">
                     </div>
                   </ul>
@@ -119,8 +121,8 @@
             <div class="menu__input">
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
-                  <div class="menu__value">Опции</div>
-                  <div class="menu__text">Буба, Чеча<span></span></div>
+                  <div class="menu__value">{{ t('benefit')}}</div>
+                  <div class="menu__text">{{ t('benefitExample')}}<span></span></div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
@@ -129,21 +131,22 @@
                       <label for="{{benefit.Data.Benefit_ID}}">
                         <input type="checkbox" id="{{benefit.Data.Benefit_ID}}" [(ngModel)]="benefit.checked"
                           (change)="selectBenefit(benefit);"
-                          name="{{displayBenefitAndCheckName(benefit)}}" />{{displayBenefitAndCheckName(benefit)}}</label>
+                          name="{{benefit | benefitAndCheckName : trigger}}" />{{benefit |
+                        benefitAndCheckName : trigger}}</label>
                     </li>
                   </ul>
                 </div>
               </div>
             </div>
             <div class="menu__input">
-              <button class="menu__search-btn" (click)="searchProperties(1)">Поиск</button>
+              <button class="menu__search-btn" (click)="searchProperties(1)">{{ t('searchButton')}}</button>
             </div>
           </div>
           <div class="" [hidden]="!(CurrentSearch == 'Id')">
             <div class="menu__search-id">
-              <input type="text" placeholder="Поиск по ID">
+              <input type="text" placeholder="{{ t('menuSearchByIDButton')}}">
             </div>
-            <button class="menu__search-btn">Поиск</button>
+            <button class="menu__search-btn">{{ t('searchButton')}}</button>
           </div>
         </div>
       </div>
@@ -151,68 +154,40 @@
   </section>
   <section class="recomendation__page">
     <div class="recomendation__container container">
-      <div class="title">
+      <div class="title" *transloco="let t; read: 'searchSalePage'">
         <div>
-          <div class="title__btn grey">ПРЕДЛОЖЕНИЯ</div>
+          <div class="title__btn grey">{{ t('title')}}</div>
         </div>
-        <div class="title__label">Актуальные предложения продажи недвижимости в Черногории</div>
+        <div class="title__label">{{ t('titleLabel')}}</div>
       </div>
       <div *ngIf="properties; else loading">
-        <div class="recomendation__body body">
+        <div class="recomendation__body body" *transloco="let t; read: 'propertyCard'">
           <div class="body__property"
             *ngFor="let property of properties.Data | paginate: { id: 'server', itemsPerPage: 20, currentPage: properties.PageNumber, totalItems: properties.TotalRecords }">
             <div class="body__img">
 
-              <img src="{{getFirstPictureUrl(property)}}" alt="">
+              <a routerLink="/properties/s{{property.Property_ID}}" routerLinkActive="active"
+                ariaCurrentWhenActive="page">
+                <img src="{{getFirstPictureUrl(property)}}" alt="">
+              </a>
 
             </div>
-            <div class=" body__label">{{property | cityNameByProperty}}
+            <div class=" body__label">{{property | cityNameByProperty : trigger}}
             </div>
-            <div class="body__value">Богор, Джава Барат</div>
+            <div class="body__value">{{property | propertyDescription: trigger | truncate : [120]}}</div>
             <div class="body__info">
               <div class="body__price">${{property | propertyPrice : 'sale'}}</div>
-              <div class="body__space">{{property | propertySquare}} м² <br> Living Area</div>
+              <div class="body__space" innerHTML="{{property | propertySquare}} {{t('spaceArea')}}"></div>
             </div>
-            <button class="body__inquiry-btn">Send Inquiry</button>
+            <button class="body__inquiry-btn">{{t('sendInquiryButton')}}</button>
           </div>
         </div>
 
-        <div class="number-of-page">
-          <pagination-controls (pageChange)="searchProperties($event)" id="server" previousLabel="Назад"
-            nextLabel="Вперед"></pagination-controls>
+        <div class="number-of-page" *transloco="let t; read: 'pagination'">
+          <pagination-controls (pageChange)="searchProperties($event)" id="server" previousLabel="{{t('back')}}"
+            nextLabel="{{t('next')}}"></pagination-controls>
         </div>
       </div>
-
-
-      <!-- <div class="number-of-page">
-        <span class="arrow left"></span>
-        <span class="arrow left"></span>
-        <div class="number" *ngFor="let pageNumber of totalPagesArray" [routerLink]="">
-          {{pageNumber}}
-        </div>
-        <div class="number" *ngFor="let pageNumber of totalPagesArray" [routerLink]="">
-            {{pageNumber}}
-          </div>
-          <div class="number" *ngFor="let pageNumber of totalPagesArray" [routerLink]="">
-            {{pageNumber}}
-          </div>
-          <div class="number" *ngFor="let pageNumber of totalPagesArray" [routerLink]="">
-            {{pageNumber}}
-          </div>
-          <div class="number" *ngFor="let pageNumber of totalPagesArray" [routerLink]="">
-            {{pageNumber}}
-          </div>
-          <div class="number" *ngFor="let pageNumber of totalPagesArray" [routerLink]="">
-            {{pageNumber}}
-          </div>
-          <div class="number" *ngFor="let pageNumber of totalPagesArray" [routerLink]="">
-            {{pageNumber}}
-          </div>
-
-        <span class="arrow right"></span>
-        <span class="arrow right"></span>
-
-      </div> -->
     </div>
   </section>
 </main>

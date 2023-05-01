@@ -1,7 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { firstValueFrom } from 'rxjs';
+import * as moment from 'moment';
+import { firstValueFrom, map } from 'rxjs';
 import { CityDto } from 'src/app/models/CityDtos/CityDto';
 import DataAndCheck from 'src/app/models/DataAndCheck';
 import NotificationDto from 'src/app/models/NotificationDtos/NotificationDto';
@@ -32,6 +33,7 @@ export class RemindersViewComponent {
 
     this.notificationsPagedResponse = await firstValueFrom(this.notificationService.GetNotificationsPaged(params));
     this.notificationsPagedResponse.Data.forEach(notification => {
+      console.log(typeof (notification.ActivationDate));
       let notificationAndCheck = new DataAndCheck(notification);
       this.notificationsAndCheck.push(notificationAndCheck);
     });
@@ -104,8 +106,5 @@ export class RemindersViewComponent {
       console.log(response);
     }
   }
-  async CompareTodayAndDate(date: Date) {
-    let currentDate = new Date();
-    return currentDate.getTime() < date.getTime();
-  }
 }
+

@@ -64,17 +64,16 @@ const routes: Routes = [
         path: 'plots',
         component: SearchPlotsComponent,
       },
-
-    ]
-  },
-  {
-    path: 'Properties',
-    children: [
       {
-        path: 'ID228',
-        component: UserPropertiesComponent,
-      },
+        path: 'properties',
+        children: [
+          {
+            path: ':id',
+            component: UserPropertiesComponent,
+          },
 
+        ]
+      },
     ]
   },
 
@@ -269,10 +268,8 @@ const routes: Routes = [
       },
     ]
   },
-  {
-    path: '**',
-    component: NotFoundComponent,
-  },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ];
 
 @NgModule({
