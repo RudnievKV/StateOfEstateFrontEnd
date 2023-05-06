@@ -31,15 +31,14 @@ export class PropertyCardComponent {
       this.photoUrls.push(photo.PhotoUrl);
     });
     this.routeSub = this._activatedRoute.params.subscribe(params => {
-      if (params['id'][0] == "r") {
+      if (params['id'] && params['id'][0] == "r") {
         this.rentalPeriod = "any";
       }
       else {
         this.rentalPeriod = "sale";
       }
-
     });
-
+    console.log(this.rentalPeriod + " " + this.property.Property_ID);
   }
   goToPrev() {
     if (this.currentIndx === 0) {

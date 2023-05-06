@@ -5,7 +5,7 @@ import { CityDto } from 'src/app/models/CityDtos/CityDto';
 import DataAndCheck from 'src/app/models/DataAndCheck';
 import { PropertyDto } from 'src/app/models/PropertyDtos/PropertyDto';
 
-@Pipe({ name: 'cityName', pure: false })
+@Pipe({ name: 'cityName' })
 export class CityNamePipe implements PipeTransform {
   constructor(
     private _translocoService: TranslocoService

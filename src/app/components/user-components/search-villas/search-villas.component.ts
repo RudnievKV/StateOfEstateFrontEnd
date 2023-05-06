@@ -19,9 +19,6 @@ import { PropertyService } from 'src/app/services/property.service';
 })
 export class SearchVillasComponent {
 
-  textContent = 'Продажа Добра Вода № 2579. Продается дом (109м2) в поселке Добры Воды. Участок 500м2. Паркинг на 2 автомобиля. Резервуар для воды 20м3. До моря 1500 метров. На участке растут: миндаль, мушмула, виноград, смоква, лимон. Вид на море. 1этаж: гостиная, кухня, спальня, санузел, терраса 2 этаж: 2 спальни, санузел, терраса';
-  symbolLimit = 110;
-
   constructor(
     private _benefitService: BenefitService,
     private _cityService: CityService,
@@ -35,6 +32,8 @@ export class SearchVillasComponent {
     };
     this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
       this.currentDropdown = null;
+      this.priceChangeSale();
+      this.priceChangeRent();
       this.trigger = this.trigger + 1;
     });
   }
@@ -163,26 +162,32 @@ export class SearchVillasComponent {
                 switch (bedroomNumber) {
                   case "0": {
                     this.studioRent = true;
+                    this.selectedBedroomsRent.push("0");
                     break;
                   }
                   case "1": {
                     this.oneBedroomRent = true;
+                    this.selectedBedroomsRent.push("1");
                     break;
                   }
                   case "2": {
                     this.twoBedroomsRent = true;
+                    this.selectedBedroomsRent.push("2");
                     break;
                   }
                   case "3": {
                     this.threeBedroomsRent = true;
+                    this.selectedBedroomsRent.push("3");
                     break;
                   }
                   case "4": {
                     this.fourBedroomsRent = true;
+                    this.selectedBedroomsRent.push("4");
                     break;
                   }
                   case "5": {
                     this.fiveBedroomsRent = true;
+                    this.selectedBedroomsRent.push("5");
                     break;
                   }
                 }
@@ -256,26 +261,32 @@ export class SearchVillasComponent {
                 switch (bedroomNumber) {
                   case "0": {
                     this.studioSale = true;
+                    this.selectedBedroomsSale.push("0");
                     break;
                   }
                   case "1": {
                     this.oneBedroomSale = true;
+                    this.selectedBedroomsSale.push("1");
                     break;
                   }
                   case "2": {
                     this.twoBedroomsSale = true;
+                    this.selectedBedroomsSale.push("2");
                     break;
                   }
                   case "3": {
                     this.threeBedroomsSale = true;
+                    this.selectedBedroomsSale.push("3");
                     break;
                   }
                   case "4": {
                     this.fourBedroomsSale = true;
+                    this.selectedBedroomsSale.push("4");
                     break;
                   }
                   case "5": {
                     this.fiveBedroomsSale = true;
+                    this.selectedBedroomsSale.push("5");
                     break;
                   }
                 }
@@ -305,9 +316,20 @@ export class SearchVillasComponent {
       });
     }
 
-    for (let i = 1; i <= this.propertiesRent.TotalPages; i++) {
-      this.totalPagesArray.push(i);
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFromSale || this.priceToSale) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromSale, y: this.priceToSale }, currentLanguage).subscribe(result => {
+        this.selectedSalePrice = result;
+      });
     }
+
+    if (this.priceFromRent || this.priceToRent) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromRent, y: this.priceToRent }, currentLanguage).subscribe(result => {
+        this.selectedRentPrice = result;
+      });
+    }
+    this.trigger += 1;
 
   }
 
@@ -315,16 +337,79 @@ export class SearchVillasComponent {
   nextPageUrl = '';
   totalPagesArray = new Array<number>();
 
-  displayCityAndCheckName(cityDtoAndCheck: DataAndCheck<CityDto>) {
-    let city = cityDtoAndCheck.Data;
-    return city.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
+  selectedBedroomsSale = new Array<string>();
+  selectBedroomSale(value: string) {
+    if (!this.selectedBedroomsSale.includes(value)) {
+      this.selectedBedroomsSale.push(value);
+    } else {
+      this.selectedBedroomsSale.splice(this.selectedBedroomsSale.indexOf(value), 1);
+    }
+    this.trigger += 1;
   }
-  displayCityName(cityDto: CityDto) {
-    return cityDto.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
+
+  selectedBedroomsRent = new Array<string>();
+  selectBedroomRent(value: string) {
+    if (!this.selectedBedroomsRent.includes(value)) {
+      this.selectedBedroomsRent.push(value);
+    } else {
+      this.selectedBedroomsRent.splice(this.selectedBedroomsRent.indexOf(value), 1);
+    }
+    this.trigger += 1;
   }
-  displayBenefitAndCheckName(benefitDtoAndCheck: DataAndCheck<BenefitDto>) {
-    let benefit = benefitDtoAndCheck.Data;
-    return benefit.Local_Benefits.find(element => element.Local.LocalizationCode == 'ru')?.LocalBenefitName;
+
+
+  selectedSalePrice = "----";
+  priceChangeSale() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFromSale || this.priceToSale) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromSale, y: this.priceToSale }, currentLanguage).subscribe(result => {
+        this.selectedSalePrice = result;
+      });
+    } else {
+      this.selectedSalePrice = "----";
+    }
+
+
+    // if (this.priceFromSale != 0 && this.priceToSale == 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceFromX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale == 0 && this.priceToSale != 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceToX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale != 0 && this.priceToSale != 0) {
+
+    // }
+    // else {
+    //   this.selectedPrice = "----";
+    // }
+  }
+
+  selectedRentPrice = "----";
+  priceChangeRent() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFromRent || this.priceToRent) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromRent, y: this.priceToRent }, currentLanguage).subscribe(result => {
+        this.selectedRentPrice = result;
+      });
+    } else {
+      this.selectedRentPrice = "----";
+    }
+
+
+    // if (this.priceFromSale != 0 && this.priceToSale == 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceFromX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale == 0 && this.priceToSale != 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceToX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale != 0 && this.priceToSale != 0) {
+
+    // }
+    // else {
+    //   this.selectedPrice = "----";
+    // }
   }
 
   selectedCitiesSale = new Array<CityDto>();
@@ -336,6 +421,7 @@ export class SearchVillasComponent {
       let index = this.selectedCitiesSale.indexOf(city.Data);
       this.selectedCitiesSale.splice(index, 1);
     }
+    this.trigger += 1;
     console.log(this.selectedCitiesSale);
   }
   selectCityRent(city: DataAndCheck<CityDto>) {
@@ -345,25 +431,28 @@ export class SearchVillasComponent {
       let index = this.selectedCitiesRent.indexOf(city.Data);
       this.selectedCitiesRent.splice(index, 1);
     }
+    this.trigger += 1;
     console.log(this.selectedCitiesSale);
   }
   selectedBenefitsRent = new Array<BenefitDto>();
   selectedBenefitsSale = new Array<BenefitDto>();
   selectBenefitSale(benefit: DataAndCheck<BenefitDto>) {
     if (benefit.checked) {
-      this.selectedBenefitsRent.push(benefit.Data);
-    } else {
-      let index = this.selectedBenefitsRent.indexOf(benefit.Data);
-      this.selectedBenefitsRent.splice(index, 1);
-    }
-  }
-  selectBenefitRent(benefit: DataAndCheck<BenefitDto>) {
-    if (benefit.checked) {
       this.selectedBenefitsSale.push(benefit.Data);
     } else {
       let index = this.selectedBenefitsSale.indexOf(benefit.Data);
       this.selectedBenefitsSale.splice(index, 1);
     }
+    this.trigger += 1;
+  }
+  selectBenefitRent(benefit: DataAndCheck<BenefitDto>) {
+    if (benefit.checked) {
+      this.selectedBenefitsRent.push(benefit.Data);
+    } else {
+      let index = this.selectedBenefitsRent.indexOf(benefit.Data);
+      this.selectedBenefitsRent.splice(index, 1);
+    }
+    this.trigger += 1;
   }
 
   rentalPeriod = 'any';
@@ -468,12 +557,7 @@ export class SearchVillasComponent {
     }
     this._router.navigateByUrl(url + '?' + params.toString());
   }
-  displayCityNameByProperty(propertyDto: PropertyDto) {
-    if (propertyDto.Cities.length > 0) {
-      return propertyDto.Cities[0].Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
-    }
-    return "";
-  }
+
   getFirstPictureUrl(property: PropertyDto) {
     if (!property.Photos) {
       return "";

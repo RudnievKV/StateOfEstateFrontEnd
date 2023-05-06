@@ -18,25 +18,14 @@
                 <div class="menu__selectBox" (click)="toggleDropdown('menu02')">
                   <div class="menu__value">{{ t('city') }}</div>
                   <div class="menu__text">
-                    <div *ngIf="selectedCities.length > 0; else noSelected" style="display: flex;">
-                      <div *ngFor="let selectedCity of selectedCities; last as isLast; first as isFirst"
-                        style="display: flex;">
-                        <div *ngIf="isFirst">
-                          {{selectedCity | cityName : trigger}}
-                        </div>
-                        <!-- <div *ngIf="!isLast">
-                                      {{selectedCity | cityName : trigger}},
-                                    </div>
-                                    <div *ngIf="isLast">
-                                      {{selectedCity | cityName : trigger}}
-                                    </div> -->
-                      </div>
+                    <div *ngIf="selectedCities.length > 0; else noCitiesSelected" style="display: inline;">
+                      {{selectedCities | selectedCityNames : trigger | truncate: 10 }}
 
                     </div>
                     <span></span>
-                    <ng-template #noSelected>
+                    <ng-template #noCitiesSelected>
                       <ul>
-                        <li>{{ t('cityExample') }}</li>
+                        <li>{{ t('cityExample')}} </li>
                       </ul>
                     </ng-template>
                   </div>
@@ -58,18 +47,21 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
                   <div class="menu__value">{{ t('landSquare') }}</div>
-                  <div class="menu__text">{{ t('landSquareExample') }}<span></span></div>
+                  <div class="menu__text">
+                    {{selectedLandFootage}}
+                    <span></span>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
                   <ul class="menu__dropdown">
                     <div class="menu__set-price">
                       <p>{{ t('landFootageFrom') }}</p>
-                      <input type="number" [(ngModel)]="landFootageFrom">
+                      <input type="number" [(ngModel)]="landFootageFrom" (change)="landFootageChange()">
                     </div>
                     <div class="menu__set-price">
                       <p>{{ t('landFootageTo') }}</p>
-                      <input type="number" [(ngModel)]="landFootageTo">
+                      <input type="number" [(ngModel)]="landFootageTo" (change)="landFootageChange()">
                     </div>
                   </ul>
                 </div>
@@ -79,18 +71,21 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
                   <div class="menu__value">{{ t('price')}}</div>
-                  <div class="menu__text">----<span></span></div>
+                  <div class="menu__text">
+                    {{selectedPrice}}
+                    <span></span>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
                   <ul class="menu__dropdown">
                     <div class="menu__set-price">
                       <p>{{ t('priceFrom')}}</p>
-                      <input type="number" [(ngModel)]="priceFrom">
+                      <input type="number" [(ngModel)]="priceFrom" (change)="priceChange()">
                     </div>
                     <div class="menu__set-price">
                       <p>{{ t('priceTo')}}</p>
-                      <input type="number" [(ngModel)]="priceTo">
+                      <input type="number" [(ngModel)]="priceTo" (change)="priceChange()">
                     </div>
                   </ul>
                 </div>
@@ -133,7 +128,7 @@
             </div>
             <div class=" body__label">{{property | cityNameByProperty : trigger}}
             </div>
-            <div class="body__value">{{property | propertyDescription: trigger | truncate : [120]}}</div>
+            <div class="body__value">{{property | propertyDescription: trigger | truncate : 120 : true}}</div>
             <div class="body__info">
               <div class="body__price">${{property | propertyPrice : 'sale'}}</div>
               <div class="body__space" innerHTML="{{property | propertySquare}} {{t('spaceArea')}}"></div>

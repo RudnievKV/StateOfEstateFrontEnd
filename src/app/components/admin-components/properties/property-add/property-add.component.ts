@@ -471,9 +471,10 @@ export class PropertyAddComponent {
 
     console.log(newProperty.Local_Properties);
     for (let j = 0; j < newProperty.Local_Properties.length; j++) {
-      formData.append(`Local_Properties[${i}].Local_ID`, JSON.stringify(newProperty.Local_Properties[i].Local_ID));
-      formData.append(`Local_Properties[${i}].LocalPropertyTitle`, JSON.stringify(newProperty.Local_Properties[i].LocalPropertyTitle));
-      formData.append(`Local_Properties[${i}].LocalPropertyDescription`, JSON.stringify(newProperty.Local_Properties[i].LocalPropertyDescription));
+      formData.append(`Local_Properties[${i}].Local_ID`, newProperty.Local_Properties[i].Local_ID);
+      formData.append(`Local_Properties[${i}].LocalPropertyTitle`, newProperty.Local_Properties[i].LocalPropertyTitle);
+      formData.append(`Local_Properties[${i}].LocalPropertyType`, newProperty.Local_Properties[i].LocalPropertyType);
+      formData.append(`Local_Properties[${i}].LocalPropertyDescription`, newProperty.Local_Properties[i].LocalPropertyDescription);
       i++;
     }
     i = 0;

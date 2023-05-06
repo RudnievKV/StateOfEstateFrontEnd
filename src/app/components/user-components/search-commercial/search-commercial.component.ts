@@ -31,6 +31,10 @@ export class SearchCommercialComponent {
     };
     this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
       this.currentDropdown = null;
+      this.priceChangeRent();
+      this.priceChangeSale();
+      this.landFootageChangeRent();
+      this.landFootageChangeSale();
       this.trigger = this.trigger + 1;
     });
   }
@@ -152,38 +156,17 @@ export class SearchCommercialComponent {
             }
             break;
           }
-          case "bedroom-number": {
-            let values = httpParams.getAll(key);
-            if (values) {
-              values.forEach(bedroomNumber => {
-                switch (bedroomNumber) {
-                  case "0": {
-                    this.studioRent = true;
-                    break;
-                  }
-                  case "1": {
-                    this.oneBedroomRent = true;
-                    break;
-                  }
-                  case "2": {
-                    this.twoBedroomsRent = true;
-                    break;
-                  }
-                  case "3": {
-                    this.threeBedroomsRent = true;
-                    break;
-                  }
-                  case "4": {
-                    this.fourBedroomsRent = true;
-                    break;
-                  }
-                  case "5": {
-                    this.fiveBedroomsRent = true;
-                    break;
-                  }
-                }
-
-              });
+          case "land-footage-to": {
+            let value = httpParams.get(key);
+            if (value) {
+              this.landFootageToRent = value;
+            }
+            break;
+          }
+          case "land-footage-from": {
+            let value = httpParams.get(key);
+            if (value) {
+              this.landFootageFromRent = value;
             }
             break;
           }
@@ -245,38 +228,17 @@ export class SearchCommercialComponent {
             }
             break;
           }
-          case "bedroom-number": {
-            let values = httpParams.getAll(key);
-            if (values) {
-              values.forEach(bedroomNumber => {
-                switch (bedroomNumber) {
-                  case "0": {
-                    this.studioSale = true;
-                    break;
-                  }
-                  case "1": {
-                    this.oneBedroomSale = true;
-                    break;
-                  }
-                  case "2": {
-                    this.twoBedroomsSale = true;
-                    break;
-                  }
-                  case "3": {
-                    this.threeBedroomsSale = true;
-                    break;
-                  }
-                  case "4": {
-                    this.fourBedroomsSale = true;
-                    break;
-                  }
-                  case "5": {
-                    this.fiveBedroomsSale = true;
-                    break;
-                  }
-                }
-
-              });
+          case "land-footage-to": {
+            let value = httpParams.get(key);
+            if (value) {
+              this.landFootageToSale = value;
+            }
+            break;
+          }
+          case "land-footage-from": {
+            let value = httpParams.get(key);
+            if (value) {
+              this.landFootageFromSale = value;
             }
             break;
           }
@@ -300,27 +262,119 @@ export class SearchCommercialComponent {
         }
       });
     }
+    let currentLanguage = this._translocoService.getActiveLang();
 
-    for (let i = 1; i <= this.propertiesRent.TotalPages; i++) {
-      this.totalPagesArray.push(i);
+    if (this.priceFromRent || this.priceToRent) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromRent, y: this.priceToRent }, currentLanguage).subscribe(result => {
+        this.selectedRentPrice = result;
+      });
+    }
+    if (this.priceFromSale || this.priceToSale) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromSale, y: this.priceToSale }, currentLanguage).subscribe(result => {
+        this.selectedSalePrice = result;
+      });
     }
 
+    if (this.landFootageFromSale || this.landFootageToSale) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.landFootageFromXToY', { x: this.landFootageFromSale, y: this.landFootageToSale }, currentLanguage).subscribe(result => {
+        this.selectedLandFootageSale = result;
+      });
+    }
+    if (this.landFootageFromRent || this.landFootageToRent) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.landFootageFromXToY', { x: this.landFootageFromRent, y: this.landFootageToRent }, currentLanguage).subscribe(result => {
+        this.selectedLandFootageRent = result;
+      });
+    }
+
+    this.trigger += 1;
   }
 
   previousPageUrl = '';
   nextPageUrl = '';
   totalPagesArray = new Array<number>();
 
-  displayCityAndCheckName(cityDtoAndCheck: DataAndCheck<CityDto>) {
-    let city = cityDtoAndCheck.Data;
-    return city.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
+  selectedSalePrice = "----";
+  priceChangeSale() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFromSale || this.priceToSale) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromSale, y: this.priceToSale }, currentLanguage).subscribe(result => {
+        this.selectedSalePrice = result;
+      });
+    } else {
+      this.selectedSalePrice = "----";
+    }
+
+
+    // if (this.priceFromSale != 0 && this.priceToSale == 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceFromX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale == 0 && this.priceToSale != 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceToX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale != 0 && this.priceToSale != 0) {
+
+    // }
+    // else {
+    //   this.selectedPrice = "----";
+    // }
   }
-  displayCityName(cityDto: CityDto) {
-    return cityDto.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
+
+  selectedRentPrice = "----";
+  priceChangeRent() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFromRent || this.priceToRent) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromRent, y: this.priceToRent }, currentLanguage).subscribe(result => {
+        this.selectedRentPrice = result;
+      });
+    } else {
+      this.selectedRentPrice = "----";
+    }
+
+
+    // if (this.priceFromSale != 0 && this.priceToSale == 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceFromX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale == 0 && this.priceToSale != 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceToX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale != 0 && this.priceToSale != 0) {
+
+    // }
+    // else {
+    //   this.selectedPrice = "----";
+    // }
   }
-  displayBenefitAndCheckName(benefitDtoAndCheck: DataAndCheck<BenefitDto>) {
-    let benefit = benefitDtoAndCheck.Data;
-    return benefit.Local_Benefits.find(element => element.Local.LocalizationCode == 'ru')?.LocalBenefitName;
+  landFootageFromSale = "";
+  landFootageFromRent = "";
+  landFootageToSale = "";
+  landFootageToRent = "";
+
+  selectedLandFootageSale = "----";
+  landFootageChangeSale() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.landFootageFromSale || this.landFootageToSale) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.landFootageFromXToY', { x: this.landFootageFromSale, y: this.landFootageToSale }, currentLanguage).subscribe(result => {
+        this.selectedLandFootageSale = result;
+      });
+    } else {
+      this.selectedLandFootageSale = "----";
+    }
+  }
+
+  selectedLandFootageRent = "----";
+  landFootageChangeRent() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.landFootageFromRent || this.landFootageToRent) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.landFootageFromXToY', { x: this.landFootageFromRent, y: this.landFootageToRent }, currentLanguage).subscribe(result => {
+        this.selectedLandFootageRent = result;
+      });
+    } else {
+      this.selectedLandFootageRent = "----";
+    }
   }
 
   selectedCitiesSale = new Array<CityDto>();
@@ -332,6 +386,7 @@ export class SearchCommercialComponent {
       let index = this.selectedCitiesSale.indexOf(city.Data);
       this.selectedCitiesSale.splice(index, 1);
     }
+    this.trigger += 1;
     console.log(this.selectedCitiesSale);
   }
   selectCityRent(city: DataAndCheck<CityDto>) {
@@ -341,6 +396,7 @@ export class SearchCommercialComponent {
       let index = this.selectedCitiesRent.indexOf(city.Data);
       this.selectedCitiesRent.splice(index, 1);
     }
+    this.trigger += 1;
     console.log(this.selectedCitiesSale);
   }
   selectedBenefitsRent = new Array<BenefitDto>();
@@ -352,6 +408,7 @@ export class SearchCommercialComponent {
       let index = this.selectedBenefitsRent.indexOf(benefit.Data);
       this.selectedBenefitsRent.splice(index, 1);
     }
+    this.trigger += 1;
   }
   selectBenefitRent(benefit: DataAndCheck<BenefitDto>) {
     if (benefit.checked) {
@@ -360,6 +417,7 @@ export class SearchCommercialComponent {
       let index = this.selectedBenefitsSale.indexOf(benefit.Data);
       this.selectedBenefitsSale.splice(index, 1);
     }
+    this.trigger += 1;
   }
 
   rentalPeriod = 'any';
@@ -369,21 +427,11 @@ export class SearchCommercialComponent {
     this.rentalPeriod = target.value;
   }
 
-  studioSale = false;
-  oneBedroomSale = false;
-  twoBedroomsSale = false;
-  threeBedroomsSale = false;
-  fourBedroomsSale = false;
-  fiveBedroomsSale = false;
+
   priceFromSale = '';
   priceToSale = '';
 
-  studioRent = false;
-  oneBedroomRent = false;
-  twoBedroomsRent = false;
-  threeBedroomsRent = false;
-  fourBedroomsRent = false;
-  fiveBedroomsRent = false;
+
   priceFromRent = '';
   priceToRent = '';
 
@@ -401,18 +449,10 @@ export class SearchCommercialComponent {
       params = params.append("benefits", benefit.Benefit_ID);
     });
 
-    if (this.studioRent)
-      params = params.append("bedroom-number", 0);
-    if (this.oneBedroomRent)
-      params = params.append("bedroom-number", 1);
-    if (this.twoBedroomsRent)
-      params = params.append("bedroom-number", 2);
-    if (this.threeBedroomsRent)
-      params = params.append("bedroom-number", 3);
-    if (this.fourBedroomsRent)
-      params = params.append("bedroom-number", 4);
-    if (this.fiveBedroomsRent)
-      params = params.append("bedroom-number", 5);
+    if (this.landFootageToRent != "")
+      params = params.append("land-footage-to", parseInt(this.landFootageToRent));
+    if (this.landFootageFromRent != "")
+      params = params.append("land-footage-from", parseInt(this.landFootageFromRent));
 
     if (this.priceFromRent != "")
       params = params.append("price-from", parseInt(this.priceFromRent));
@@ -439,18 +479,10 @@ export class SearchCommercialComponent {
       params = params.append("benefits", benefit.Benefit_ID);
     });
 
-    if (this.studioSale)
-      params = params.append("bedroom-number", 0);
-    if (this.oneBedroomSale)
-      params = params.append("bedroom-number", 1);
-    if (this.twoBedroomsSale)
-      params = params.append("bedroom-number", 2);
-    if (this.threeBedroomsSale)
-      params = params.append("bedroom-number", 3);
-    if (this.fourBedroomsSale)
-      params = params.append("bedroom-number", 4);
-    if (this.fiveBedroomsSale)
-      params = params.append("bedroom-number", 5);
+    if (this.landFootageToSale != "")
+      params = params.append("land-footage-to", parseInt(this.landFootageToSale));
+    if (this.landFootageFromSale != "")
+      params = params.append("land-footage-from", parseInt(this.landFootageFromSale));
 
     if (this.priceFromSale != "")
       params = params.append("price-from", parseInt(this.priceFromSale));
