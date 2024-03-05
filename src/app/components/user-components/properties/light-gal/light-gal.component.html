@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="image-container">
+    <img [lightbox]="0" [src]="items[0].data?.thumb" />
+  </div>
+  <div class="myProducts-gallery">
+    <img
+      *ngFor="let item of items.slice(1, 5); let i = index; let last = last"
+      [lightbox]="i + 1"
+      [src]="item?.data?.thumb"
+    />
+    <div class="overlay-text">еще +{{ items.length - 5 }}</div>
+  </div>
+</div>

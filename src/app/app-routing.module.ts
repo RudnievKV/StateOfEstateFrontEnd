@@ -36,6 +36,7 @@ import { SearchSaleComponent } from './components/user-components/search-sale/se
 import { SearchVillasComponent } from './components/user-components/search-villas/search-villas.component';
 import { SearchPlotsComponent } from './components/user-components/search-plots/search-plots.component';
 import { SearchCommercialComponent } from './components/user-components/search-commercial/search-commercial.component';
+import { LightGalComponent } from './components/user-components/properties/light-gal/light-gal.component';
 const routes: Routes = [
   {
     path: '',
@@ -65,16 +66,19 @@ const routes: Routes = [
         component: SearchPlotsComponent,
       },
       {
+        path: '123',
+        component: LightGalComponent,
+      },
+      {
         path: 'properties',
         children: [
           {
             path: ':id',
             component: UserPropertiesComponent,
           },
-
-        ]
+        ],
       },
-    ]
+    ],
   },
 
   {
@@ -83,16 +87,16 @@ const routes: Routes = [
       {
         path: '',
         redirectTo: 'dashboard',
-        pathMatch: "prefix"
+        pathMatch: 'prefix',
       },
       {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
       },
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [AuthGuard]
+        canActivate: [AuthGuard],
       },
       {
         path: 'users',
@@ -110,7 +114,7 @@ const routes: Routes = [
             path: ':id/change',
             component: UserChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'properties',
@@ -128,7 +132,7 @@ const routes: Routes = [
             path: ':id/change',
             component: PropertyChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'cities',
@@ -146,7 +150,7 @@ const routes: Routes = [
             path: ':id/change',
             component: CityChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'neighborhoods',
@@ -164,7 +168,7 @@ const routes: Routes = [
             path: ':id/change',
             component: NeighborhoodChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'counterparties',
@@ -182,7 +186,7 @@ const routes: Routes = [
             path: ':id/change',
             component: ConterpartyChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'reminders',
@@ -200,7 +204,7 @@ const routes: Routes = [
             path: ':id/change',
             component: ReminderChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'partners',
@@ -218,7 +222,7 @@ const routes: Routes = [
             path: ':id/change',
             component: PartnerChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'users',
@@ -236,7 +240,7 @@ const routes: Routes = [
             path: ':id/change',
             component: UserChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'benefits',
@@ -254,7 +258,7 @@ const routes: Routes = [
             path: ':id/change',
             component: BenefitChangeComponent,
           },
-        ]
+        ],
       },
       {
         path: 'advertising',
@@ -264,16 +268,21 @@ const routes: Routes = [
             path: 'view-advertising',
             component: AdvertisingComponent,
           },
-        ]
+        ],
       },
-    ]
+    ],
   },
   { path: '404', component: NotFoundComponent },
-  { path: '**', redirectTo: '/404' }
+  { path: '**', redirectTo: '/404' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload', scrollPositionRestoration: 'enabled' })],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+      scrollPositionRestoration: 'enabled',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

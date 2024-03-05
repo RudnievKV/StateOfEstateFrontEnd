@@ -56,27 +56,25 @@ import { environment } from '../environments/environment';
 import { AUTH_API_URL, MONTENEGRO_API_URL } from './app-injection-tokens';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 
-
-
-import { JwtModule } from "@auth0/angular-jwt";
+import { JwtModule } from '@auth0/angular-jwt';
 import { ACCESS_TOKEN_KEY } from './services/auth.service';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { UsersViewComponent } from './components/admin-components/users/users-view/users-view.component';
 import { UserAddComponent } from './components/admin-components/users/user-add/user-add.component';
 import { UserChangeComponent } from './components/admin-components/users/user-change/user-change.component';
-import { MatIconModule } from '@angular/material/icon'
+import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AdminHeaderComponent } from './components/admin-components/admin-header/admin-header.component';
 import { BenefitsViewComponent } from './components/admin-components/benefits/benefits-view/benefits-view.component';
 import { BenefitAddComponent } from './components/admin-components/benefits/benefit-add/benefit-add.component';
 import { BenefitChangeComponent } from './components/admin-components/benefits/benefit-change/benefit-change.component';
 import { AdvertisingComponent } from './components/admin-components/advertising/advertising.component';
-import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component'
+import { UserPropertiesComponent } from './components/user-components/properties/user-properties/user-properties.component';
 import { MatNativeDateModule } from '@angular/material/core';
 import { SearchPlotsComponent } from './components/user-components/search-plots/search-plots.component';
 import { SearchVillasComponent } from './components/user-components/search-villas/search-villas.component';
 import { SearchCommercialComponent } from './components/user-components/search-commercial/search-commercial.component';
-import { MatAutocompleteModule } from "@angular/material/autocomplete";
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 import { TranslocoRootModule } from './transloco-root.module';
 import { UrlSerializer } from '@angular/router';
@@ -98,11 +96,9 @@ import { JsonDateInterceptor } from './interceptors/JsonDateInterceptor';
 import { CityAndCheckNamePipe } from 'src/pipes/cityAndCheckName.pipe';
 import { BenefitAndCheckNamePipe } from 'src/pipes/benefitAndCheckName.pipe';
 import { CityNamePipe } from 'src/pipes/cityName.pipe';
+import { LightGalComponent } from './components/user-components/properties/light-gal/light-gal.component';
 
-
-
-
-
+import { LIGHTBOX_CONFIG, LightboxConfig } from 'ng-gallery/lightbox';
 
 export function tokenGetter() {
   return localStorage.getItem(ACCESS_TOKEN_KEY);
@@ -111,7 +107,6 @@ export function tokenGetter() {
 @NgModule({
   declarations: [
     AppComponent,
-
 
     // PIPES
     CityNameByPropertyPipe,
@@ -159,9 +154,7 @@ export function tokenGetter() {
 
     PropertyCardComponent,
 
-
-
-
+    LightGalComponent,
 
     // ADMIN COMPONENTS
     LoginComponent,
@@ -213,11 +206,6 @@ export function tokenGetter() {
     GalleryModule,
     LightboxModule,
 
-
-
-
-
-
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
@@ -236,21 +224,28 @@ export function tokenGetter() {
     JwtModule.forRoot({
       config: {
         tokenGetter,
-        allowedDomains: environment.tokenWhiteListedDomains
-      }
+        allowedDomains: environment.tokenWhiteListedDomains,
+      },
     }),
 
-    TranslocoRootModule
+    TranslocoRootModule,
   ],
   providers: [
     {
+      provide: LIGHTBOX_CONFIG,
+      useValue: {
+        keyboardShortcuts: false,
+        exitAnimationTime: 1000,
+      } as LightboxConfig,
+    },
+    {
       provide: UrlSerializer,
-      useClass: CustomUrlSerializer
+      useClass: CustomUrlSerializer,
     },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JsonDateInterceptor,
-      multi: true
+      multi: true,
     },
     {
       provide: AUTH_API_URL,
@@ -258,10 +253,9 @@ export function tokenGetter() {
     },
     {
       provide: MONTENEGRO_API_URL,
-      useValue: environment.montenegroApi
+      useValue: environment.montenegroApi,
     },
-
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
