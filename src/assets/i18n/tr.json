@@ -99,6 +99,7 @@
     "city": "Город",
     "cityExample": "Буба, Чеча",
     "bedroomNumber": "Кол-во спален",
+    "bedroomExample": "0",
     "zeroBedrooms": "Студия",
     "oneBedroom": "1 спальня",
     "twoBedrooms": "2 спальни",
@@ -119,7 +120,11 @@
     "landSquare": "Площадь",
     "landSquareExample": "Буба, Чеча",
     "landFootageFrom": "Площадь от ( м² )",
-    "landFootageTo": "Площадь до ( м² )"
+    "landFootageFromXToY": "От {{x}} до {{y}} м²",
+    "landFootageTo": "Площадь до ( м² )",
+    "priceFromX": "От {{x}}",
+    "priceToX": "До {{x}}",
+    "priceFromXToY": "От {{x}} до {{y}}"
   },
   "searchRentPage": {
     "title": "ПРЕДЛОЖЕНИЯ",

@@ -32,9 +32,14 @@ export class HomeComponent {
       return false;
     };
     this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
+      this.currentDropdown = null;
+      this.priceChangeSale();
+      this.priceChangeRent();
       this.trigger = this.trigger + 1;
     });
   }
+
+
   languageChangeSubscription!: Subscription;
   trigger = 0;
   ngOnDestroy() {
@@ -46,16 +51,22 @@ export class HomeComponent {
   citiesSale!: Array<DataAndCheck<CityDto>>;
   benefitsSale!: Array<DataAndCheck<BenefitDto>>;
 
+  properties!: PagedResponse<PropertyDto>;
   async ngOnInit() {
 
 
     let citiesObservable = this._cityService.GetAllCities();
     let benefitsObservable = this._benefitService.GetAllBenefits();
 
+    let params = new HttpParams();
+    params = params.append("page-number", 1);
+    params = params.append("sale-promote-status", true);
+    params = params.append("rent-promote-status", true);
+    let propertiesObservable = this._propertyService.SearchPropertiesPaged(params);
 
 
 
-    let results = await firstValueFrom(forkJoin([citiesObservable, benefitsObservable]));
+    let results = await firstValueFrom(forkJoin([citiesObservable, benefitsObservable, propertiesObservable]));
 
     let cityAndChecks = new Array<DataAndCheck<CityDto>>();
     results[0].forEach(city => {
@@ -69,6 +80,7 @@ export class HomeComponent {
       benefitAndChecks.push(benefitAndCheck);
     });
 
+    this.properties = results[2];
     this.citiesRent = cityAndChecks;
     this.citiesSale = structuredClone(cityAndChecks);
     this.benefitsRent = benefitAndChecks;
@@ -78,19 +90,6 @@ export class HomeComponent {
 
   previousPageUrl = '';
   nextPageUrl = '';
-  totalPagesArray = new Array<number>();
-
-  displayCityAndCheckName(cityDtoAndCheck: DataAndCheck<CityDto>) {
-    let city = cityDtoAndCheck.Data;
-    return city.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
-  }
-  displayCityName(cityDto: CityDto) {
-    return cityDto.Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
-  }
-  displayBenefitAndCheckName(benefitDtoAndCheck: DataAndCheck<BenefitDto>) {
-    let benefit = benefitDtoAndCheck.Data;
-    return benefit.Local_Benefits.find(element => element.Local.LocalizationCode == 'ru')?.LocalBenefitName;
-  }
 
   selectedCitiesSale = new Array<CityDto>();
   selectedCitiesRent = new Array<CityDto>();
@@ -101,6 +100,7 @@ export class HomeComponent {
       let index = this.selectedCitiesSale.indexOf(city.Data);
       this.selectedCitiesSale.splice(index, 1);
     }
+    this.trigger = this.trigger + 1;
     console.log(this.selectedCitiesSale);
   }
   selectCityRent(city: DataAndCheck<CityDto>) {
@@ -110,25 +110,29 @@ export class HomeComponent {
       let index = this.selectedCitiesRent.indexOf(city.Data);
       this.selectedCitiesRent.splice(index, 1);
     }
+    this.trigger = this.trigger + 1;
     console.log(this.selectedCitiesSale);
   }
   selectedBenefitsRent = new Array<BenefitDto>();
   selectedBenefitsSale = new Array<BenefitDto>();
   selectBenefitSale(benefit: DataAndCheck<BenefitDto>) {
     if (benefit.checked) {
-      this.selectedBenefitsRent.push(benefit.Data);
-    } else {
-      let index = this.selectedBenefitsRent.indexOf(benefit.Data);
-      this.selectedBenefitsRent.splice(index, 1);
-    }
-  }
-  selectBenefitRent(benefit: DataAndCheck<BenefitDto>) {
-    if (benefit.checked) {
       this.selectedBenefitsSale.push(benefit.Data);
     } else {
       let index = this.selectedBenefitsSale.indexOf(benefit.Data);
       this.selectedBenefitsSale.splice(index, 1);
     }
+    console.log(this.selectedBenefitsSale);
+    this.trigger = this.trigger + 1;
+  }
+  selectBenefitRent(benefit: DataAndCheck<BenefitDto>) {
+    if (benefit.checked) {
+      this.selectedBenefitsRent.push(benefit.Data);
+    } else {
+      let index = this.selectedBenefitsRent.indexOf(benefit.Data);
+      this.selectedBenefitsRent.splice(index, 1);
+    }
+    this.trigger = this.trigger + 1;
   }
 
   rentalPeriod = 'any';
@@ -144,8 +148,10 @@ export class HomeComponent {
   threeBedroomsSale = false;
   fourBedroomsSale = false;
   fiveBedroomsSale = false;
-  priceFromSale = '';
-  priceToSale = '';
+
+
+  priceFromSale = "";
+  priceToSale = "";
 
   studioRent = false;
   oneBedroomRent = false;
@@ -153,8 +159,84 @@ export class HomeComponent {
   threeBedroomsRent = false;
   fourBedroomsRent = false;
   fiveBedroomsRent = false;
-  priceFromRent = '';
-  priceToRent = '';
+  priceFromRent = "";
+  priceToRent = "";
+
+
+  selectedBedroomsSale = new Array<string>();
+  selectBedroomSale(value: string) {
+    this.trigger += 1;
+    if (!this.selectedBedroomsSale.includes(value)) {
+      this.selectedBedroomsSale.push(value);
+    } else {
+      this.selectedBedroomsSale.splice(this.selectedBedroomsSale.indexOf(value), 1);
+    }
+  }
+
+  selectedBedroomsRent = new Array<string>();
+  selectBedroomRent(value: string) {
+    this.trigger += 1;
+    if (!this.selectedBedroomsRent.includes(value)) {
+      this.selectedBedroomsRent.push(value);
+    } else {
+      this.selectedBedroomsRent.splice(this.selectedBedroomsRent.indexOf(value), 1);
+    }
+  }
+
+
+  selectedSalePrice = "----";
+  priceChangeSale() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFromSale || this.priceToSale) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromSale, y: this.priceToSale }, currentLanguage).subscribe(result => {
+        this.selectedSalePrice = result;
+      });
+    } else {
+      this.selectedSalePrice = "----";
+    }
+
+
+    // if (this.priceFromSale != 0 && this.priceToSale == 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceFromX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale == 0 && this.priceToSale != 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceToX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale != 0 && this.priceToSale != 0) {
+
+    // }
+    // else {
+    //   this.selectedPrice = "----";
+    // }
+  }
+
+  selectedRentPrice = "----";
+  priceChangeRent() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFromRent || this.priceToRent) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFromRent, y: this.priceToRent }, currentLanguage).subscribe(result => {
+        this.selectedRentPrice = result;
+      });
+    } else {
+      this.selectedRentPrice = "----";
+    }
+
+
+    // if (this.priceFromSale != 0 && this.priceToSale == 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceFromX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale == 0 && this.priceToSale != 0) {
+    //   this.selectedPrice = this._translocoService.translateObject('searchMenuOptions.priceToX', { x: this.priceFromSale }, currentLanguage);
+    // }
+    // else if (this.priceFromSale != 0 && this.priceToSale != 0) {
+
+    // }
+    // else {
+    //   this.selectedPrice = "----";
+    // }
+  }
 
 
   searchRentProperties() {

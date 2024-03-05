@@ -34,6 +34,7 @@ export class SearchRentComponent {
     };
     this.languageChangeSubscription = _translocoService.langChanges$.subscribe(lang => {
       this.currentDropdown = null;
+      this.priceChangeRent();
       this.trigger = this.trigger + 1;
     });
   }
@@ -141,26 +142,32 @@ export class SearchRentComponent {
               switch (bedroomNumber) {
                 case "0": {
                   this.studio = true;
+                  this.selectedBedrooms.push('0');
                   break;
                 }
                 case "1": {
                   this.oneBedroom = true;
+                  this.selectedBedrooms.push('1');
                   break;
                 }
                 case "2": {
                   this.twoBedrooms = true;
+                  this.selectedBedrooms.push('2');
                   break;
                 }
                 case "3": {
                   this.threeBedrooms = true;
+                  this.selectedBedrooms.push('3');
                   break;
                 }
                 case "4": {
                   this.fourBedrooms = true;
+                  this.selectedBedrooms.push('4');
                   break;
                 }
                 case "5": {
                   this.fiveBedrooms = true;
+                  this.selectedBedrooms.push('5');
                   break;
                 }
               }
@@ -188,10 +195,14 @@ export class SearchRentComponent {
 
       }
     });
-    for (let i = 1; i <= this.properties.TotalPages; i++) {
-      this.totalPagesArray.push(i);
-    }
+    let currentLanguage = this._translocoService.getActiveLang();
 
+    if (this.priceFrom || this.priceTo) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFrom, y: this.priceTo }, currentLanguage).subscribe(result => {
+        this.selectedRentPrice = result;
+      });
+    }
+    this.trigger += 1;
   }
 
   previousPageUrl = '';
@@ -206,6 +217,7 @@ export class SearchRentComponent {
       let index = this.selectedCities.indexOf(city.Data);
       this.selectedCities.splice(index, 1);
     }
+    this.trigger += 1;
     console.log(this.selectedCities);
   }
 
@@ -217,6 +229,16 @@ export class SearchRentComponent {
       let index = this.selectedBenefits.indexOf(benefit.Data);
       this.selectedBenefits.splice(index, 1);
     }
+    this.trigger += 1;
+  }
+  selectedBedrooms = new Array<string>();
+  selectBedroomRent(value: string) {
+    this.trigger += 1;
+    if (!this.selectedBedrooms.includes(value)) {
+      this.selectedBedrooms.push(value);
+    } else {
+      this.selectedBedrooms.splice(this.selectedBedrooms.indexOf(value), 1);
+    }
   }
 
   rentalPeriod = 'any';
@@ -224,6 +246,19 @@ export class SearchRentComponent {
   changeRentalPeriod(event: Event) {
     let target = event?.target as HTMLInputElement;
     this.rentalPeriod = target.value;
+  }
+
+  selectedRentPrice = "----";
+  priceChangeRent() {
+    let currentLanguage = this._translocoService.getActiveLang();
+
+    if (this.priceFrom || this.priceTo) {
+      this._translocoService.selectTranslateObject('searchMenuOptions.priceFromXToY', { x: this.priceFrom, y: this.priceTo }, currentLanguage).subscribe(result => {
+        this.selectedRentPrice = result;
+      });
+    } else {
+      this.selectedRentPrice = "----";
+    }
   }
 
   studio = false;
@@ -288,12 +323,7 @@ export class SearchRentComponent {
     }
     this._router.navigateByUrl(url + '?' + params.toString());
   }
-  displayCityNameByProperty(propertyDto: PropertyDto) {
-    if (propertyDto.Cities.length > 0) {
-      return propertyDto.Cities[0].Local_Cities.find(element => element.Local.LocalizationCode == 'ru')?.LocalCityName;
-    }
-    return "";
-  }
+
   getFirstPictureUrl(property: PropertyDto) {
     if (!property.Photos) {
       return "";

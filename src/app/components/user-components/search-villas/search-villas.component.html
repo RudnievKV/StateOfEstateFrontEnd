@@ -21,28 +21,19 @@
                 <div class="menu__selectBox" (click)="toggleDropdown('menu02')">
                   <div class="menu__value">{{ t('city') }}</div>
                   <div class="menu__text">
-                    <div *ngIf="selectedCitiesSale.length > 0; else noSelected" style="display: flex;">
-                      <div *ngFor="let selectedCity of selectedCitiesSale; last as isLast; first as isFirst"
-                        style="display: flex;">
-                        <div *ngIf="isFirst">
-                          {{selectedCity | cityName : trigger}}
-                        </div>
-                        <!-- <div *ngIf="!isLast">
-                                      {{selectedCity | cityName : trigger}},
-                                    </div>
-                                    <div *ngIf="isLast">
-                                      {{selectedCity | cityName : trigger}}
-                                    </div> -->
-                      </div>
+                    <div *ngIf="selectedCitiesSale.length > 0; else noCitiesSaleSelected" style="display: inline;">
+                      {{selectedCitiesSale | selectedCityNames : trigger | truncate: 10 }}
 
                     </div>
                     <span></span>
-                    <ng-template #noSelected>
+                    <ng-template #noCitiesSaleSelected>
                       <ul>
-                        <li>{{ t('cityExample') }} </li>
+                        <li>{{ t('cityExample')}} </li>
                       </ul>
                     </ng-template>
                   </div>
+
+
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu02'">
@@ -61,39 +52,56 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu03')">
                   <div class="menu__value">{{ t('bedroomNumber') }}</div>
-                  <div class="menu__text">0<span></span></div>
+                  <div class="menu__text">
+                    <div *ngIf="selectedBedroomsSale.length > 0; else noBedroomSaleSelected" style="display: inline;">
+                      {{selectedBedroomsSale | selectedStringArray : trigger | truncate: 15 }}
+
+                    </div>
+                    <span></span>
+                    <ng-template #noBedroomSaleSelected>
+                      <ul>
+                        <li>{{ t('bedroomExample') }}</li>
+                      </ul>
+                    </ng-template>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu03'">
                   <ul class="menu__dropdown">
                     <li>
                       <label for="studio">
-                        <input type="checkbox" id="studio" name="bedroomCount" value="0" [(ngModel)]="studioSale" />{{
+                        <input type="checkbox" id="studio" name="bedroomCount" value="0" [(ngModel)]="studioSale"
+                          (change)="selectBedroomSale('0')" />{{
                         t('zeroBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="1">
-                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomSale" />{{
+                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomSale"
+                          (change)="selectBedroomSale('1')" />{{
                         t('oneBedroom')}}</label>
                     </li>
                     <li>
                       <label for="2">
-                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsSale" />{{
+                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsSale"
+                          (change)="selectBedroomSale('2')" />{{
                         t('twoBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="3">
-                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsSale" />{{
+                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsSale"
+                          (change)="selectBedroomSale('3')" />{{
                         t('threeBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="4">
-                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsSale" />{{
+                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsSale"
+                          (change)="selectBedroomSale('4')" />{{
                         t('fourBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="5">
-                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsSale" />{{
+                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsSale"
+                          (change)="selectBedroomSale('5')" />{{
                         t('fiveBedrooms')}}</label>
                     </li>
                   </ul>
@@ -104,18 +112,21 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu04')">
                   <div class="menu__value">{{ t('price')}}</div>
-                  <div class="menu__text">----<span></span></div>
+                  <div class="menu__text">
+                    {{selectedSalePrice}}
+                    <span></span>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu04'">
                   <ul class="menu__dropdown">
                     <div class="menu__set-price">
                       <p>{{ t('priceFrom')}}</p>
-                      <input type="number" [(ngModel)]="priceFromSale">
+                      <input type="number" [(ngModel)]="priceFromSale" (change)="priceChangeSale()">
                     </div>
                     <div class="menu__set-price">
                       <p>{{ t('priceTo')}}</p>
-                      <input type="number" [(ngModel)]="priceToSale">
+                      <input type="number" [(ngModel)]="priceToSale" (change)="priceChangeSale()">
                     </div>
                   </ul>
                 </div>
@@ -125,7 +136,20 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu05')">
                   <div class="menu__value">{{ t('benefit')}}</div>
-                  <div class="menu__text">{{ t('benefitExample')}}<span></span></div>
+                  <div class="menu__text">
+
+
+                    <div *ngIf="selectedBenefitsSale.length > 0; else noBenefitsSaleSelected" style="display: inline;">
+                      {{selectedBenefitsSale | selectedBenefitNames : trigger | truncate: 10 }}
+
+                    </div>
+                    <span></span>
+                    <ng-template #noBenefitsSaleSelected>
+                      <ul>
+                        <li>{{ t('benefitExample')}}</li>
+                      </ul>
+                    </ng-template>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu05'">
@@ -150,7 +174,23 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu06')">
                   <div class="menu__value">{{ t('rentalPeriod') }}</div>
-                  <div class="menu__text">{{ t('rentalPeriodExample') }}<span></span></div>
+                  <div class="menu__text">
+
+
+                    <div *ngIf="rentalPeriod == 'any'" style="display: inline;">
+                      {{t('rentalPeriodAny') | truncate: 10 }}
+                    </div>
+                    <div *ngIf="rentalPeriod == 'long-term'" style="display: inline;">
+                      {{t('rentalPeriodLongTerm') | truncate: 10 }}
+                    </div>
+                    <div *ngIf="rentalPeriod == 'whole-season'" style="display: inline;">
+                      {{t('rentalPeriodFullSeason') | truncate: 10 }}
+                    </div>
+                    <span></span>
+
+
+
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu06'">
@@ -175,25 +215,14 @@
                 <div class="menu__selectBox" (click)="toggleDropdown('menu07')">
                   <div class="menu__value">{{ t('city') }}</div>
                   <div class="menu__text">
-                    <div *ngIf="selectedCitiesRent.length > 0; else noSelected" style="display: flex;">
-                      <div *ngFor="let selectedCity of selectedCitiesRent; last as isLast; first as isFirst"
-                        style="display: flex;">
-                        <div *ngIf="isFirst">
-                          {{selectedCity | cityName : trigger}}
-                        </div>
-                        <!-- <div *ngIf="!isLast">
-                                      {{selectedCity | cityName : trigger}},
-                                    </div>
-                                    <div *ngIf="isLast">
-                                      {{selectedCity | cityName : trigger}}
-                                    </div> -->
-                      </div>
+                    <div *ngIf="selectedCitiesRent.length > 0; else noCitiesRentSelected" style="display: inline;">
+                      {{selectedCitiesRent | selectedCityNames : trigger | truncate: 10 }}
 
                     </div>
                     <span></span>
-                    <ng-template #noSelected>
+                    <ng-template #noCitiesRentSelected>
                       <ul>
-                        <li>{{ t('cityExample') }} </li>
+                        <li>{{ t('cityExample')}} </li>
                       </ul>
                     </ng-template>
                   </div>
@@ -215,39 +244,56 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu09')">
                   <div class="menu__value">{{ t('bedroomNumber') }}</div>
-                  <div class="menu__text">0<span></span></div>
+                  <div class="menu__text">
+                    <div *ngIf="selectedBedroomsRent.length > 0; else noBedroomRentSelected" style="display: inline;">
+                      {{selectedBedroomsRent | selectedStringArray : trigger | truncate: 15 }}
+
+                    </div>
+                    <span></span>
+                    <ng-template #noBedroomRentSelected>
+                      <ul>
+                        <li>{{ t('bedroomExample') }}</li>
+                      </ul>
+                    </ng-template>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu09'">
                   <ul class="menu__dropdown">
                     <li>
                       <label for="studio">
-                        <input type="checkbox" id="studio" name="bedroomCount" value="0" [(ngModel)]="studioRent" />{{
+                        <input type="checkbox" id="studio" name="bedroomCount" value="0" [(ngModel)]="studioRent"
+                          (change)="selectBedroomRent('0')" />{{
                         t('zeroBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="1">
-                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomRent" />{{
+                        <input type="checkbox" id="1" name="bedroomCount" value="1" [(ngModel)]="oneBedroomRent"
+                          (change)="selectBedroomRent('1')" />{{
                         t('oneBedroom')}}</label>
                     </li>
                     <li>
                       <label for="2">
-                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsRent" />{{
+                        <input type="checkbox" id="2" name="bedroomCount" value="2" [(ngModel)]="twoBedroomsRent"
+                          (change)="selectBedroomRent('2')" />{{
                         t('twoBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="3">
-                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsRent" />{{
+                        <input type="checkbox" id="3" name="bedroomCount" value="3" [(ngModel)]="threeBedroomsRent"
+                          (change)="selectBedroomRent('3')" />{{
                         t('threeBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="4">
-                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsRent" />{{
+                        <input type="checkbox" id="4" name="bedroomCount" value="4" [(ngModel)]="fourBedroomsRent"
+                          (change)="selectBedroomRent('4')" />{{
                         t('fourBedrooms')}}</label>
                     </li>
                     <li>
                       <label for="5">
-                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsRent" />{{
+                        <input type="checkbox" id="5" name="bedroomCount" value="5" [(ngModel)]="fiveBedroomsRent"
+                          (change)="selectBedroomRent('5')" />{{
                         t('fiveBedrooms')}}</label>
                     </li>
                   </ul>
@@ -258,18 +304,21 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu10')">
                   <div class="menu__value">{{ t('price')}}</div>
-                  <div class="menu__text">----<span></span></div>
+                  <div class="menu__text">
+                    {{selectedRentPrice}}
+                    <span></span>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu10'">
                   <ul class="menu__dropdown">
                     <div class="menu__set-price">
                       <p>{{ t('priceFrom')}}</p>
-                      <input type="number" [(ngModel)]="priceFromRent">
+                      <input type="number" [(ngModel)]="priceFromRent" (change)="priceChangeRent()">
                     </div>
                     <div class="menu__set-price">
                       <p>{{ t('priceTo')}}</p>
-                      <input type="number" [(ngModel)]="priceToRent">
+                      <input type="number" [(ngModel)]="priceToRent" (change)="priceChangeRent()">
                     </div>
                   </ul>
                 </div>
@@ -279,7 +328,20 @@
               <div class="menu__multiselect">
                 <div class="menu__selectBox" (click)="toggleDropdown('menu11')">
                   <div class="menu__value">{{ t('benefit')}}</div>
-                  <div class="menu__text">{{ t('benefitExample')}}<span></span></div>
+                  <div class="menu__text">
+
+
+                    <div *ngIf="selectedBenefitsRent.length > 0; else noBenefitsRentSelected" style="display: inline;">
+                      {{selectedBenefitsRent | selectedBenefitNames : trigger | truncate: 10 }}
+
+                    </div>
+                    <span></span>
+                    <ng-template #noBenefitsRentSelected>
+                      <ul>
+                        <li>{{ t('benefitExample')}}</li>
+                      </ul>
+                    </ng-template>
+                  </div>
                   <div class="menu__overSelect"></div>
                 </div>
                 <div id="checkboxes" *ngIf="currentDropdown === 'menu11'">
@@ -331,7 +393,7 @@
             </div>
             <div class=" body__label">{{property | cityNameByProperty : trigger}}
             </div>
-            <div class="body__value">{{property | propertyDescription: trigger | truncate : [120]}}</div>
+            <div class="body__value">{{property | propertyDescription: trigger | truncate : 120 : true}}</div>
             <div class="body__info">
               <div class="body__price">${{property | propertyPrice : rentalPeriodOnLoad}}</div>
               <div class="body__space" innerHTML="{{property | propertySquare}} {{t('spaceArea')}}"></div>
@@ -367,7 +429,7 @@
             </div>
             <div class=" body__label">{{property | cityNameByProperty : trigger}}
             </div>
-            <div class="body__value">{{property | propertyDescription: trigger | truncate : [120]}}</div>
+            <div class="body__value">{{property | propertyDescription: trigger | truncate : 120 : true}}</div>
             <div class="body__info">
               <div class="body__price">${{property | propertyPrice : rentalPeriodOnLoad}}</div>
               <div class="body__space" innerHTML="{{property | propertySquare}} {{t('spaceArea')}}"></div>

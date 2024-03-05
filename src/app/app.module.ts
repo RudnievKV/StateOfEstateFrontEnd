@@ -96,6 +96,9 @@ import { JsonDateInterceptor } from './interceptors/JsonDateInterceptor';
 import { CityAndCheckNamePipe } from 'src/pipes/cityAndCheckName.pipe';
 import { BenefitAndCheckNamePipe } from 'src/pipes/benefitAndCheckName.pipe';
 import { CityNamePipe } from 'src/pipes/cityName.pipe';
+import { SelectedCityNamesPipe } from 'src/pipes/selectedCityNames.pipe';
+import { SelectedStringArrayPipe } from 'src/pipes/selectedStringArray.pipe';
+import { SelectedBenefitNamesPipe } from 'src/pipes/selectedBenefitNames.pipe';
 import { LightGalComponent } from './components/user-components/properties/light-gal/light-gal.component';
 
 import { LIGHTBOX_CONFIG, LightboxConfig } from 'ng-gallery/lightbox';
@@ -122,6 +125,9 @@ export function tokenGetter() {
     CityAndCheckNamePipe,
     BenefitAndCheckNamePipe,
     CityNamePipe,
+    SelectedCityNamesPipe,
+    SelectedStringArrayPipe,
+    SelectedBenefitNamesPipe,
 
     // USER COMPONENTS
     SearchSaleComponent,
